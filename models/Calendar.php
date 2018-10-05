@@ -3,11 +3,11 @@
 class Calendar{
 
 	private $id;
-	private $fechas;
+	private $dates;
 
 	function __construct ($id){
 		$this->id = $id;
- 		$this->fechas= array(); 
+ 		$this->dates= array(); 
 	}
 
 
@@ -19,8 +19,8 @@ class Calendar{
         $this->id=$id;
     }
 
-    function getFechas(){
-    	return $this->fechas;
+    function getDates(){
+    	return $this->dates;
     }
 
 }

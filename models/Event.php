@@ -14,14 +14,18 @@ class Event
     private $description;
     private $img;
     private $eventCategory;
+    private $place;
+    private $calendar;
 
-    function __construct($id,$name,$description,$img,$eventCategory)
+    function __construct($id,$name,$description,$img,$eventCategory,$place,$calendar)
     {
         $this->id=$id;
         $this->name=$name;
         $this->description=$description;
         $this->img = $img;
         $this->eventCategory = $eventCategory;
+        $this->place= $place;
+        $this->calendar=$calendar;
     }
 
     function getId(){
@@ -60,5 +64,13 @@ class Event
 
     function getEventCategory($eventCategory){
         return $this->eventCategory;
+    }
+
+    function getPlace($place){
+        return $this->place;
+    }
+
+    function setPlace($place){
+        $this->place=$place;
     }
 }

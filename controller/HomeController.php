@@ -14,6 +14,7 @@
 		}
 
 		public function index(){
+
 			session_start();
 
 			if(isset($_SESSION['user'])){
@@ -32,12 +33,13 @@
 			include(ROOT . 'views\footer.php');
 			
 			
+		
 		}
 
 		public function signOut(){
 			session_start();
 			session_destroy();
-			header('Location: http://'.HOST_INTERNET.'/'.DIR.'/Home');
+			header('Location: http://'.HOST_INTERNET.'/'.DIRECTORY.'/Home');
 		}
 	}
 

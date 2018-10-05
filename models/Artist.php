@@ -1,12 +1,5 @@
 <?php namespace models;
 
-include(ROOT . 'config\Config.php');
-include(ROOT . 'config\Autoload.php');
-
-use Config\Config as Config;
-use Config\Autoload as Autoload;
-Autoload::start();
-
 class Artist
 {
     private $id;
@@ -19,8 +12,10 @@ class Artist
         $this->id=$id;
         $this->name=$name;
         $this->description=$description;
-        $this->img = $img;
+        $this->img=$img;
     }
+
+
 
     function getId(){
         return $this->id;

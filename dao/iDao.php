@@ -4,13 +4,13 @@ interface iDao{
 
 
 
-	abstract function add($object);
+	 public function add($object);
 
-	abstract function get($id);
+	 public function get($id);
 
-	abstract function delete($id);
+	 public function delete($id);
 
-	abstract function update($object); 
+	 public function update($object); 
 
 }
 

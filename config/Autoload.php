@@ -1,9 +1,5 @@
 <?php namespace config;
 
-
-	//require_once ('Config.php');
-
-	//use Config\Config as Config;
 	
     class Autoload {
         

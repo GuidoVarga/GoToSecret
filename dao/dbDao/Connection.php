@@ -4,7 +4,7 @@
 
     class Connection {
         
-        public function connection() {
+        public function connect() {
         	try {
         		return new \PDO("mysql:host=".HOST."; dbname=".DB_NAME, USER, PASS);
         	} catch (\PDOException $e) {
