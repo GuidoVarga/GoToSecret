@@ -1,6 +1,6 @@
 <?php namespace dao;
 
-interface AbstactDao{ 
+interface iDao{ 
 
 
 

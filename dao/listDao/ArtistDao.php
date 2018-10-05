@@ -1,7 +1,7 @@
 <?php namespace dao\listDao
 
 
-	class ArtistDao implements AbstractDao{
+	class ArtistDao implements iDao{
 
 		private $list;
 
