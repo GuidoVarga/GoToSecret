@@ -1,4 +1,4 @@
-<?php namespace dao\listDao;
+<?php namespace dao;
  
 class Singleton
 {

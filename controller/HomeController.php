@@ -29,8 +29,8 @@
 			}
 
             include(ROOT . 'views\head.php');
-			include(ROOT . 'views\header.php');
-			include(ROOT . 'views\footer.php');
+			include(ROOT . 'views\user\header.php');
+			include(ROOT . 'views\user\footer.php');
 			
 			
 		

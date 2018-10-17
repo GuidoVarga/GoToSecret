@@ -5,14 +5,14 @@ class Artist
     private $id;
     private $name;
     private $description;
-    private $img;
+ 
 
-    function __construct($id,$name,$description,$img)
+    function __construct($id,$name,$description)
     {
         $this->id=$id;
         $this->name=$name;
         $this->description=$description;
-        $this->img=$img;
+      
     }
 
 
@@ -39,12 +39,5 @@ class Artist
         return $this->name;
     }
 
-    function setImg($img){
-        $this->img = $img;
-    }
-
-    function getImg(){
-        return $this->img;
-    }
 
 }

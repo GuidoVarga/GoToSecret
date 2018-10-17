@@ -1,3 +1,104 @@
-header nav{
-    background: color#0e0e0e;
+body{
+    margin:0px;
+    font-family: 'Lato', sans-serif;
+    background-color: #f6f6f6;
 }
+
+header{
+    background-color: #181818;
+    text-align: center;
+}
+
+header .logo {
+    max-width: 200px;
+    margin-right:25px;
+}
+
+header .navbar .navbar-nav .nav-item .nav-link{
+    color: #fff;
+    font-weight: bolder;
+    font-size: 14.5px;
+}
+
+header .navbar .navbar-nav .nav-item .nav-link:hover{
+    color: #9c9494;
+}
+
+.group-modal .form-control {
+    padding-left: 2.375rem;
+}
+
+.group-modal .form-control-modal {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+.btn-fb{
+    background-color: #4267b2;
+    color:#fff;
+}
+
+.btn-fb:hover{
+    background-color:#4276b2; 
+}
+
+.btn-all{
+    color:#fff;
+    background-color: #443d3d;
+}
+
+.btn-all:hover{
+    background-color: #605959;
+}
+
+
+footer{
+    margin-top: 40px;
+    margin-bottom: 0px;
+    background-color:#181818;
+    color: #fff;
+}
+
+footer a{
+    color: #fff;
+}
+
+footer a:hover{
+    color: #9c9494;
+    text-decoration: none;
+}
+
+footer{
+
+}
+
+.login_admin{
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+
+.login_admin input[type="email"]{
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.login_admin .form-control{
+    position:relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+
+
