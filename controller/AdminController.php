@@ -23,7 +23,8 @@
 
 		public function index(){
 
-
+		 	include(ROOT . 'views\head.php');
+ 			include(ROOT . 'views\admin\full.php');
 
 		}
 

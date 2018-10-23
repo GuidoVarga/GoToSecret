@@ -50,7 +50,7 @@
                                       
                                     </div>
                                      <div class="modal-footer mx-5 pt-3 mb-1">
-                                        <p class="font-small grey-text d-flex justify-content-end">No tenés cuenta? <a href="#" data-toggle="modal" data-target="#modal-register" class="blue-text ml-1"> Registrate</a></p>
+                                        <p class="font-small grey-text d-flex justify-content-end">No tenés cuenta? <a href="#" data-toggle="modal" data-target="#modal-register"  data-dismiss="modal" class="blue-text ml-1"> Registrate</a></p>
                                     </div>
                                 </div>
                             </div>

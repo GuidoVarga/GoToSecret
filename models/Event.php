@@ -1,12 +1,5 @@
 <?php namespace models;
 
-include(ROOT . 'config\Config.php');
-include(ROOT . 'config\Autoload.php');
-
-use Config\Config as Config;
-use Config\Autoload as Autoload;
-Autoload::start();
-
 class Event
 {
     private $id;
@@ -16,16 +9,18 @@ class Event
     private $eventCategory;
     private $place;
     private $calendar;
+    private $locations;
 
-    function __construct($id,$name,$description,$img,$eventCategory,$place,$calendar)
+    function __construct($id,$name,$description,$eventCategory,$place,$calendar)
     {
         $this->id=$id;
         $this->name=$name;
         $this->description=$description;
-        $this->img = $img;
         $this->eventCategory = $eventCategory;
         $this->place= $place;
         $this->calendar=$calendar;
+     $this->locations=array();
+       
     }
 
     function getId(){
@@ -72,5 +67,9 @@ class Event
 
     function setPlace($place){
         $this->place=$place;
+    }
+
+    function addLocation($location){
+       array_push($this->locations,$location);
     }
 }

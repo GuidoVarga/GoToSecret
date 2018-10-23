@@ -8,6 +8,7 @@
 	use config\Request as Request;
 	use dao\dbDao\EventDao as EventDao;
 	use dao\Singleton as Singleton;
+	use models\Event as Event;
 
 	Autoload::start();
 
@@ -23,7 +24,17 @@
 		public function index(){
 
 			$result=$this->eventDao->getAll();
-			var_dump($result);
+			echo '<pre>';
+				var_dump($result);
+				echo '</pre>';
+
+/*
+				$events=$this->eventDao->map($result);
+				echo '<pre>';
+				var_dump($events[0]);
+				echo '</pre>';
+*/
+
 		}
 
 		public function addEvent(){
@@ -32,8 +43,6 @@
 		}
 
 		public function getEvents(){
-
-
 
 			$result=$this->eventDao->getAll();
 			$events=$this->eventDao->map($result);

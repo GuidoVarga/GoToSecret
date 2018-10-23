@@ -3,12 +3,18 @@
 class Location{
 
 	private $id;
-	private $description;
+	private $name;
+    private $totalQuantity;
+    private $remanent;
+    private $price;
 
-	 function __construct($id,$description)
-    {
+	 function __construct($id,$name,$totalQuantity,$remanent,$price)
+    {   
         $this->id=$id;
-        $this->description=$description;
+        $this->name=$name;
+        $this->totalQuantity=$totalQuantity;
+        $this->remanent=$remanent;
+        $this->price=$price;
     }
 
      function getId(){
@@ -18,13 +24,23 @@ class Location{
     function setId($id){
         $this->id=$id;
     }
-    function setDescription($description){
-        $this->description=$description;
+    function setName($name){
+        $this->name=$name;
     }
 
-    function getDescription(){
-        return $this->description;
+    function getName(){
+        return $this->name;
     }
+
+
+    function getPrice(){
+        return $this->price;
+    }
+
+     function setPrice($price){
+        $this->price=$price;
+    }
+
 
 
 }
