@@ -19,7 +19,7 @@ class Event
         $this->eventCategory = $eventCategory;
         $this->place= $place;
         $this->calendar=$calendar;
-     $this->locations=array();
+        $this->locations=array();
        
     }
 
@@ -71,5 +71,22 @@ class Event
 
     function addLocation($location){
        array_push($this->locations,$location);
+    }
+
+    function getLocation($index){
+
+        return $this->locations[$index];
+    }
+
+    function addDate($date){
+        $this->calendar->addDate($date);
+    }
+
+    function getDateByIndex($index){
+        return $this->calendar->getDateByIndex($index);
+    }
+
+    function getDateById($id){
+        return $this->calendar->getDateById($id);
     }
 }

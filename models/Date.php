@@ -11,13 +11,16 @@
 		function __construct($id,$date,$artist,$startHour,$finishHour){
 
             $this->id=$id;
-            $this->email=$email;
-            $this->password=$password;
+            $this->artist=$artist;
+            $this->date=$date;
             $this->startHour=$startHour;
             $this->finishHour=$finishHour;
 
     	}
 
+        function getId(){
+             return $this->id;
+        }
 
     	function getDate(){
     		return $this->date;

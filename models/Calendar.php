@@ -23,10 +23,24 @@ class Calendar{
     	return $this->dates;
     }
 
+    function addDate($date){
+        array_push($this->dates,$date);
+    }
+
+    function getDateByIndex($index){
+        return $this->dates[$index];
+    }
+
+    function getDateById($id){
+        
+        foreach ($this->dates as $date) {
+            if($date->getId()==$id){
+                return $date;
+            }
+        }
+        return null;
+    }
+
 }
-
-
-
-
 
 ?>

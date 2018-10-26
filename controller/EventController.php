@@ -9,6 +9,8 @@
 	use dao\dbDao\EventDao as EventDao;
 	use dao\Singleton as Singleton;
 	use models\Event as Event;
+	use models\Calendar as Calendar;
+	use models\Date as Date;
 
 	Autoload::start();
 
@@ -25,21 +27,28 @@
 
 			$result=$this->eventDao->getAll();
 			echo '<pre>';
-				//var_dump($result);
-				echo '</pre>';
+			var_dump($result);
+			echo '</pre>';
 
 
-				$events=$this->eventDao->map2($result);
-			
-			var_dump($events[0]);
-			var_dump($events[1]);
-
-
+			$events=$this->eventDao->map2($result);
+			echo '<pre>';
+			var_dump($events);
+			echo '</pre>';
+		
 		}
 
 		public function addEvent(){
 
-	
+				$event = new Event('id','name','d','ec','p', new Calendar('id'));
+
+				$event->addDate(new Date('id','dia','artist','19','21'));
+				$event->addDate(new Date('id2','dia','artist','21','23'));
+
+				$date = $event->getDateByIndex(0);
+				echo '<pre>';
+				var_dump($date);
+				echo '</pre>';
 		}
 
 		public function getEvents(){
