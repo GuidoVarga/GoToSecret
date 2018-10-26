@@ -25,15 +25,15 @@
 
 			$result=$this->eventDao->getAll();
 			echo '<pre>';
-				var_dump($result);
+				//var_dump($result);
 				echo '</pre>';
 
-/*
-				$events=$this->eventDao->map($result);
-				echo '<pre>';
-				var_dump($events[0]);
-				echo '</pre>';
-*/
+
+				$events=$this->eventDao->map2($result);
+			
+			var_dump($events[0]);
+			var_dump($events[1]);
+
 
 		}
 

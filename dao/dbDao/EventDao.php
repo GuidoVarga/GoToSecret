@@ -9,6 +9,7 @@
 	use \PDOException as PDOException;
 	use dao\iDao as iDao;
 	use dao\Singleton as Singleton;
+	use \PDO as PDO;
 
 	Autoload::start();
 
@@ -54,7 +55,7 @@
 
 		}
 
-public function getAll(){
+	public function getAll(){
 
 	try {
 		$sql = "SELECT * FROM events left JOIN events_x_locations ON events_x_locations.event_id=events.id left JOIN locations ON locations.id=events_x_locations.location_id ";
@@ -72,14 +73,23 @@ public function getAll(){
 			$obj_pdo = new Connection();
 
 			$connection = $obj_pdo->connect();
-
+			$connection->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES,true);
 			$query = $connection->prepare($sql);
 
 			$query->execute();
 
 			$result=$query->fetchAll();
-
 			return $result;
+
+			/*
+			https://stackoverflow.com/questions/25258845/ambiguous-field-names-add-table-name-with-fetch-obj
+			https://www.w3resource.com/php/pdo/php-pdo.php
+			https://stackoverflow.com/questions/15202864/pdo-fetch-class-with-joined-tables
+			http://php.net/manual/es/pdo.constants.php
+*/
+
+
+
 		
 	} catch(PDOException $Exception) {
 		throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
@@ -96,37 +106,58 @@ public function getAll(){
 
 		} 
 
+		public function searchEvent($array,$id){
+
+			foreach ($array as $event) {
+				if($event->getId()==$id){
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		public function map2($events){
+
+			$array = array();
+
+			foreach ($events as $event) {
+				if(!$this->searchEvent($array,$event['events.id'])){
+					$e = new Event($event['events.id'],$event['events.name'],'d','ec','place','calendar');
+
+					$e->addLocation(new Location($event['locations.id'],$event['locations.name'],$event['events_x_locations.total_quantity'],$event['events_x_locations.remament'],$event['events_x_locations.price']));
+
+
+					array_push($array, $e);
+				}
+				
+
+				
+			}
+
+			//return $event= new Event($e['events.id'],$e['events.name'],'d','place','category','calendar');
+			return $array;
+		}
+
+		
 		
 		public function map($objects)
 		{
 			
 			$events = is_array($objects) ? $objects: [];
-			
-			return array_map(function($e){
-				$event = new Event($e[0],$e[1],'d','place','category','calendar');
+		
+			return array_map(function($e,$events){
 
-				$event->addLocation(new Location(null,'location',$e['total_quantity'],$e['remament'],$e['price']));
+				var_dump($events);
+				$event = $this->mapEvent($e);
+
+				$event->addLocation(new Location($e['locations.id'],$e['locations.name'],$e['events_x_locations.total_quantity'],$e['events_x_locations.remament'],$e['events_x_locations.price']));
 				return $event;
 			}, $events);
 
+			}
 
-
-			
 		}
-
-
-
-
-
-
-
-	}
-
-
-
-
-
-
 
 
 ?>
