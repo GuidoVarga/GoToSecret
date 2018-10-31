@@ -7,19 +7,15 @@ class Event
     private $description;
     private $img;
     private $eventCategory;
-    private $place;
-    private $calendar;
-    private $locations;
-
-    function __construct($id,$name,$description,$eventCategory,$place,$calendar)
+     private $calendar;
+   
+    function __construct($id,$name,$description,$eventCategory,$calendar)
     {
         $this->id=$id;
         $this->name=$name;
         $this->description=$description;
         $this->eventCategory = $eventCategory;
-        $this->place= $place;
         $this->calendar=$calendar;
-        $this->locations=array();
        
     }
 
@@ -61,23 +57,7 @@ class Event
         return $this->eventCategory;
     }
 
-    function getPlace($place){
-        return $this->place;
-    }
-
-    function setPlace($place){
-        $this->place=$place;
-    }
-
-    function addLocation($location){
-       array_push($this->locations,$location);
-    }
-
-    function getLocation($index){
-
-        return $this->locations[$index];
-    }
-
+  
     function addDate($date){
         $this->calendar->addDate($date);
     }
@@ -89,4 +69,5 @@ class Event
     function getDateById($id){
         return $this->calendar->getDateById($id);
     }
+
 }

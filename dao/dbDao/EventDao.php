@@ -52,9 +52,11 @@ class EventDao extends Singleton implements iDao{
 	public function getAll(){
 
 		try {
-			$sql = "SELECT * FROM events left JOIN events_x_locations ON events_x_locations.event_id=events.id left JOIN locations ON locations.id=events_x_locations.location_id left JOIN places ON places.id=events.place_id left JOIN cities ON cities.id=places.city_id left JOIN event_categories ON event_categories.id = events.event_category_id left JOIN calendars ON calendars.id = events.calendar_id  left JOIN dates ON dates.calendar_id = calendars.id left JOIN artists ON artists.id=dates.artist_id";
+			$sql = "SELECT * FROM events left JOIN event_categories ON event_categories.id = events.event_category_id left JOIN calendars ON calendars.id = events.calendar_id  left JOIN dates ON dates.calendar_id = calendars.id left JOIN dates_x_locations ON dates_x_locations.date_id=dates.id left JOIN locations ON locations.id=dates_x_locations.location_id left JOIN places ON places.id=dates.place_id left JOIN cities ON cities.id=places.city_id left JOIN artists ON artists.id=dates.artist_id";
 
 			/*
+
+				$sql = "SELECT * FROM events left JOIN event_categories ON event_categories.id = events.event_category_id left JOIN calendars ON calendars.id = events.calendar_id  left JOIN dates ON dates.calendar_id = calendars.id left JOIN dates_x_locations ON dates_x_locations.date_id=dates.id left JOIN locations ON locations.id=dates_x_locations.location_id left JOIN places ON places.id=dates.place_id left JOIN cities ON cities.id=places.city_id left JOIN artists ON artists.id=dates.artist_id";
 			  
 
 			$sql= "SELECT *, DATE_FORMAT(fecha, '%d/%m/%Y') as fecha FROM pedidos LEFT JOIN tipo_cerveza ON tipo_cerveza.id_tipo_cerveza=pedidos.id_tipo_cerveza LEFT JOIN tipo_envase ON tipo_envase.id_tipo_envase=pedidos.id_tipo_envase LEFT JOIN tipo_estado ON tipo_estado.id_tipo_estado=pedidos.id_tipo_estado LEFT JOIN sucursales ON sucursales.id_sucursal=pedidos.id_sucursal LEFT JOIN cuentas ON cuentas.id_cuenta=pedidos.id_cuenta LEFT JOIN clientes ON clientes.id_cuenta=cuentas.id_cuenta ";
@@ -106,16 +108,18 @@ class EventDao extends Singleton implements iDao{
 	public function addEventToArray($array,$e){
 
 		foreach ($array as $event) {
+			
 			if($event->getId()==$e->getId()){
-				$event->addLocation($e->getLocation(0));
-
-				$id=$e->getDateByIndex(0)->getId();
-				//$id=$date->getId();
-
-				if( $event->getDateById($id) == null){
+				$eDate = $e->getDateByIndex(0);
+				$eventDate =$event->getDateById($eDate->getId());
+				if( $eventDate == null){
 					$event->addDate($e->getDateByIndex(0));
-				}
+				}else{
 
+					if($eventDate->getLocation(0)->getId() != $eDate->getLocation(0)->getId()){
+						$eventDate->addLocation($eDate->getLocation(0));
+					} 
+				}
 				return $array;
 			}
 		}
@@ -131,14 +135,14 @@ class EventDao extends Singleton implements iDao{
 
 			$e = new Event($event['events.id'],$event['events.name'],'description',
 							new EventCategory($event['event_categories.id'],$event['event_categories.name']),
-							new Place( $event['places.id'],$event['places.name'],$event['places.address'], new City($event['cities.id'],$event['cities.name'])),
 							new Calendar($event['calendars.id'])
 						);
 			
-			$e->addLocation(new Location($event['locations.id'],$event['locations.name'],$event['events_x_locations.total_quantity'],$event['events_x_locations.remament'],$event['events_x_locations.price']));
+			$date = new Date($event['dates.id'], $event['dates.date'], new Artist($event['artists.id'], $event['artists.name'], $event['artists.description']) ,$event['dates.start_hour'], $event['dates.finish_hour'], new Place( $event['places.id'],$event['places.name'],$event['places.address'], new City($event['cities.id'],$event['cities.name'])));
 
-			
-			$e->addDate(new Date($event['dates.id'], $event['dates.date'], new Artist($event['artists.id'], $event['artists.name'], $event['artists.description']) ,$event['dates.start_hour'], $event['dates.finish_hour']));
+			$date->addLocation(new Location($event['locations.id'],$event['locations.name'],$event['dates_x_locations.total_quantity'],$event['dates_x_locations.remament'],$event['dates_x_locations.price']));
+
+			$e->addDate($date);
 		
 			$array=$this->addEventToArray($array,$e);
 		}
@@ -158,7 +162,7 @@ class EventDao extends Singleton implements iDao{
 			var_dump($events);
 			$event = $this->mapEvent($e);
 
-			$event->addLocation(new Location($e['locations.id'],$e['locations.name'],$e['events_x_locations.total_quantity'],$e['events_x_locations.remament'],$e['events_x_locations.price']));
+			$event->addLocation(new Location($e['locations.id'],$e['locations.name'],$e['dates_x_locations.total_quantity'],$e['dates_x_locations.remament'],$e['dates_x_locations.price']));
 			return $event;
 		}, $events);
 

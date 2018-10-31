@@ -1,6 +1,6 @@
 <?php namespace models;
 
-class DateCategory
+class EventCategory
 {
 
 	private $id;

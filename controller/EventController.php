@@ -26,15 +26,17 @@
 		public function index(){
 
 			$result=$this->eventDao->getAll();
+			/*
 			echo '<pre>';
 			var_dump($result);
 			echo '</pre>';
-
-
+			*/
+			
 			$events=$this->eventDao->map2($result);
 			echo '<pre>';
 			var_dump($events);
 			echo '</pre>';
+			
 		
 		}
 
@@ -53,9 +55,7 @@
 
 		public function getEvents(){
 
-			$result=$this->eventDao->getAll();
-			$events=$this->eventDao->map($result);
-			var_dump($events);
+		
 		}	
 
 
