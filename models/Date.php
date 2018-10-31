@@ -7,14 +7,16 @@
 		private $artist;
 		private $startHour;
 		private $finishHour;
+        private $dateCategory;
 
-		function __construct($id,$date,$artist,$startHour,$finishHour){
+		function __construct($id,$date,$artist,$startHour,$finishHour,$dateCategory){
 
             $this->id=$id;
             $this->artist=$artist;
             $this->date=$date;
             $this->startHour=$startHour;
             $this->finishHour=$finishHour;
+            $this->dateCategory=$dateCategory;
 
     	}
 
