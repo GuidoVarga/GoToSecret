@@ -3,6 +3,7 @@
 	require_once(ROOT . 'config\Autoload.php');
 
 	use config\Autoload as Autoload;
+	use dao\dbDao\PlaceDao as PlaceDao;
 
 	Autoload::start();
 
@@ -42,6 +43,26 @@
 			session_destroy();
 			header('Location: http://'.HOST_INTERNET.'/'.DIRECTORY.'/Home');
 		}
+
+
+		public function getPlaces(){
+
+			$dao = PlaceDao::getInstance();
+
+			var_dump($dao);
+
+			$result = $dao->getAll();
+			echo '<pre>';
+			var_dump($result);
+			echo '</pre>';
+			
+			$places=$dao->map($result);
+			echo '<pre>';
+			var_dump($places);
+			echo '</pre>';
+		}
+
+
 	}
 
 

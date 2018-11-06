@@ -70,12 +70,6 @@ class EventDao extends Singleton implements iDao{
 			$result=$query->fetchAll();
 			return $result;
 
-			/*
-			https://stackoverflow.com/questions/25258845/ambiguous-field-names-add-table-name-with-fetch-obj
-			https://www.w3resource.com/php/pdo/php-pdo.php
-			https://stackoverflow.com/questions/15202864/pdo-fetch-class-with-joined-tables
-			http://php.net/manual/es/pdo.constants.php
-			*/
 		} 
 		catch(PDOException $Exception) {
 			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
