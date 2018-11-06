@@ -4,7 +4,7 @@
 <header class="header mb-4">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
-            <a class="navbar-left" href=""><img class="img-responsive logo" src="<?php ROOT?>resources/images/logo-white.png" id="logo-nav" alt="GoToEvent"></a>
+            <a class="navbar-left" href="Home"><img class="img-responsive logo" src="<?php ROOT?>resources/images/logo-white.png" id="logo-nav" alt="GoToEvent"></a>
             <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -18,7 +18,12 @@
                     </li>
                     
                 </ul>
-                <ul class="navbar-nav">
+                <?php
+                if(isset($usuario))
+                {
+
+                ?>
+                 <ul class="navbar-nav">
                     <li class="nav-item ">
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-login" aria-haspopup="true" aria-expanded="false"><i class="fas fa-sign-in-alt"></i>
                             Iniciar Sesión
@@ -108,43 +113,37 @@
                         </div>
                     </li>
                 </ul>
-                <?php
-                if(isset($usuario))
-                {
+                
+                    <?php
+
+                }
+                else{
 
                 ?>
+                
+
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i>
                         </a>
                         <div class="dropdown-menu text-sm-center text-lg-left" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="">
                                 Editar Perfil
                             </a>
-                            <a class="dropdown-item" href="">
-                                Mis Pedidos
-                            </a>
-                            @endif
                             <a class="dropdown-item" href="" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                 Cerrar Sesion
                                 <form id="logout-form" action="" method="POST" style="display: none;">
-                                    @csrf
                                 </form>
                             </a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/pedidos')}}"><i class="fas fa-shopping-cart "></i>
-                            <div class="items-carrito">
-                                <span class="badge badge-primary">0</span>
-                            </div></a>
+                        <a class="nav-link" href="Cart"><i class="fas fa-shopping-cart "></i></a>
                     </li>
                 </ul>
-                    <?php
+                <?php } ?>
 
-                }
-
-                ?>
             </div>
             </div>
         </nav>

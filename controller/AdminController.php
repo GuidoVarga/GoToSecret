@@ -22,47 +22,14 @@
 
 
 		public function index(){
-
-		 	include(ROOT . 'views\head.php');
- 			include(ROOT . 'views\admin\full.php');
-
+			
+			include(ROOT . 'views\head.php');
+			include(ROOT . 'views\admin\dashboard.php');
+			include(ROOT . 'views\admin\footer_admin.php');
+			
 		}
 
-		public function artist(){
-
-			include(ROOT.'views/admin/addArtist.php');
-
-		}
-
-
-		public function addArtist($name,$description){
-
-			$artist=new Artist(0,$name,$description);
-
-			$this->artistDao->add($artist);
-
-			var_dump($this->artistDao);
-			//header("location: http://".HOST_INTERNET."/proyecto/Admin");
-		}
-
-		public function getArtists(){
-
-
-
-			$result=$this->artistDao->getAll();
-			$artists=$this->artistDao->map($result);
-			var_dump($artists);
-		}	
-
-
-
-
-
-
-
-
-
-
+		
 	}
 
 

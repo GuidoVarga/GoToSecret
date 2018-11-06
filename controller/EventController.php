@@ -25,7 +25,7 @@
 
 		public function index(){
 
-			$result=$this->eventDao->getAll();
+			$result=$this->eventDao->get(1);
 			/*
 			echo '<pre>';
 			var_dump($result);

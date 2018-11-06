@@ -4,6 +4,25 @@ body{
     background-color: #f6f6f6;
 }
 
+.btn-fb{
+    background-color: #4267b2;
+    color:#fff;
+}
+
+.btn-fb:hover{
+    background-color:#4276b2; 
+}
+
+.btn-all{
+    color:#fff;
+    background-color: #443d3d;
+}
+
+.btn-all:hover{
+    background-color: #605959;
+    color:#fff;
+}
+
 header{
     background-color: #181818;
     text-align: center;
@@ -40,24 +59,37 @@ header .navbar .navbar-nav .nav-item .nav-link:hover{
     color: #aaa;
 }
 
-.btn-fb{
-    background-color: #4267b2;
-    color:#fff;
+
+
+/*DETAIL ITEM*/
+.gallery-wrap .img-big-wrap img {
+    height: 450px;
+    width: 100%;
+    display: inline-block;
+    cursor: zoom-in;
 }
 
-.btn-fb:hover{
-    background-color:#4276b2; 
+
+.gallery-wrap .img-small-wrap .item-gallery {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #ddd;
+    margin: 7px 2px;
+    display: inline-block;
+    overflow: hidden;
 }
 
-.btn-all{
-    color:#fff;
-    background-color: #443d3d;
+.gallery-wrap .img-small-wrap {
+    text-align: center;
+}
+.gallery-wrap .img-small-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: zoom-in;
 }
 
-.btn-all:hover{
-    background-color: #605959;
-    color:#fff;
-}
 
 
 footer{
@@ -72,6 +104,7 @@ footer a{
 }
 
 footer a:hover{
+    color: #726b6b;
     color: #9c9494;
     text-decoration: none;
 }
@@ -101,16 +134,13 @@ footer{
 
 
 .card-img-top {
-  height: 200px !important; //esta es la parte importante para que todas tus card-img tengan la misma medida sin importar el tamaño de la imagen
+  height: 200px !important; /*esta es la parte importante para que todas tus card-img tengan la misma medida sin importar el tamaño de la imagen*/
   border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px);
 }
 
 
-  @media screen and (min-width: 600px){
-    height: 65vh;
-    min-height: 300px;
-  }
+ 
 
 
 
@@ -118,10 +148,7 @@ footer{
 
 
 
-
-
-
-
+/*/ LOGIN ADMIN */
 .login_admin{
     width: 100%;
     max-width: 330px;
@@ -144,5 +171,56 @@ footer{
 }
 
 
+.login_admin{
+    animation: fadeIn 1s ease;
+}
+
+.login_admin {
+	animation-delay: 0s;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translate3d(0, -20%, 0);
+	}
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+}
 
 
+
+
+
+/*/ADMIN */
+.navbar-nav.navbar-top-links .nav-link{
+    color: #fff;
+    padding: 15px;
+}
+
+.navbar-nav.navbar-top-links .nav-link:hover{
+    color: #9c9494;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 600px){
+    height: 65vh;
+    min-height: 300px;
+  }

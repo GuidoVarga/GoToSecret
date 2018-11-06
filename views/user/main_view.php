@@ -39,7 +39,7 @@
 		    			
 		  			</div>
 		  			<div class="card-footer">
-    					<a href="#" class="btn btn-all">+info</a>
+    					<a href="Detail" class="btn btn-all">+info</a>
   					</div>
 				</div>
 			</div>
