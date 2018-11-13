@@ -9,7 +9,7 @@
 		define('HOST',"localhost");
 		define('HOST_INTERNET',"gotoevent.localtest.me");
 		define('DIRECTORY',"GoToSecret");
-		define('PROD-DIRECTORY',"GoToSecret-master");
+		define('PROD-DIRECTORY',"GoToSecret");
 		// AIzaSyD2W8ZvnILLOm3N8bLzyTNKpFMYjRkZSL4 Api Google
 		//AIzaSyAusj-vvo9yoWzHao3T6vlcMPoyXyQpXxA Api GeoLocalizacion
 

@@ -7,12 +7,14 @@
 	use config\Autoload as Autoload;
 	use config\Request as Request;
 	use models\City as City;
+	use models\Place as Place;
 	use dao\dbDao\CityDao as CityDao;
+	use dao\dbDao\PlaceDao as PlaceDao;
 	use dao\Singleton as Singleton;
 
 	Autoload::start();
 
-	class AdminCityController{
+	class AdminPlaceController{
 
 	/*	private $cityDao;
 

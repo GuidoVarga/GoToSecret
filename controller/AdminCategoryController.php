@@ -7,17 +7,17 @@
 	use config\Autoload as Autoload;
 	use config\Request as Request;
 	use models\Category as Category;
-	use dao\dbDao\ArtistDao as CategoryDao;
+	use dao\dbDao\EventCategoryDao as EventCategoryDao;
 	use dao\Singleton as Singleton;
 
 	Autoload::start();
 
 	class AdminCategoryController{
 
-		private $categoryDao;
+		private $dao;
 
 		function __construct(){
-			$this->categoryDao=CategoryDao::getInstance();
+			$this->dao=EventCategoryDao::getInstance();
 		}
 
 
@@ -53,6 +53,14 @@
 		public function delete(){}
 
 		public function getLocations(){}
+
+		public function getAll(){
+				$result=$this->dao->getAll();
+
+				$ec = $this->dao->map($result);
+
+				var_dump($ec);
+		}
 
 	}
 

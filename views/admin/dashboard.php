@@ -212,7 +212,7 @@
                                     <a href="<?php echo "/".DIRECTORY."/"."AdminEvent"?>"><i class="fas fa-calendar-alt"></i> Eventos</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="<?php echo "/".DIRECTORY."/"."AdminCity"?>"><i class="fas fa-city"></i> Ciudades</a>
+                                    <a href="<?php echo "/".DIRECTORY."/"."AdminCity"?>"><i class="fas fa-city"></i> Lugares</a>
                                 </li>
                                 <li class="list-group-item">
                                     <a href="<?php echo "/".DIRECTORY."/"."AdminLocation"?>"><i class="fas fa-chair"></i> Plazas</a>

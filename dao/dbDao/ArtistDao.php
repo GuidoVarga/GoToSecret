@@ -1,99 +1,98 @@
 <?php namespace dao\dbDao;
 
-	require_once(ROOT.'config\Autoload.php');
+require_once(ROOT.'config\Autoload.php');
 
-	use config\Autoload as Autoload;
-	use models\Artist as Artist;
-	use dao\dbDao\Connection as Connection;
-	use \PDOException as PDOException;
-	use dao\iDao as iDao;
-	use dao\Singleton as Singleton;
+use config\Autoload as Autoload;
+use models\Artist as Artist;
+use dao\dbDao\Connection as Connection;
+use \PDOException as PDOException;
+use dao\iDao as iDao;
+use dao\Singleton as Singleton;
 
-	Autoload::start();
+Autoload::start();
 
-	class ArtistDao extends Singleton implements iDao{
-
-
-		public function add($object){
-
-				try {
+class ArtistDao extends Singleton implements iDao{
 
 
-				$sql = "INSERT INTO artists (id,name,description) VALUES (null,:name,:description)";
-				
-				$obj_pdo = new Connection();
+	public function add($object){
 
-				$conexion = $obj_pdo->connect();
+		try {
 
-				$sentencia = $conexion->prepare($sql);
-		
+			$sql = "INSERT INTO artists (id,name,description) VALUES (null,:name,:description)";
 
-				$name=$object->getName();
-				$description=$object->getDescription();
-				
+			$obj_pdo = new Connection();
 
-				$sentencia->bindParam(":name", $name);
-				$sentencia->bindParam(":description", $description);
+			$conexion = $obj_pdo->connect();
+
+			$sentencia = $conexion->prepare($sql);
+
+
+			$name=$object->getName();
+			$description=$object->getDescription();
+
+
+			$sentencia->bindParam(":name", $name);
+			$sentencia->bindParam(":description", $description);
 			
-		
-				$sentencia->execute();
-			
-			} catch(PDOException $Exception) {
-			
-				throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
-			
-			}
 
-
-
+			$sentencia->execute();
+			
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
 		}
 
-		public function get($id){
 
-		}
 
-		public function getAll(){
+	}
 
-				try {
-					$sql = "SELECT * FROM artists";
-					
-					$obj_pdo = new Connection();
+	public function get($id){
 
-					$connection = $obj_pdo->connect();
+	}
 
-					$query = $connection->prepare($sql);
+	public function getAll(){
+
+		try {
+			$sql = "SELECT * FROM artists";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+			$query = $connection->prepare($sql);
 			
-					$query->execute();
+			$query->execute();
 
-					$result=$query->fetchAll();
+			$result=$query->fetchAll();
 
-					return $result;
-				
-			} catch(PDOException $Exception) {
+			return $result;
+
+		} catch(PDOException $Exception) {
 			
-				throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
 			
-			}
-
-		}
-
-		public function delete($id){
-
-		}
-
-		public function update($object){
-
-		} 
-
-		public function map($objects)
-		{
-			
-			$artists = is_array($objects) ? $objects : [];
-			return array_map(function($p){
-				return new Artist($p['id'],$p['name'],$p['description']);
-			}, $artists);
 		}
 
 	}
+
+	public function delete($id){
+
+	}
+
+	public function update($object){
+
+	} 
+
+	public function map($objects)
+	{
+
+		$artists = is_array($objects) ? $objects : [];
+		return array_map(function($p){
+			return new Artist($p['id'],$p['name'],$p['description']);
+		}, $artists);
+	}
+
+}
 
 ?>

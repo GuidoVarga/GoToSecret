@@ -7,17 +7,17 @@
 	use config\Autoload as Autoload;
 	use config\Request as Request;
 	use models\Artist as Location;
-	use dao\dbDao\ArtistDao as LocationDao;
+	use dao\dbDao\LocationDao as LocationDao;
 	use dao\Singleton as Singleton;
 
 	Autoload::start();
 
 	class AdminLocationController{
 
-		private $locationDao;
+		private $dao;
 
 		function __construct(){
-			$this->locationDao=LocationDao::getInstance();
+			$this->dao=LocationDao::getInstance();
 		}
 
 
@@ -56,6 +56,14 @@
 		public function delete(){}
 
 		public function getLocations(){}
+
+		public function getAll(){
+				$result=$this->dao->getAll();
+
+				$ec = $this->dao->map($result);
+
+				var_dump($ec);
+		}
 
 
 
