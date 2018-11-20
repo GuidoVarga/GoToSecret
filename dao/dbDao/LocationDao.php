@@ -8,6 +8,7 @@
 	use \PDOException as PDOException;
 	use dao\iDao as iDao;
 	use dao\Singleton as Singleton;
+	use \PDO as PDO;
 
 	Autoload::start();
 
@@ -42,6 +43,32 @@
 		}
 
 		public function get($id){
+
+		}
+
+		public function getByScheduleId($id){
+
+			try {
+
+					$sql = "SELECT * FROM schedules_x_locations INNER JOIN locations ON locations.id = schedules_x_locations.location_id WHERE schedules_x_locations.schedule_id = :id";
+					
+					$obj_pdo = new Connection();
+
+					$connection = $obj_pdo->connect();
+					$connection->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES,true);
+					$query = $connection->prepare($sql);
+					$query->bindParam(":id", $id);
+					$query->execute();
+
+					$result=$query->fetchAll();
+
+					return $this->mapByDate($result);
+				
+			} catch(PDOException $Exception) {
+			
+				throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+			}
 
 		}
 
@@ -84,7 +111,16 @@
 			
 			$locations = is_array($objects) ? $objects : [];
 			return array_map(function($p){
-				return new Location($p['id'],$p['name'],null,null,null);
+				return new Location($p['locations.id'],$p['locations.name'],null,null,null);
+			}, $locations);
+		}
+
+		public function mapByDate($objects)
+		{
+			
+			$locations = is_array($objects) ? $objects : [];
+			return array_map(function($p){
+				return new Location($p['schedules_x_locations.id'],$p['locations.name'],$p['schedules_x_locations.total_quantity'],$p['schedules_x_locations.surplus'],$p['schedules_x_locations.price']);
 			}, $locations);
 		}
 

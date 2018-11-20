@@ -14,10 +14,10 @@
 
 	class AdminLocationController{
 
-		private $dao;
+		private $locationDao;
 
 		function __construct(){
-			$this->dao=LocationDao::getInstance();
+			$this->locationDao=LocationDao::getInstance();
 		}
 
 
@@ -56,23 +56,6 @@
 		public function delete(){}
 
 		public function getLocations(){}
-
-		public function getAll(){
-				$result=$this->dao->getAll();
-
-				$ec = $this->dao->map($result);
-
-				var_dump($ec);
-		}
-
-
-
-
-
-
-
-
-
 
 
 	}

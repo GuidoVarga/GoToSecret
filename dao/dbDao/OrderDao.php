@@ -11,8 +11,9 @@ use dao\Singleton as Singleton;
 
 Autoload::start();
 
-class ArtistDao extends Singleton implements iDao{
+class OrderDao extends Singleton implements iDao{
 
+	private $orderLineDao;
 
 	public function add($object){
 
@@ -46,6 +47,31 @@ class ArtistDao extends Singleton implements iDao{
 	}
 
 	public function get($id){
+
+		try {
+			$sql = "SELECT * FROM artists WHERE id = :id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+			$query = $connection->prepare($sql);
+			$query->bindParam(":id", $id);
+			$query->execute();
+
+			$result=$query->fetchAll();
+
+			return $this->map($result);
+
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+		}
+
+	}
+
+	public function getByAccountId($id){
 
 		try {
 			$sql = "SELECT * FROM artists WHERE id = :id";

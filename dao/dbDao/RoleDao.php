@@ -11,7 +11,7 @@ use dao\Singleton as Singleton;
 
 Autoload::start();
 
-class ArtistDao extends Singleton implements iDao{
+class RoleDao extends Singleton implements iDao{
 
 
 	public function add($object){

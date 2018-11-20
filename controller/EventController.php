@@ -10,7 +10,7 @@
 	use dao\Singleton as Singleton;
 	use models\Event as Event;
 	use models\Calendar as Calendar;
-	use models\Date as Date;
+	use models\SubEvent as SubEvent;
 
 	Autoload::start();
 
@@ -25,37 +25,35 @@
 
 		public function index(){
 
-			$result=$this->eventDao->get(1);
-			/*
+			$result=$this->eventDao->getAll();
+			
 			echo '<pre>';
 			var_dump($result);
 			echo '</pre>';
-			*/
 			
-			$events=$this->eventDao->map2($result);
+			
+
+			$events=$this->eventDao->map($result);
 			echo '<pre>';
 			var_dump($events);
 			echo '</pre>';
 			
 		
 		}
-
+		
 		public function addEvent(){
 
-				$event = new Event('id','name','d','ec','p', new Calendar('id'));
+				$event = new Event('id','nameeeee','d',null);
 
-				$event->addDate(new Date('id','dia','artist','19','21'));
-				$event->addDate(new Date('id2','dia','artist','21','23'));
+				$id = $this->eventDao->add($event);
 
-				$date = $event->getDateByIndex(0);
-				echo '<pre>';
-				var_dump($date);
-				echo '</pre>';
+				var_dump($id);
+				
 		}
 
-		public function getEvents(){
+		public function loadEvents(){
 
-		
+			
 		}	
 
 

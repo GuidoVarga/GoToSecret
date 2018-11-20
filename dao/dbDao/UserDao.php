@@ -5,20 +5,27 @@ require_once(ROOT.'config\Autoload.php');
 use config\Autoload as Autoload;
 use models\Artist as Artist;
 use dao\dbDao\Connection as Connection;
+use dao\dbDao\AccountDao as AccountDao;
 use \PDOException as PDOException;
 use dao\iDao as iDao;
 use dao\Singleton as Singleton;
 
 Autoload::start();
 
-class ArtistDao extends Singleton implements iDao{
+class UserDao extends Singleton implements iDao{
+
+	private $accountDao;
+
+	public function __construct(){
+		$this->accountDao = AccountDao::getInstance();
+	}
 
 
 	public function add($object){
 
 		try {
 
-			$sql = "INSERT INTO artists (id,name,description) VALUES (null,:name,:description)";
+			$sql = "INSERT INTO users (id,name,description) VALUES (null,:name,:description)";
 
 			$obj_pdo = new Connection();
 

@@ -12,13 +12,13 @@
 
 	Autoload::start();
 
-	class AdminDateController{
+	class AdminSubEventController{
 
-		/*private $dateDao;
+		private $subEventDao;
 
 		function __construct(){
-			$this->dateDao=DateDao::getInstance();
-		}*/
+			$this->subEventDao=SubEventDao::getInstance();
+		}
 
 
 		public function index(){
@@ -50,7 +50,7 @@
 
 		public function delete(){}
 
-		public function getDates(){}
+		public function getSubEvents(){}
 
 
 	}

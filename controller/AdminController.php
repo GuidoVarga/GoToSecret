@@ -14,10 +14,10 @@
 
 	class AdminController{
 
-		private $artistDao;
+		
 
 		function __construct(){
-			$this->artistDao=ArtistDao::getInstance();
+		
 		}
 
 

@@ -4,10 +4,12 @@
 
 	use config\Autoload as Autoload;
 	use models\Place as Place;
+	use models\City as City;
 	use dao\dbDao\Connection as Connection;
 	use \PDOException as PDOException;
 	use dao\iDao as iDao;
 	use dao\Singleton as Singleton;
+	use \PDO as PDO;
 
 	Autoload::start();
 
@@ -46,6 +48,28 @@
 		}
 
 		public function get($id){
+			try {
+					$sql = "SELECT * FROM places INNER JOIN cities ON cities.id=places.id WHERE places.id=:id";
+					
+					$obj_pdo = new Connection();
+
+					$connection = $obj_pdo->connect();
+					$connection->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES,true);
+					$query = $connection->prepare($sql);
+					$query->bindParam(":id", $id);
+					$query->execute();	
+
+			
+					$result=$query->fetchAll();
+					
+
+					return $this->map($result);
+				
+			} catch(PDOException $Exception) {
+			
+				throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+			}
 
 		}
 
@@ -89,7 +113,7 @@
 			
 			$places = is_array($objects) ? $objects : [];
 			return array_map(function($p){
-				return new Place($p['id'],$p['name'],$p['address'], null );
+				return new Place($p['places.id'],$p['places.name'],$p['places.address'], new City($p['cities.id'],$p['cities.name']));
 			}, $places);
 		}
 

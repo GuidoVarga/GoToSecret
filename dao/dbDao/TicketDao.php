@@ -11,7 +11,7 @@ use dao\Singleton as Singleton;
 
 Autoload::start();
 
-class ArtistDao extends Singleton implements iDao{
+class TicketDao extends Singleton implements iDao{
 
 
 	public function add($object){
@@ -46,6 +46,56 @@ class ArtistDao extends Singleton implements iDao{
 	}
 
 	public function get($id){
+
+		try {
+			$sql = "SELECT * FROM artists WHERE id = :id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+			$query = $connection->prepare($sql);
+			$query->bindParam(":id", $id);
+			$query->execute();
+
+			$result=$query->fetchAll();
+
+			return $this->map($result);
+
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+		}
+
+	}
+
+	public function getByOrderLineId($id){
+
+		try {
+			$sql = "SELECT * FROM artists WHERE id = :id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+			$query = $connection->prepare($sql);
+			$query->bindParam(":id", $id);
+			$query->execute();
+
+			$result=$query->fetchAll();
+
+			return $this->map($result);
+
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+		}
+
+	}
+
+	public function getByTicketDate($date){
 
 		try {
 			$sql = "SELECT * FROM artists WHERE id = :id";
@@ -113,5 +163,4 @@ class ArtistDao extends Singleton implements iDao{
 	}
 
 }
-
 ?>

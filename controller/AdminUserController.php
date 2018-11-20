@@ -6,60 +6,60 @@
 	
 	use config\Autoload as Autoload;
 	use config\Request as Request;
-	use models\Event as Event;
-	use dao\dbDao\EventDao as EventDao;
+	use models\Artist as Location;
+	use dao\dbDao\LocationDao as LocationDao;
 	use dao\Singleton as Singleton;
 
 	Autoload::start();
 
-	class AdminEventController{
+	class AdminLocationController{
 
-		private $eventDao;
+		private $userDao;
 
 		function __construct(){
-			$this->eventDao=EventDao::getInstance();
+			$this->dao=LocationDao::getInstance();
 		}
 
 
 		public function index(){
 			
-			include(ROOT . 'views\head.php');
-			include(ROOT . 'views\admin\event\event_view.php');
-			include(ROOT . 'views\admin\footer_admin.php');
-			
-		}
-
-		public function addView(){
-			
-			include(ROOT . 'views\head.php');
-			include(ROOT . 'views\admin\event\event_add.php');
-			include(ROOT . 'views\admin\footer_admin.php');
-		}
-
-		public function editView(){
-			
-			include(ROOT . 'views\head.php');
-			include(ROOT . 'views\admin\event\event_edit.php');
-			include(ROOT . 'views\admin\footer_admin.php');
-		}
-
-		public function add(){
-			
-			
-		}
-
-		public function edit(){
-			
-			
-		}
-
-		public function delete(){
 		
-		}
-
-		public function getEvents(){
+			include(ROOT . 'views\head.php');
+			include(ROOT . 'views\admin\location\location_view.php');
+			include(ROOT . 'views\admin\footer_admin.php');
 			
 		}
-	
+
+
+		public function activeView(){
+			
+			include(ROOT . 'views\head.php');
+			include(ROOT . 'views\admin\location\location_add.php');
+			include(ROOT . 'views\admin\footer_admin.php');
+			
+		}
+
+
+		public function suspendView(){
+			
+			include(ROOT . 'views\head.php');
+			include(ROOT . 'views\admin\location\location_edit.php');
+			include(ROOT . 'views\admin\footer_admin.php');
+			
+		}
+
+
+		public function suspend(){}
+
+		public function active(){}
+
+		public function showUsers(){}
+
+		public function showOrdersByUser(){}
+
+
 	}
+
+
+
 ?>

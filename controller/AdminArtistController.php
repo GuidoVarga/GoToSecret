@@ -69,8 +69,6 @@
 
 		public function getArtists(){
 
-
-
 			$result=$this->artistDao->getAll();
 			$artists=$this->artistDao->map($result);
 			var_dump($artists);

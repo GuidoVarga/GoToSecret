@@ -14,7 +14,7 @@
 
 	class AdminCategoryController{
 
-		private $dao;
+		private $eventCategoryDao;
 
 		function __construct(){
 			$this->dao=EventCategoryDao::getInstance();
@@ -52,15 +52,8 @@
 
 		public function delete(){}
 
-		public function getLocations(){}
+		public function getCategories(){}
 
-		public function getAll(){
-				$result=$this->dao->getAll();
-
-				$ec = $this->dao->map($result);
-
-				var_dump($ec);
-		}
 
 	}
 

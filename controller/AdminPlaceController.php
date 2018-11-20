@@ -16,14 +16,8 @@
 
 	class AdminPlaceController{
 
-	/*	private $cityDao;
-
-		function __construct(){
-			$this->cityDao=CityDao::getInstance();
-		}*/
-
-
-
+		private $placeDao;
+		
 		public function index(){
 			
 			include(ROOT . 'views\head.php');
@@ -54,7 +48,7 @@
 
 		public function delete(){}
 
-		public function getCities(){}
+		public function getPlaces(){}
 	
 	}
 

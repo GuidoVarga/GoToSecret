@@ -7,11 +7,13 @@
 	Autoload::start();
 
 
-	class DetailController{
+	class EventDetailController{
+
+		private $cartController;
 
 		public function __construct(){
-
-		}
+			//$this->cartController = new cartController();
+		}	
 
 		public function index(){
 
@@ -21,10 +23,12 @@
 			include(ROOT . 'views\user\detail_item.php');
 			include(ROOT . 'views\user\footer.php');
 			
-			
-		
 		}
 
+		public function validateSelection(){}
+
+		public function addToCart(){
+		}
 	
 	}
 

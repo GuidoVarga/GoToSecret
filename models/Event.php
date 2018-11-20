@@ -7,15 +7,15 @@ class Event
     private $description;
     private $img;
     private $eventCategory;
-     private $calendar;
+    private $schedules;
    
-    function __construct($id,$name,$description,$eventCategory,$calendar)
+    function __construct($id,$name,$description,$eventCategory)
     {
         $this->id=$id;
         $this->name=$name;
         $this->description=$description;
         $this->eventCategory = $eventCategory;
-        $this->calendar=$calendar;
+        $this->schedules = array();
        
     }
 
@@ -58,16 +58,24 @@ class Event
     }
 
   
-    function addDate($date){
-        $this->calendar->addDate($date);
+    function addSubEvent($date){
+        $this->schedule->addDate($date);
     }
 
     function getDateByIndex($index){
-        return $this->calendar->getDateByIndex($index);
+        return $this->schedule->getDateByIndex($index);
     }
 
     function getDateById($id){
-        return $this->calendar->getDateById($id);
+        return $this->schedule->getDateById($id);
+    }
+
+    function setSchedules($schedules){
+        $this->schedules = $schedules;
+    }
+
+    function getSchedules(){
+        return $this->schedules;
     }
 
 }
