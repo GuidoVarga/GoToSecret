@@ -223,7 +223,7 @@
                                     <a href="<?php echo "/".DIRECTORY."/"."AdminCategory"?>"><i class="fas fa-tags"></i> Categorías</a>
                                 </li> 
                                 <li class="list-group-item">
-                                    <a href="<?php echo "/".DIRECTORY."/"."AdminDate"?>"><i class="fas fa-calendar-alt"></i> Fechas</a>
+                                    <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule"?>"><i class="fas fa-calendar-alt"></i> Fechas</a>
                                 </li>                             
                             </ul>
                             <!-- /.nav-second-level -->
@@ -303,7 +303,7 @@
                                                             <input class="form-control " name="img-event" type="file" required="">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label">Nombre Evento</label>
+                                                            <label class="control-label">Categoría</label>
                                                             <select class="form-control" name="category-event" >
                                                                 <option value="">Selecciona una categoría</option>
                                                                 <option value="1">Hola</option>

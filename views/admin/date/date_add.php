@@ -214,7 +214,7 @@
                                     <a href="<?php echo "/".DIRECTORY."/"."AdminEvent"?>"><i class="fas fa-calendar-alt"></i> Eventos</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="<?php echo "/".DIRECTORY."/"."AdminCity"?>"><i class="fas fa-city"></i> Ciudades</a>
+                                    <a href="<?php echo "/".DIRECTORY."/"."AdminPlace"?>"><i class="fas fa-city"></i> Ciudades</a>
                                 </li>
                                 <li class="list-group-item">
                                     <a href="<?php echo "/".DIRECTORY."/"."AdminLocation"?>"><i class="fas fa-chair"></i> Plazas</a>
@@ -223,7 +223,7 @@
                                     <a href="<?php echo "/".DIRECTORY."/"."AdminCategory"?>"><i class="fas fa-tags"></i> Categorías</a>
                                 </li> 
                                 <li class="list-group-item">
-                                    <a href="<?php echo "/".DIRECTORY."/"."AdminDate"?>"><i class="fas fa-calendar-alt"></i> Fechas</a>
+                                    <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule"?>"><i class="fas fa-calendar-alt"></i> Fechas</a>
                                 </li>               
                             </ul>
                             <!-- /.nav-second-level -->
@@ -287,7 +287,7 @@
                                                 <div class="border border-grey p-4">
                                                     <div class="text-right">
                                                         <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Crear</button>
-                                                        <a href="<?php echo "/".DIRECTORY."/"."AdminDate"?>" class="btn btn-danger mt-2 mt-sm-0"><i class="fa fa-arrow-circle-left"></i> Volver</a>
+                                                        <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule"?>" class="btn btn-danger mt-2 mt-sm-0"><i class="fa fa-arrow-circle-left"></i> Volver</a>
                                                     </div>
                                                 <div class="row">
                                                     <div class="col-12 mt-5 mb-3">
@@ -297,51 +297,67 @@
                                                         <div class="form-row">
                                                             <div class="form-group col-12 col-md-6">
                                                                 <label class="control-label">Fecha</label>
-                                                                <input class="form-control" name="date-date" type="text" required="">
+                                                                <input class="form-control" name="date-date" type="date" required="">
                                                             </div>
                                                             <div class="form-group col-12 col-md-6">
-                                                                <label class="control-label">Plazas</label>
-                                                                <select class="form-control" name="category-date" >
-                                                                    <option value="">Selecciona una plaza</option>
+                                                                <label class="control-label">Lugares</label>
+                                                                <select class="form-control" name="place-date" >
+                                                                    <option value="">Selecciona un lugar</option>
                                                                     <option value="1">Hola</option>
                                                                     <option value="2">Chau</option>
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-12 col-md-6">
-                                                                <label class="control-label">Nombre Evento</label>
-                                                                <select class="form-control" name="category-date" >
-                                                                    <option value="">Selecciona una categoría</option>
-                                                                    <option value="1">Hola</option>
-                                                                    <option value="2">Chau</option>
-                                                                </select>
+                                                        <div class="col-12 mt-5 mb-3">
+                                                            <h3 style="color:#000">Plazas</h3>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-12 col-md-6">
+                                                                    <label class="control-label">Plazas</label>
+                                                                    <select class="form-control" name="location-date" >
+                                                                        <option value="">Selecciona una plaza</option>
+                                                                        <option value="1">Hola</option>
+                                                                        <option value="2">Chau</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-12 col-md-3">
+                                                                    <label class="control-label">Cantidad</label>
+                                                                    <input class="form-control" name="quantity-date" type="number" min="0" required="">
+                                                                </div>
+                                                                <div class="form-group col-12 col-md-3">
+                                                                    <label class="control-label">Precio</label>
+                                                                    <input class="form-control" name="price-date" type="number" min="0" required="">
+                                                                </div>
+                                                               
                                                             </div>
-                                                             <div class="form-group col-12 col-md-6">
-                                                                <label class="control-label">Nombre Artista</label>
-                                                                <select class="form-control" name="artist-date" >
-                                                                    <option value="">Selecciona un Artista</option>
-                                                                    <option value="1">Pepe</option>
-                                                                    <option value="2">Pepo</option>
-                                                                </select>
-                                                            </div>
+                                                            <button class="btn btn-primary" style="font-weight: bold"><i class="fas fa-plus"></i> Agregar Plaza</button>
                                                         </div>
-                                                       <div class="form-row">
-                                                            <div class="form-group col-12 col-md-6">
-                                                                <label class="control-label">Hora Inicio</label>
-                                                                <input class="form-control" name="initial-hour-date" type="text" required="">
+                                                        <div class="col-12 mt-5 mb-3">
+                                                            <h3 style="color:#000">Sub Evento</h3>
+                    
+                                                            <div class="form-row">
+                                                                <div class="form-group col-12 col-md-6">
+                                                                    <label class="control-label">Nombre Artista</label>
+                                                                    <select class="form-control" name="artist-date" >
+                                                                        <option value="">Selecciona un Artista</option>
+                                                                        <option value="1">Pepe</option>
+                                                                        <option value="2">Pepo</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-12 col-md-3">
+                                                                    <label class="control-label">Hora Inicio</label>
+                                                                    <input class="form-control" name="initial-hour-date" type="text" required="">
+                                                                </div>
+                                                                <div class="form-group col-12 col-md-3">
+                                                                    <label class="control-label">Hora Fin</label>
+                                                                    <input class="form-control" name="end-hour-date" type="text" required="">
+                                                                </div>
+                                                               
                                                             </div>
-                                                            <div class="form-group col-12 col-md-6">
-                                                                <label class="control-label">Hora Fin</label>
-                                                                <input class="form-control" name="end-hour-date" type="text" required="">
-                                                            </div>
-                                                       </div>
-                                                       
-
-                                                        <div class="form-group">
-                                                        <label class="control-label">Descripción</label>
-                                                        <textarea class="form-control" name="description-event" rows="3" required=""></textarea>
-                                                        </div>
+                                                            <button class="btn btn-primary" style="font-weight: bold"><i class="fas fa-plus"></i> Agregar Sub Evento</button>
+                                                            <div class="form-row">
+                                                                
+                                                            </div>                                                            
+                                                        </div>     
                                                     </div>
                                                 </div> 
                                             </form>    

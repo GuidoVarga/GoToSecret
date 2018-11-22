@@ -214,7 +214,7 @@
                                     <a href="<?php echo "/".DIRECTORY."/"."AdminEvent"?>"><i class="fas fa-calendar-alt"></i> Eventos</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="<?php echo "/".DIRECTORY."/"."AdminCity"?>"><i class="fas fa-city"></i> Ciudades</a>
+                                    <a href="<?php echo "/".DIRECTORY."/"."AdminPlace"?>"><i class="fas fa-city"></i> Ciudades</a>
                                 </li>
                                 <li class="list-group-item">
                                     <a href="<?php echo "/".DIRECTORY."/"."AdminLocation"?>"><i class="fas fa-chair"></i> Plazas</a>
@@ -223,7 +223,7 @@
                                     <a href="<?php echo "/".DIRECTORY."/"."AdminCategory"?>"><i class="fas fa-tags"></i> Categorías</a>
                                 </li> 
                                 <li class="list-group-item">
-                                    <a href="<?php echo "/".DIRECTORY."/"."AdminDate"?>"><i class="fas fa-calendar-alt"></i> Fechas</a>
+                                    <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule"?>"><i class="fas fa-calendar-alt"></i> Fechas</a>
                                 </li>               
                             </ul>
                             <!-- /.nav-second-level -->
@@ -287,7 +287,7 @@
                                                     <div class="border border-grey p-4">
                                                         <div class="text-right">
                                                             <button type="submit" class="btn btn-primary"><i class="fas fa-hdd"></i> Guardar</button>
-                                                            <a href="<?php echo "/".DIRECTORY."/"."AdminCity"?>" class="btn btn-danger mt-2 mt-sm-0"><i class="fa fa-arrow-circle-left"></i> Volver</a>
+                                                            <a href="<?php echo "/".DIRECTORY."/"."AdminLocation"?>" class="btn btn-danger mt-2 mt-sm-0"><i class="fa fa-arrow-circle-left"></i> Volver</a>
                                                         </div>
                                                     <div class="row">
                                                         <div class="col-12 mt-5 mb-3">

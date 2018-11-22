@@ -214,7 +214,7 @@
                                     <a href="<?php echo "/".DIRECTORY."/"."AdminEvent"?>"><i class="fas fa-calendar-alt"></i> Eventos</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="<?php echo "/".DIRECTORY."/"."AdminCity"?>"><i class="fas fa-city"></i> Ciudades</a>
+                                    <a href="<?php echo "/".DIRECTORY."/"."AdminPlace"?>"><i class="fas fa-city"></i> Ciudades</a>
                                 </li>
                                 <li class="list-group-item">
                                     <a href="<?php echo "/".DIRECTORY."/"."AdminLocation"?>"><i class="fas fa-chair"></i> Plazas</a>
@@ -223,7 +223,7 @@
                                     <a href="<?php echo "/".DIRECTORY."/"."AdminCategory"?>"><i class="fas fa-tags"></i> Categorías</a>
                                 </li> 
                                 <li class="list-group-item">
-                                    <a href="<?php echo "/".DIRECTORY."/"."AdminDate"?>"><i class="fas fa-calendar-alt"></i> Fechas</a>
+                                    <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule"?>"><i class="fas fa-calendar-alt"></i> Fechas</a>
                                 </li>               
                             </ul>
                             <!-- /.nav-second-level -->
@@ -278,7 +278,7 @@
             <div id="page-wrapper" class="p-4">
                 <div class="row white-bg p-4">
                     <div class="col-12">
-                        <h2 class="border-bottom pb-4">Ciudades</h2>
+                        <h2 class="border-bottom pb-4">Categorías</h2>
                         <div class=" mt-5">
                             <div class="col-lg-12">
                                 <div class="wrapper">

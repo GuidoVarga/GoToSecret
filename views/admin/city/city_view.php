@@ -214,7 +214,7 @@
                                     <a href="<?php echo "/".DIRECTORY."/"."AdminEvent"?>"><i class="fas fa-calendar-alt"></i> Eventos</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="<?php echo "/".DIRECTORY."/"."AdminCity"?>"><i class="fas fa-city"></i> Ciudades</a>
+                                    <a href="<?php echo "/".DIRECTORY."/"."AdminPlace"?>"><i class="fas fa-city"></i> Ciudades</a>
                                 </li>
                                 <li class="list-group-item">
                                     <a href="<?php echo "/".DIRECTORY."/"."AdminLocation"?>"><i class="fas fa-chair"></i> Plazas</a>
@@ -223,7 +223,7 @@
                                     <a href="<?php echo "/".DIRECTORY."/"."AdminCategory"?>"><i class="fas fa-tags"></i> Categorías</a>
                                 </li> 
                                 <li class="list-group-item">
-                                    <a href="<?php echo "/".DIRECTORY."/"."AdminDate"?>"><i class="fas fa-calendar-alt"></i> Fechas</a>
+                                    <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule"?>"><i class="fas fa-calendar-alt"></i> Fechas</a>
                                 </li> 
                             </ul>
                             <!-- /.nav-second-level -->
@@ -286,7 +286,7 @@
                                     <div class="col-lg-12">
                                         <div class="border border-grey p-4">
                                             <div class="text-right">
-                                                <a href="<?php echo "/".DIRECTORY."/"."AdminCity/addView"?>" class="btn btn-primary"><i class="fas fa-plus"></i> Nueva Ciudad</a>
+                                                <a href="<?php echo "/".DIRECTORY."/"."AdminPlace/addView"?>" class="btn btn-primary"><i class="fas fa-plus"></i> Nueva Ciudad</a>
                                             </div>
                                             <div class="table-responsive mt-4">
                                                 <table class="table table-bordered">
@@ -301,7 +301,7 @@
                                                         <td>Mark</td>
                                                         <td>
                                                             <div class="btn-group">
-                                                                <a href="<?php echo "/".DIRECTORY."/"."AdminCity/editView"?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>                            
+                                                                <a href="<?php echo "/".DIRECTORY."/"."AdminPlace/editView"?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>                            
                                                                 <a href="dalete" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>                        
                                                             </div>
                                                         </td>
