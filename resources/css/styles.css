@@ -139,6 +139,22 @@ footer{
   border-top-right-radius: calc(0.25rem - 1px);
 }
 
+.group-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.group-search .form-control-search {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
 
  
 
@@ -209,18 +225,34 @@ footer{
 
 
 
+    
+@media screen and (max-width: 486px){
 
+    .events .card {
+        width: 20rem;
+    }
+    .artists .card{
+        width: 20rem;
+    }
 
+    .main-view .card{
+        width: 20rem;
+    }
 
+}
 
+@media screen and (min-width: 1199px){
 
+    .events .card {
+        width: 38rem;
+    }
+    .artists .card{
+        width: 38rem;
+    }
 
+    .main-view .card{
+        width: 38rem;
+    }
 
+}
 
-
-
-
-@media screen and (min-width: 600px){
-    height: 65vh;
-    min-height: 300px;
-  }

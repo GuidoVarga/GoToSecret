@@ -1,30 +1,25 @@
 <?php namespace controller;
-	
-	require_once(ROOT.'config\Autoload.php');
-	
-	//require_once(ROOT.'Dao\Singleton.php');
-	
+
+	require_once(ROOT . 'config\Autoload.php');
+
 	use config\Autoload as Autoload;
-	use config\Request as Request;
+	use dao\dbDao\ArtistDao as ArtistDao;
 	use dao\dbDao\EventDao as EventDao;
-	use dao\Singleton as Singleton;
-	use models\Event as Event;
-	use models\Calendar as Calendar;
-	use models\SubEvent as SubEvent;
 
 	Autoload::start();
 
-	class EventController{
+	class ArtistController{
 
-		private $eventDao;
+		private $dao;
+		
 
 		function __construct(){
-			$this->eventDao=EventDao::getInstance();
+			$this->dao=ArtistDao::getInstance();
 		}
-
 
 		public function index(){
 
+			/*
 			session_start();
 			//session_destroy();
 
@@ -41,10 +36,16 @@
 
             include(ROOT . 'views\head.php');
 			include(ROOT . 'views\user\header.php');
-			include(ROOT . 'views\user\events.php');
+			include(ROOT . 'views\user\artists.php');
 			include(ROOT . 'views\user\footer.php');
+			*/
+
+			$artists = $this->dao->get(1);
+
+			echo '<pre>';
+			var_dump($artists);
+			echo '</pre>';
 		}
-		
 	}
 
 

@@ -95,12 +95,6 @@
                 <a class="dark-grey-text" href="#!">Mi Cuenta</a>
               </p>
               <p>
-                <a class="dark-grey-text" href="#!">Become an Affiliate</a>
-              </p>
-              <p>
-                <a class="dark-grey-text" href="#!">Shipping Rates</a>
-              </p>
-              <p>
                 <a class="dark-grey-text" href="#!">Help</a>
               </p>
 
@@ -139,7 +133,41 @@
               <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
               <script src="https://maxcdn.bootstrapcdn.com/bootlint/latest/bootlint.min.js"></script>
 
+               <script js>
+                function searchArtist() {
+                  var input, filter, cards, cardContainer, h5, title, i;
+                  input = document.getElementById("search");
+                  filter = input.value.toUpperCase();
+                  cardContainer = document.getElementById("myItems");
+                  cards = cardContainer.getElementsByClassName("contener-card");
+                  for (i = 0; i < cards.length; i++) {
+                      title = cards[i].querySelector(".card-body h5.card-title");
+                      if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+                          cards[i].style.display = "";
+                      } else {
+                          cards[i].style.display = "none";
+                      }
+                  }
+                }
 
+                function searchCategory() {
+                  var input, filter, cards, cardContainer, h5, title, i;
+                  input = document.getElementById("search");
+                  console.log(input.value);
+                  filter = input.value.toUpperCase();
+                  cardContainer = document.getElementById("myItems");
+                  cards = cardContainer.getElementsByClassName("contener-card");
+                  for (i = 0; i < cards.length; i++) {
+                      title = cards[i].querySelector(".card-body p");
+                      if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+                          cards[i].style.display = "";
+                      } else {
+                          cards[i].style.display = "none";
+                      }
+                  }
+                }
+              </script>   
+              
               <script>
 
 

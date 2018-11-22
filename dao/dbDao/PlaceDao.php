@@ -64,7 +64,7 @@
 					$result=$query->fetchAll();
 					
 
-					return $this->map($result);
+					return $this->mapOnlyOne($result);
 				
 			} catch(PDOException $Exception) {
 			
@@ -116,6 +116,15 @@
 			return array_map(function($p){
 				return new Place($p['places.id'],$p['places.name'],$p['places.address'], new City($p['cities.id'],$p['cities.name']));
 			}, $places);
+		}
+
+		public function mapOnlyOne($array){
+
+			if(isset($array)){
+				$p = $array[0];
+				return new Place($p['places.id'],$p['places.name'],$p['places.address'], new City($p['cities.id'],$p['cities.name']));
+			}
+
 		}
 
 	}

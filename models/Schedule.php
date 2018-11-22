@@ -58,7 +58,7 @@ class Schedule{
         return null;
     }
 
-    function getPlace($place){
+    function getPlace(){
         return $this->place;
     }
 

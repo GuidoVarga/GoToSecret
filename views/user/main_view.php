@@ -35,8 +35,8 @@
 
 			foreach ($events as $event) { ?>
 			
-			<div class="col-12 col-md-6 col-lg-4">
-				<div class="card mt-5 mx-auto " style="width: 18rem;">
+			<div class="col-12 col-md-6 col-lg-6">
+				<div class="card mt-5 mx-auto ">
 		  			<img class="card-img-top" src="<?php echo IMAGES ?>card1.jpg" alt="Card image cap">
 		 			 <div class="card-body">
 		    			<h5 class="card-title"><?php echo $event->getName()?></h5>
@@ -44,7 +44,7 @@
 		    			
 		  			</div>
 		  			<div class="card-footer">
-    					<a href="Detail" class="btn btn-all">+info</a>
+    					<a href="<?php echo 'EventDetail?id='.$event->getId() ?>" class="btn btn-all">+info</a>
   					</div>
 				</div>
 			</div>

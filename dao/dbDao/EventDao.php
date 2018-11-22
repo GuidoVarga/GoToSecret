@@ -51,11 +51,9 @@ class EventDao extends Singleton implements iDao{
 	public function get($id){
 
 		try {
-			$sql = "SELECT * FROM events left JOIN event_categories ON event_categories.id = events.event_category_id left JOIN schedules ON schedules.id_event = events.id  left JOIN dates ON dates.schedule_id = schedules.id left JOIN dates_x_locations ON dates_x_locations.date_id=dates.id left JOIN locations ON locations.id=dates_x_locations.location_id left JOIN places ON places.id=dates.place_id left JOIN cities ON cities.id=places.city_id left JOIN artists ON artists.id=dates.artist_id WHERE events.id=:id";
+			$sql = "SELECT * FROM events WHERE id=:id";
 
 			/*
-
-				$sql = "SELECT * FROM events left JOIN event_categories ON event_categories.id = events.event_category_id left JOIN calendars ON calendars.id = events.calendar_id  left JOIN dates ON dates.calendar_id = calendars.id left JOIN dates_x_locations ON dates_x_locations.date_id=dates.id left JOIN locations ON locations.id=dates_x_locations.location_id left JOIN places ON places.id=dates.place_id left JOIN cities ON cities.id=places.city_id left JOIN artists ON artists.id=dates.artist_id";
 
 			$sql= "SELECT *, DATE_FORMAT(fecha, '%d/%m/%Y') as fecha FROM pedidos LEFT JOIN tipo_cerveza ON tipo_cerveza.id_tipo_cerveza=pedidos.id_tipo_cerveza LEFT JOIN tipo_envase ON tipo_envase.id_tipo_envase=pedidos.id_tipo_envase LEFT JOIN tipo_estado ON tipo_estado.id_tipo_estado=pedidos.id_tipo_estado LEFT JOIN sucursales ON sucursales.id_sucursal=pedidos.id_sucursal LEFT JOIN cuentas ON cuentas.id_cuenta=pedidos.id_cuenta LEFT JOIN clientes ON clientes.id_cuenta=cuentas.id_cuenta ";
 			*/
@@ -63,14 +61,14 @@ class EventDao extends Singleton implements iDao{
 			$obj_pdo = new Connection();
 
 			$connection = $obj_pdo->connect();
-			$connection->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES,true);
+		
 			$query = $connection->prepare($sql);
 			$query->bindParam(":id", $id);
 
 			$query->execute();
 
 			$result=$query->fetchAll();
-			return $result;
+			return $this->mapOnlyOne($result);
 
 		} 
 		catch(PDOException $Exception) {
@@ -192,11 +190,23 @@ class EventDao extends Singleton implements iDao{
 	
 		return array_map(function($e){
 
-			$event = new Event($e['id'],$e['name'],'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum, ex vel pretium vehicula, mauris erat tristique metus, et ultricies sapien mi sit amet lectus. Nulla egestas sollicitudin lectus et porttitor.','card2',$this->eventCategoryDao->get($e['event_category_id']));
+			$event = new Event($e['id'],$e['name'],'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum, ex vel pretium vehicula, mauris erat tristique metus, et ultricies sapien mi sit amet lectus. Nulla egestas sollicitudin lectus et porttitor.',$e['img'],$this->eventCategoryDao->get($e['event_category_id']));
 			$event->setSchedules($this->scheduleDao->get($event->getId()));
 			return $event;
 
 		}, $events);
+
+	}
+
+	public function mapOnlyOne($array){
+
+		if(isset($array)){
+			$e = $array[0];
+			$event = new Event($e['id'],$e['name'],'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum, ex vel pretium vehicula, mauris erat tristique metus, et ultricies sapien mi sit amet lectus. Nulla egestas sollicitudin lectus et porttitor.',$e['img'],$this->eventCategoryDao->get($e['event_category_id']));
+			$event->setSchedules($this->scheduleDao->get($event->getId()));
+
+			return $event;
+		}
 
 	}
 

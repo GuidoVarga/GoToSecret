@@ -61,7 +61,11 @@ class ArtistDao extends Singleton implements iDao{
 
 			$result=$query->fetchAll();
 
-			return $this->map($result);
+			echo '<pre>';
+			var_dump($result);
+			echo '</pre>';
+
+			return $this->mapOnlyOne($result);
 
 		} catch(PDOException $Exception) {
 			
@@ -111,6 +115,15 @@ class ArtistDao extends Singleton implements iDao{
 		return array_map(function($p){
 			return new Artist($p['id'],$p['name'],$p['description']);
 		}, $artists);
+	}
+
+	public function mapOnlyOne($array){
+
+		if(isset($array)){
+			$a = $array[0];
+			return new Artist($a['id'],$a['name'],$a['description']);
+		}
+
 	}
 
 }

@@ -42,7 +42,7 @@
 
 		public function loadPopularEvents(){
 
-			return $this->eventDao->getAllWithLimit(6);
+			return $this->eventDao->getAllWithLimit(8);
 		}
 	}
 

@@ -11,10 +11,10 @@
             <div id="navbarNavDropdown" class="navbar-collapse collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="">Artistas</a>
+                        <a class="nav-link" href="Artist">Artistas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Eventos</a>
+                        <a class="nav-link" href="Event">Eventos</a>
                     </li>
                     
                 </ul>

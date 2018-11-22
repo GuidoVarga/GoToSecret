@@ -30,15 +30,15 @@ class Place
     }
 
     function getName(){
-        return $this->email;
+        return $this->name;
     }
 
     function setAddress($address){
         $this->address=$address;
     }
 
-    function setName($email){
-        $this->email=$email;
+    function setName($name){
+        $this->name=$name;
     }
 
     function getCity(){
