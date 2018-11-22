@@ -30,12 +30,17 @@
 		</div>
 
 		<div class="row">
+
+			<?php
+
+			foreach ($events as $event) { ?>
+			
 			<div class="col-12 col-md-6 col-lg-4">
 				<div class="card mt-5 mx-auto " style="width: 18rem;">
-		  			<img class="card-img-top" src="<?php ROOT ?>resources/images/card1.jpg" alt="Card image cap">
+		  			<img class="card-img-top" src="<?php echo IMAGES ?>card1.jpg" alt="Card image cap">
 		 			 <div class="card-body">
-		    			<h5 class="card-title">Card title</h5>
-		    			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+		    			<h5 class="card-title"><?php echo $event->getName()?></h5>
+		    			<p class="card-text"><?php echo $event->getDescription()?></p>
 		    			
 		  			</div>
 		  			<div class="card-footer">
@@ -43,71 +48,7 @@
   					</div>
 				</div>
 			</div>
-			<div class="col-12 col-md-6 col-lg-4">
-				<div class="card mt-5 mx-auto" style="width: 18rem;">
-		  			<img class="card-img-top" src="<?php ROOT ?>resources/images/card2.jpg" alt="Card image cap">
-		 			 <div class="card-body">
-		    			<h5 class="card-title">Card title</h5>
-		    			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-		    			
-		  			</div>
-		  			<div class="card-footer">
-    					<a href="#" class="btn btn-all">+info</a>
-  					</div>
-				</div>
-			</div>
-			<div class="col-12 col-md-6 col-lg-4">
-				<div class="card mt-5 mx-auto" style="width: 18rem;">
-		  			<img class="card-img-top" src="<?php ROOT ?>resources/images/flyer1.jpg" alt="Card image cap">
-		 			 <div class="card-body">
-		    			<h5 class="card-title">Card title</h5>
-		    			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-		    			
-		  			</div>
-		  			<div class="card-footer">
-    					<a href="#" class="btn btn-all">+info</a>
-  					</div>
-				</div>
-			</div>
-			<div class="col-12 col-md-6 col-lg-4">
-				<div class="card mt-5 mx-auto" style="width: 18rem;">
-		  			<img class="card-img-top" src="<?php ROOT ?>resources/images/flyer1.jpg" alt="Card image cap">
-		 			 <div class="card-body">
-		    			<h5 class="card-title">Card title</h5>
-		    			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-		    			
-		  			</div>
-		  			<div class="card-footer">
-    					<a href="#" class="btn btn-all">+info</a>
-  					</div>
-				</div>
-			</div>
-			<div class="col-12 col-md-6 col-lg-4">
-				<div class="card mt-5 mx-auto" style="width: 18rem;">
-		  			<img class="card-img-top" src="<?php ROOT ?>resources/images/flyer1.jpg" alt="Card image cap">
-		 			 <div class="card-body">
-		    			<h5 class="card-title">Card title</h5>
-		    			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-		    			
-		  			</div>
-		  			<div class="card-footer">
-    					<a href="#" class="btn btn-all">+info</a>
-  					</div>
-				</div>
-			</div>
-			<div class="col-12 col-md-6 col-lg-4">
-				<div class="card mt-5 mx-auto" style="width: 18rem;">
-		  			<img class="card-img-top" src="<?php ROOT ?>resources/images/flyer1.jpg" alt="Card image cap">
-		 			 <div class="card-body">
-		    			<h5 class="card-title">Card title</h5>
-		    			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-		    			
-		  			</div>
-		  			<div class="card-footer">
-    					<a href="#" class="btn btn-all">+info</a>
-  					</div>
-				</div>
-			</div>
+			<?php }?>
 		</div>
 		
 	</div>

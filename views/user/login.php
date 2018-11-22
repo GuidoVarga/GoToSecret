@@ -8,7 +8,7 @@
                         <h4 class="card-title mt-2 text-left">Iniciar Sesión</h4>
                     </header>
                     <article class="card-body">
-                        <form action="" method="post" class="form" role="form">
+                        <form action="Login/validateLogin" method="post" class="form" role="form">
                             <div class="form-row">
                                 <div class="col-12 col-md col-lg form-group">
                                     <label>Email</label>

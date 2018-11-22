@@ -1,71 +1,68 @@
 <?php namespace controller;
 
 
-	require_once(ROOT.'Config\Autoload.php');
-	
-	use Config\Autoload as Autoload;
-	
-	Autoload::start();
+require_once(ROOT.'Config\Autoload.php');
 
-	use dao\dbDao\UserDao as UserDao;
-	use models\User as User;
+use Config\Autoload as Autoload;
 
-	class LoginControlador{
+Autoload::start();
 
-		private $userDao;
+use dao\dbDao\UserDao as UserDao;
+use models\User as User;
 
-		public function __construct(){
-				$this->userDao = UserDao::getInstance();
-		}
+class LoginController{
 
-		public function index(){
+	private $userDao;
 
-			
-			if(isset($_SESSION['usuario']) || isset($_SESSION['admin'])){
-				header('Location: http://'.HOST_INTERNET.'/'.DIRECTORIO.'/Home');
-			}
+	public function __construct(){
+		$this->userDao = UserDao::getInstance();
+	}
+
+	public function index(){
 
 
-			include(ROOT.'Vistas\header.php');
-			include(ROOT.'Vistas\VistaLogin.php');
+		if(isset($_SESSION['usuario']) || isset($_SESSION['admin'])){
+			header('Location: http://'.HOST_INTERNET.'/'.DIRECTORIO.'/Home');
 		}
 
 
-		public function validateLogin($email,$password){
+		include(VIEWS.'head.php');
+		include(VIEWS.'header.php');
+		include(VIEWS.'user\login.php');
+		include(VIEWS.'footer.php');
+	}
+
+
+	public function validateLogin($email,$password){
+
+		$hash=$this->userDao->getPasswordByEmail($email);
+
+		if(password_verify($password,$hash)){
+
+			$this->login($email);
+			return true;
+		}
+		else{
+			echo 'error';
+		}
+	}
+
+	public function login($email){
 
 		session_start();
 
-		$resultado=$this->userDao->validarLogin($email,$password);
+		$user=$this->userDao->getByEmail($email);
 
-		if($resultado){
+		$_SESSION['user']=$user;
 
-					if(password_verify($password,$resultado['0']['password'])){
+		echo '<pre>';
+		var_dump($user);
+		echo '</pre>';
 
-						if($resultado['0']['id_personal']){
 
-							$usuario=$this->userDao->mapearPersonal($resultado);
-
-							$_SESSION['admin']=$usuario;
-							
-						}	
-						else
-						{
-							$usuario=$this->userDao->mapearCliente($resultado);
-
-							$_SESSION['usuario']=$usuario;
-
-						}
-
-						echo 1;
-					}
-					else
-						echo 'password';
-		
-				}
-				else
-					echo 'email';
 	}
 
 }
+
 
 ?>

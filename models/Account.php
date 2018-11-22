@@ -7,12 +7,15 @@ class Account
     private $password;
     private $fbToken;
     private $orders;
+    private $role;
 
-    function __construct($id,$email,$password){
+    function __construct($id,$email,$password,$token,$role){
 
         $this->id=$id;
         $this->email=$email;
         $this->password=$password;
+        $this->fbToken=$token;
+        $this->role=$role;
         $this->orders = array();
     }
 

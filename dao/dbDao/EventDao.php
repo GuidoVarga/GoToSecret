@@ -79,37 +79,6 @@ class EventDao extends Singleton implements iDao{
 
 	}
 
-	/*
-	public function getAll(){
-
-		try {
-			$sql = "SELECT * FROM events left JOIN event_categories ON event_categories.id = events.event_category_id left JOIN schedules ON schedules.event_id = events.id  left JOIN dates ON dates.schedule_id = schedules.id left JOIN dates_x_locations ON dates_x_locations.date_id=dates.id left JOIN locations ON locations.id=dates_x_locations.location_id left JOIN places ON places.id=dates.place_id left JOIN cities ON cities.id=places.city_id left JOIN artists ON artists.id=dates.artist_id";
-
-			$obj_pdo = new Connection();
-
-			$connection = $obj_pdo->connect();
-			$connection->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES,true);
-			$query = $connection->prepare($sql);
-
-			$query->execute();
-
-			$result=$query->fetchAll();
-			return $result;
-
-			
-			https://stackoverflow.com/questions/25258845/ambiguous-field-names-add-table-name-with-fetch-obj
-			https://www.w3resource.com/php/pdo/php-pdo.php
-			https://stackoverflow.com/questions/15202864/pdo-fetch-class-with-joined-tables
-			http://php.net/manual/es/pdo.constants.php
-			
-		} 
-		catch(PDOException $Exception) {
-			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
-		}
-
-	}
-	*/
-
 	public function getByDate($date){
 
 		try {
@@ -184,62 +153,37 @@ class EventDao extends Singleton implements iDao{
 
 	}
 
+	public function getAllWithLimit($limit){
+
+		try {
+			$sql = "SELECT * FROM events ORDER BY id DESC LIMIT $limit";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+	
+			$query = $connection->prepare($sql);
+			//$query->bindParam(":num", $limit);
+			$query->execute();
+
+			$result=$query->fetchAll();
+
+			return $this->map($result);
+
+		} 
+		catch(PDOException $Exception) {
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+		}
+
+	}
+
 	public function delete($id){
 
 	}
 
 	public function update($event){
 
-	} 
-
-/*
-	public function addEventToArray($array,$e){
-
-		foreach ($array as $event) {
-
-			if($event->getId()==$e->getId()){
-				$eDate = $e->getDateByIndex(0);
-				$eventDate =$event->getDateById($eDate->getId());
-				if( $eventDate == null){
-					$event->addDate($e->getDateByIndex(0));
-				}else{
-
-					if($eventDate->getLocation(0)->getId() != $eDate->getLocation(0)->getId()){
-						$eventDate->addLocation($eDate->getLocation(0));
-					} 
-				}
-				return $array;
-			}
-		}
-
-		array_push($array,$e);
-		return $array;
-	}
-
-	
-	public function map2($events){
-
-		$array = array();
-		foreach ($events as $event) {
-
-			$e = new Event($event['events.id'],$event['events.name'],'description',
-							new EventCategory($event['event_categories.id'],$event['event_categories.name']),
-							new Schedule($event['schedules.id'],$event['schedules.day'])
-						);
-			
-			$date = new Date($event['dates.id'], new Artist($event['artists.id'], $event['artists.name'], $event['artists.description']) ,$event['dates.start_hour'], $event['dates.finish_hour'], new Place( $event['places.id'],$event['places.name'],$event['places.address'], new City($event['cities.id'],$event['cities.name'])));
-
-			$date->addLocation(new Location($event['locations.id'],$event['locations.name'],$event['dates_x_locations.total_quantity'],$event['dates_x_locations.remament'],$event['dates_x_locations.price']));
-
-			$e->addDate($date);
-		
-			$array=$this->addEventToArray($array,$e);
-		}
-
-		return $array;
-	}
-*/
-		
+	} 	
 	
 	public function map($objects)
 	{
@@ -248,7 +192,7 @@ class EventDao extends Singleton implements iDao{
 	
 		return array_map(function($e){
 
-			$event = new Event($e['id'],$e['name'],'description',$this->eventCategoryDao->get($e['event_category_id']));
+			$event = new Event($e['id'],$e['name'],'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum, ex vel pretium vehicula, mauris erat tristique metus, et ultricies sapien mi sit amet lectus. Nulla egestas sollicitudin lectus et porttitor.','card2',$this->eventCategoryDao->get($e['event_category_id']));
 			$event->setSchedules($this->scheduleDao->get($event->getId()));
 			return $event;
 

@@ -6,7 +6,7 @@
 	
 	use config\Autoload as Autoload;
 	use config\Request as Request;
-	use models\Category as Category;
+	use models\EventCategory as EventCategory;
 	use dao\dbDao\EventCategoryDao as EventCategoryDao;
 	use dao\Singleton as Singleton;
 
@@ -14,7 +14,7 @@
 
 	class AdminCategoryController{
 
-		private $eventCategoryDao;
+		private $dao;
 
 		function __construct(){
 			$this->dao=EventCategoryDao::getInstance();
@@ -46,7 +46,10 @@
 		}
 
 
-		public function add(){}
+		public function add($name){
+			$category = new EventCategory(0,$name);
+			$this->dao->add($category);
+		}
 
 		public function edit(){}
 

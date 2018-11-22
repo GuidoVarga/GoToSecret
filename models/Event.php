@@ -9,11 +9,12 @@ class Event
     private $eventCategory;
     private $schedules;
    
-    function __construct($id,$name,$description,$eventCategory)
+    function __construct($id,$name,$description,$img,$eventCategory)
     {
         $this->id=$id;
         $this->name=$name;
         $this->description=$description;
+        $this->img=$img;
         $this->eventCategory = $eventCategory;
         $this->schedules = array();
        

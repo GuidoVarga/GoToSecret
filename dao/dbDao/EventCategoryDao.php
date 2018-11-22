@@ -15,16 +15,16 @@ class EventCategoryDao extends Singleton implements iDao{
 
 
 	public function add($object){
-
-		try {
+		
+			try {
 
 			$sql = "INSERT INTO event_categories (id,name) VALUES (null,:name)";
 
 			$obj_pdo = new Connection();
 
-			$conexion = $obj_pdo->connect();
+			$connection = $obj_pdo->connect();
 
-			$query = $conexion->prepare($sql);
+			$query = $connection->prepare($sql);
 
 			$name=$object->getName();
 

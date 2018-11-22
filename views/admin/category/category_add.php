@@ -296,7 +296,7 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label">Nombre Categoria</label>
-                                                            <input class="form-control" name="name-category" type="text" required="">
+                                                            <input class="form-control" name="name" type="text" required="">
                                                         </div>
                                                     </div>
                                                 </div> 
