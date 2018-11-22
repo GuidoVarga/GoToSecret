@@ -12,12 +12,12 @@
 
 	Autoload::start();
 
-	class AdminSubEventController{
+	class AdminScheduleController{
 
 		private $subEventDao;
 
 		function __construct(){
-			$this->subEventDao=SubEventDao::getInstance();
+			//A$this->subEventDao=SubEventDao::getInstance();
 		}
 
 
