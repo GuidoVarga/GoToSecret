@@ -296,7 +296,8 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label class="control-label">Nombre Plaza</label>
-                                                                <input class="form-control" name="name-location" type="text" required="">
+                                                                <input name="id" value="<?php echo $_GET['id']?>" hidden>
+                                                                <input class="form-control" value="<?php echo $location->getName()?>" name="name" type="text" required="">
                                                         </div>
                                                     </div>
                                                 </div> 

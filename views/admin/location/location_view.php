@@ -295,15 +295,23 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                        <td>Mark</td>
-                                                        <td>
-                                                            <div class="btn-group">
-                                                                 <a href="<?php echo "/".DIRECTORY."/"."Adminlocation/editView"?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>                     
-                                                                <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>                        
-                                                            </div>
-                                                        </td>
-                                                        </tr>
+                                                        <?php if(isset($locations)){
+
+                            foreach ($locations as $location) { ?>
+                              <tr>
+                                <td id="<?php echo 'location-name-'.$location->getId()?>"><?php echo $location->getName(); ?></td>
+                                <td>
+                                  <div class="btn-group">
+                                   <!-- <a class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>                            
+                                    <a href="delete" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>              -->
+                                    <button value="<?php echo $location->getId()?>" onclick="deleteLocation(event)" id="<?php echo 'button-delete-'.$location->getId()?>" class="btn btn-danger btn-sm fas fa-trash-alt"></button>
+                                    <button value="<?php echo $location->getId()?>" onclick="editLocation(event)" id="<?php echo 'button-edit-'.$location->getId()?>" class="btn btn-primary btn-sm fa fa-edit"></button>                                         
+                                  </div>
+                                </td>
+                              </tr>
+                            <?php }
+                          }
+                         ?>
                                                     </tbody>
                                                 </table>
                                             </div>

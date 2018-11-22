@@ -296,7 +296,8 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label class="control-label">Nombre Categoria</label>
-                                                                <input class="form-control" name="name-category" type="text" required="">
+                                                                <input name="id" value="<?php echo $_GET['id']?>" hidden>
+                                                                <input class="form-control" value="<?php echo $category->getName()?>" name="name" type="text" required="">
                                                         </div>
                                                     </div>
                                                 </div> 

@@ -6,7 +6,7 @@
 	
 	use config\Autoload as Autoload;
 	use config\Request as Request;
-	use models\Artist as Location;
+	use models\Location as Location;
 	use dao\dbDao\LocationDao as LocationDao;
 	use dao\Singleton as Singleton;
 
@@ -14,16 +14,16 @@
 
 	class AdminLocationController{
 
-		private $locationDao;
+		private $dao;
 
 		function __construct(){
-			$this->locationDao=LocationDao::getInstance();
+			$this->dao=LocationDao::getInstance();
 		}
 
 
 		public function index(){
 			
-		
+			$locations = $this->getLocations();
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\admin\location\location_view.php');
 			include(ROOT . 'views\admin\footer_admin.php');
@@ -42,6 +42,13 @@
 
 		public function editView(){
 			
+			$id = $_GET['id'];
+			$location = $this->dao->get($id);
+
+			if(is_array($location)){
+				$location = $location[0];
+			}
+
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\admin\location\location_edit.php');
 			include(ROOT . 'views\admin\footer_admin.php');
@@ -51,11 +58,21 @@
 
 		public function add(){}
 
-		public function edit(){}
+		public function edit($id,$name){
 
-		public function delete(){}
+			$location = new Location($id,$name,null,null,null);
+			$this->dao->update($location);
+			header('Location: http://'.HOST_INTERNET.'/'.DIRECTORY.'/AdminLocation');
+			
+		}
 
-		public function getLocations(){}
+		public function delete($id){
+			$this->dao->delete($id);
+		}
+
+		public function getLocations(){
+			return $this->dao->getAll();
+		}
 
 
 	}

@@ -82,7 +82,7 @@ class EventCategoryDao extends Singleton implements iDao{
 		
 			$result=$query->fetchAll();
 		
-			return $result;
+			return $this->map($result);
 
 		} catch(PDOException $Exception) {
 			
@@ -94,9 +94,54 @@ class EventCategoryDao extends Singleton implements iDao{
 
 	public function delete($id){
 
+
+				$sql="DELETE FROM event_categories WHERE id=:id";
+				$obj_pdo = new Connection();
+
+			try {
+
+				$connection = $obj_pdo->connect();
+				$query = $connection->prepare($sql);
+				$query->bindParam("id", $id);
+				$query->execute();
+			
+			} catch(PDOException $Exception) {
+			
+				throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+			}
+
+
 	}
 
 	public function update($object){
+
+	
+		try {
+
+			$sql = "UPDATE event_categories SET name=:name WHERE id=:id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+
+			$query = $connection->prepare($sql);
+			$id=$object->getId();
+			$name=$object->getName();
+
+			var_dump($id);
+			var_dump($name);
+
+			$query->bindParam(":id", $id);
+			$query->bindParam(":name", $name);
+
+			$query->execute();
+			
+		} catch(PDOException $Exception) {
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+		}
+
 
 	} 
 

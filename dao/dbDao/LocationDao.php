@@ -45,6 +45,25 @@
 
 		public function get($id){
 
+				try {
+			$sql = "SELECT * FROM locations WHERE id = :id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+			$query = $connection->prepare($sql);
+			$query->bindParam(":id", $id);
+			$query->execute();
+		
+			$result=$query->fetchAll();
+		
+			return $this->map($result);
+
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+		}
 		}
 
 		public function getByScheduleId($id){
@@ -85,11 +104,11 @@
 
 					$query->execute();
 
-					var_dump($query);
+				
 					$result=$query->fetchAll();
-					var_dump($result);
+					
 
-					return $result;
+					return $this->map($result);
 				
 			} catch(PDOException $Exception) {
 			
@@ -101,9 +120,48 @@
 
 		public function delete($id){
 
+			$sql="DELETE FROM locations WHERE id=:id";
+				$obj_pdo = new Connection();
+
+			try {
+
+				$connection = $obj_pdo->connect();
+				$query = $connection->prepare($sql);
+				$query->bindParam("id", $id);
+				$query->execute();
+			
+			} catch(PDOException $Exception) {
+			
+				throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+			}
+
 		}
 
 		public function update($object){
+
+				try {
+
+			$sql = "UPDATE locations SET name=:name WHERE id=:id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+
+			$query = $connection->prepare($sql);
+			$id=$object->getId();
+			$name=$object->getName();
+
+			$query->bindParam(":id", $id);
+			$query->bindParam(":name", $name);
+
+			$query->execute();
+			
+		} catch(PDOException $Exception) {
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+		}
+
 
 		} 
 
@@ -112,7 +170,7 @@
 			
 			$locations = is_array($objects) ? $objects : [];
 			return array_map(function($p){
-				return new Location($p['locations.id'],$p['locations.name'],null,null,null);
+				return new Location($p['id'],$p['name'],null,null,null);
 			}, $locations);
 		}
 
