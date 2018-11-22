@@ -22,20 +22,21 @@ class TicketDao extends Singleton implements iDao{
 
 			$obj_pdo = new Connection();
 
-			$conexion = $obj_pdo->connect();
+			$connection = $obj_pdo->connect();
 
-			$sentencia = $conexion->prepare($sql);
+			$query = $connection->prepare($sql);
 
 
 			$name=$object->getName();
 			$description=$object->getDescription();
 
 
-			$sentencia->bindParam(":name", $name);
-			$sentencia->bindParam(":description", $description);
+			$query->bindParam(":name", $name);
+			$query->bindParam(":description", $description);
 			
 
-			$sentencia->execute();
+			$query->execute();
+			return $connection->lastInsertId();
 			
 		} catch(PDOException $Exception) {
 			

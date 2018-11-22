@@ -41,7 +41,7 @@ class EventDao extends Singleton implements iDao{
 
 			$query->execute();
 
-			return $conexion->lastInsertId();
+			return $connection->lastInsertId();
 		
 		} catch(PDOException $Exception) {	
 			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );

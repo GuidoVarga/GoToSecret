@@ -33,9 +33,9 @@
 				
 				$obj_pdo = new Connection();
 
-				$conexion = $obj_pdo->connect();
+				$connection = $obj_pdo->connect();
 
-				$sentencia = $conexion->prepare($sql);
+				$query = $connection->prepare($sql);
 		
 
 				$artistId = $object->getArtist()->getId();
@@ -47,13 +47,14 @@
 				$placeId = $object->getPlace()->getId();
 				
 
-				$sentencia->bindParam(":artist_id", $artistId);
-				$sentencia->bindParam(":subEvent", $subEvent);
-				$sentencia->bindParam(":start_hour", $startHour);
-				$sentencia->bindParam(":finish_hour", $finishHour);
-				$sentencia->bindParam(":place_id", $placeId);
+				$query->bindParam(":artist_id", $artistId);
+				$query->bindParam(":subEvent", $subEvent);
+				$query->bindParam(":start_hour", $startHour);
+				$query->bindParam(":finish_hour", $finishHour);
+				$query->bindParam(":place_id", $placeId);
 		
-				$sentencia->execute();
+				$query->execute();
+				return $connection->lastInsertId();
 			
 			} catch(PDOException $Exception) {
 			

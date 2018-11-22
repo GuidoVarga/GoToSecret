@@ -23,16 +23,17 @@
 				
 				$obj_pdo = new Connection();
 
-				$conexion = $obj_pdo->connect();
+				$connection = $obj_pdo->connect();
 
-				$sentencia = $conexion->prepare($sql);
+				$query = $connection->prepare($sql);
 
 				$name=$object->getName();
 				
-				$sentencia->bindParam(":name", $name);
+				$query->bindParam(":name", $name);
 			
 		
-				$sentencia->execute();
+				$query->execute();
+				return $connection->lastInsertId();
 			
 			} catch(PDOException $Exception) {
 			

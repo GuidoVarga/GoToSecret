@@ -33,16 +33,17 @@ class ScheduleDao extends Singleton implements iDao{
 
 			$obj_pdo = new Connection();
 
-			$conexion = $obj_pdo->connect();
+			$connection = $obj_pdo->connect();
 
-			$sentencia = $conexion->prepare($sql);
+			$query = $connection->prepare($sql);
 
 			$day=$object->getDay();
 
-			$sentencia->bindParam(":day", $day);
+			$query->bindParam(":day", $day);
 			
 
-			$sentencia->execute();
+			$query->execute();
+			return $connection->lastInsertId();
 			
 		} catch(PDOException $Exception) {
 			

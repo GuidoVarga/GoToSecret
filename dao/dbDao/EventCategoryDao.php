@@ -32,6 +32,8 @@ class EventCategoryDao extends Singleton implements iDao{
 			
 
 			$query->execute();
+
+			return $connection->lastInsertId();
 			
 		} catch(PDOException $Exception) {
 			
