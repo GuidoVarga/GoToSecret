@@ -7,19 +7,16 @@ class Event
     private $description;
     private $img;
     private $eventCategory;
-    private $place;
-    private $calendar;
-    private $locations;
-
-    function __construct($id,$name,$description,$eventCategory,$place,$calendar)
+    private $schedules;
+   
+    function __construct($id,$name,$description,$img,$eventCategory)
     {
         $this->id=$id;
         $this->name=$name;
         $this->description=$description;
+        $this->img=$img;
         $this->eventCategory = $eventCategory;
-        $this->place= $place;
-        $this->calendar=$calendar;
-        $this->locations=array();
+        $this->schedules = array();
        
     }
 
@@ -61,32 +58,25 @@ class Event
         return $this->eventCategory;
     }
 
-    function getPlace($place){
-        return $this->place;
-    }
-
-    function setPlace($place){
-        $this->place=$place;
-    }
-
-    function addLocation($location){
-       array_push($this->locations,$location);
-    }
-
-    function getLocation($index){
-
-        return $this->locations[$index];
-    }
-
-    function addDate($date){
-        $this->calendar->addDate($date);
+  
+    function addSubEvent($date){
+        $this->schedule->addDate($date);
     }
 
     function getDateByIndex($index){
-        return $this->calendar->getDateByIndex($index);
+        return $this->schedule->getDateByIndex($index);
     }
 
     function getDateById($id){
-        return $this->calendar->getDateById($id);
+        return $this->schedule->getDateById($id);
     }
+
+    function setSchedules($schedules){
+        $this->schedules = $schedules;
+    }
+
+    function getSchedules(){
+        return $this->schedules;
+    }
+
 }

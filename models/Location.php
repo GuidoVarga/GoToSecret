@@ -5,15 +5,15 @@ class Location{
 	private $id;
 	private $name;
     private $totalQuantity;
-    private $remanent;
+    private $surplus;
     private $price;
 
-	 function __construct($id,$name,$totalQuantity,$remanent,$price)
+	 function __construct($id,$name,$totalQuantity,$surplus,$price)
     {   
         $this->id=$id;
         $this->name=$name;
         $this->totalQuantity=$totalQuantity;
-        $this->remanent=$remanent;
+        $this->surplus=$surplus;
         $this->price=$price;
     }
 
@@ -41,7 +41,25 @@ class Location{
         $this->price=$price;
     }
 
+    function getSurplus(){
+        return $this->surplus;
+    }
 
+     function setSurplus($surplus){
+        $this->surplus=$surplus;
+    }
+    
+    function getTotalQuantity(){
+        return $this->totalQuantity;
+    }
+
+     function setTotalQuantity($totalQuantity){
+        $this->totalQuantity=$totalQuantity;
+    }
+
+    function getSelledQuantity(){
+        return $this->totalQuantity-$this->surplus;
+    }
 
 }
 

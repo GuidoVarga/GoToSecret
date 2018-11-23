@@ -13,29 +13,56 @@
                                             <span class="d-none d-md-block">Evento</span>
                                             <span class="d-md-none">Even.</span>
                                         </th>
-                                        <th><span class="d-none d-md-block">Cantidad</span>
+                                        <th>
+                                            <span class="d-none d-md-block">Fecha</span>
+                                            <span class="d-md-none">Fech.</span>
+                                        </th>
+                                        <th>
+                                            <span class="d-none d-md-block">Artista</span>
+                                            <span class="d-md-none">Art.</span>
+                                        </th>
+                                        <th>
+                                            <span class="d-none d-md-block">Plaza</span>
+                                            <span class="d-md-none">Pla.</span>
+                                        </th>
+                                        <th>
+                                            <span class="d-none d-md-block">Cantidad</span>
                                             <span class="d-md-none">Cant.</span>
                                         </th>
-                                        <th><span class="d-none d-md-block">Precio</span>
-                                            <span class="d-md-none">PRE.</span></th>
+                                        <th>
+                                            <span class="d-none d-md-block">Precio</span>
+                                            <span class="d-md-none">PRE.</span>
+                                        </th>
                                         <th>
                                             <span class="d-none d-md-block">Subtotal</span>
-                                            <span class="d-md-none">SUBTO.</span>
+                                            <span class="d-md-none">Sub.</span>
                                         </th>
-                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr style="background-color: #fafafa; color #666; font-size:2rem;font-weight: 400; ">
-                                        <td colspan="3"></td>
-                                        <td align="right">Subtotal</td>
-                                        <td align="right">
-                                            $0,00
-                                        </td>
-                                        <td></td>
-                                    </tr>
+                                        <td>
+                                           <label for="">Puto</label>
+                                        </td>    
+                                        <td>
+                                           <label for="">Puto</label>
+                                        </td>   
+                                        <td>
+                                           <label for="">Puto</label>
+                                        </td>   
+                                        <td>
+                                           <label for="">Puto</label>
+                                        </td>   
+                                        <td>
+                                           <label for="">Puto</label>
+                                        </td>   
+                                        <td>
+                                           <label for="">Puto</label>
+                                        </td>   
+                                        <td>
+                                           <label for="">Puto</label>
+                                        </td>   
                                     <tr style="background-color: #fafafa; color #575757; font-size:2rem;font-weight: 400;text-transform: uppercase; ">
-                                        <td colspan="3"></td>
+                                        <td colspan="5"></td>
                                         <td align="right">TOTAL</td>
                                         <td align="right">
                                             $0,00

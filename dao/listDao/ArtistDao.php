@@ -18,6 +18,7 @@
 	        }
 	        return $_SESSION['ArtistList'];
 	    }
+	    
 	    public function setSessionArtist($value)
 	    {
 	        $_SESSION['ArtistList'] = $value;

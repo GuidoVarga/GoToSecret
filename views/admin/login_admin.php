@@ -1,6 +1,6 @@
 <body class="login_admin text-center mt-5">
     <form class="form-signin">
-      <img class="mb-4 ml-1"  src="<?php ROOT ?>resources/images/logo-white.png" >
+      <img class="mb-4 ml-1"  src="<?php ROOT ?>resources/images/logo-black.png" >
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
       <input id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" type="email">

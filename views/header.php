@@ -2,7 +2,7 @@
 <header class="header mb-4">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
-            <a class="navbar-left" href=""><img class="img-responsive" src="" id="logo-nav" alt="GoToEvent"></a>
+            <a class="navbar-left" href=""><img class="img-responsive" src="<?php echo IMAGES?>logo-white.png" id="logo-nav" alt="GoToEvent"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

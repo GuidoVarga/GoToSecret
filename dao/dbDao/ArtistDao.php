@@ -1,116 +1,131 @@
 <?php namespace dao\dbDao;
 
-	require_once(ROOT.'config\Autoload.php');
+require_once(ROOT.'config\Autoload.php');
+
+use config\Autoload as Autoload;
+use models\Artist as Artist;
+use dao\dbDao\Connection as Connection;
+use \PDOException as PDOException;
+use dao\iDao as iDao;
+use dao\Singleton as Singleton;
+
+Autoload::start();
+
+class ArtistDao extends Singleton implements iDao{
 
 
-	
-	use config\Autoload as Autoload;
-	use models\Artist as Artist;
-	use dao\dbDao\Connection as Connection;
-	use \PDOException as PDOException;
-	use dao\iDao as iDao;
-	use dao\Singleton as Singleton;
+	public function add($object){
 
-	Autoload::start();
+		try {
 
-	class ArtistDao extends Singleton implements iDao{
+			$sql = "INSERT INTO artists (id,name,description) VALUES (null,:name,:description)";
 
+			$obj_pdo = new Connection();
 
-		public function add($object){
+			$connection = $obj_pdo->connect();
 
-				try {
+			$query = $connection->prepare($sql);
 
 
-				$sql = "INSERT INTO artists (id,name,description) VALUES (null,:name,:description)";
-				
-				$obj_pdo = new Connection();
+			$name=$object->getName();
+			$description=$object->getDescription();
 
-				$conexion = $obj_pdo->connect();
 
-				$sentencia = $conexion->prepare($sql);
-		
-
-				$name=$object->getName();
-				$description=$object->getDescription();
-				
-
-				$sentencia->bindParam(":name", $name);
-				$sentencia->bindParam(":description", $description);
+			$query->bindParam(":name", $name);
+			$query->bindParam(":description", $description);
 			
-		
-				$sentencia->execute();
-			
-			} catch(PDOException $Exception) {
-			
-				throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
-			
-			}
 
-
-
+			$query->execute();
+			return $connection->lastInsertId();
+			
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
 		}
-
-		public function get($id){
-
-		}
-
-		public function getAll(){
-
-				try {
-					$sql = "SELECT * FROM artists";
-					
-					$obj_pdo = new Connection();
-
-					$connection = $obj_pdo->connect();
-
-					$query = $connection->prepare($sql);
-			
-					$query->execute();
-
-					$result=$query->fetchAll();
-
-					return $result;
-				
-			} catch(PDOException $Exception) {
-			
-				throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
-			
-			}
-
-
-
-
-		}
-
-		public function delete($id){
-
-		}
-
-		public function update($object){
-
-		} 
-
-		public function map($objects)
-		{
-			
-			$artists = is_array($objects) ? $objects : [];
-			return array_map(function($p){
-				return new Artist($p['id'],$p['name'],$p['description']);
-			}, $artists);
-		}
-
-
-
-
-
 
 	}
 
+	public function get($id){
 
+		try {
+			$sql = "SELECT * FROM artists WHERE id = :id";
 
+			$obj_pdo = new Connection();
 
+			$connection = $obj_pdo->connect();
 
+			$query = $connection->prepare($sql);
+			$query->bindParam(":id", $id);
+			$query->execute();
 
+			$result=$query->fetchAll();
 
+			echo '<pre>';
+			var_dump($result);
+			echo '</pre>';
+
+			return $this->mapOnlyOne($result);
+
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+		}
+
+	}
+
+	public function getAll(){
+
+		try {
+			$sql = "SELECT * FROM artists";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+			$query = $connection->prepare($sql);
+			
+			$query->execute();
+
+			$result=$query->fetchAll();
+
+			return $this->map($result);
+
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+		}
+
+	}
+
+	public function delete($id){
+
+	}
+
+	public function update($object){
+
+	} 
+
+	public function map($objects)
+	{
+
+		$artists = is_array($objects) ? $objects : [];
+		return array_map(function($p){
+			return new Artist($p['id'],$p['name'],$p['description']);
+		}, $artists);
+	}
+
+	public function mapOnlyOne($array){
+
+		if(isset($array)){
+			$a = $array[0];
+			return new Artist($a['id'],$a['name'],$a['description']);
+		}
+
+	}
+
+}
 
 ?>

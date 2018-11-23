@@ -10,7 +10,7 @@
 	use dao\Singleton as Singleton;
 	use models\Event as Event;
 	use models\Calendar as Calendar;
-	use models\Date as Date;
+	use models\SubEvent as SubEvent;
 
 	Autoload::start();
 
@@ -25,48 +25,26 @@
 
 		public function index(){
 
-			$result=$this->eventDao->getAll();
-			echo '<pre>';
-			var_dump($result);
-			echo '</pre>';
+			session_start();
+			//session_destroy();
 
+			if(isset($_SESSION['user'])){
 
-			$events=$this->eventDao->map2($result);
-			echo '<pre>';
-			var_dump($events);
-			echo '</pre>';
+				$user=$_SESSION['user'];
+			
+			
+			}else if(isset($_SESSION['admin'])){
+
+				$user=$_SESSION['admin'][0];
+			
+			}
+
+            include(ROOT . 'views\head.php');
+			include(ROOT . 'views\user\header.php');
+			include(ROOT . 'views\user\events.php');
+			include(ROOT . 'views\user\footer.php');
+		}
 		
-		}
-
-		public function addEvent(){
-
-				$event = new Event('id','name','d','ec','p', new Calendar('id'));
-
-				$event->addDate(new Date('id','dia','artist','19','21'));
-				$event->addDate(new Date('id2','dia','artist','21','23'));
-
-				$date = $event->getDateByIndex(0);
-				echo '<pre>';
-				var_dump($date);
-				echo '</pre>';
-		}
-
-		public function getEvents(){
-
-			$result=$this->eventDao->getAll();
-			$events=$this->eventDao->map($result);
-			var_dump($events);
-		}	
-
-
-
-
-
-
-
-
-
-
 	}
 
 

@@ -5,14 +5,18 @@ class Account
     private $id;
     private $email;
     private $password;
-    //private $token;
+    private $fbToken;
+    private $orders;
+    private $role;
 
-    function __construct($id,$email,$password){
+    function __construct($id,$email,$password,$token,$role){
 
         $this->id=$id;
         $this->email=$email;
         $this->password=$password;
-
+        $this->fbToken=$token;
+        $this->role=$role;
+        $this->orders = array();
     }
 
     function getId(){
@@ -40,4 +44,13 @@ class Account
     function setEmail($email){
         $this->email=$email;
     }
+
+    function getOrders(){
+        return $this->orders;
+    }
+
+     function setOrders($orders){
+        $this->orders=$orders;
+    }
+
 }
