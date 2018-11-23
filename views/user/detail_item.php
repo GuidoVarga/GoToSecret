@@ -5,7 +5,7 @@
             <img class="w-100" src="<?php echo IMAGES.$event->getImg()?>" >
         </div>
         </div>
-        <div class="row">
+        <div class="row mt-5">
         <div class="col-12">
             <div class="bg-white">
                 <article class="card-body">
