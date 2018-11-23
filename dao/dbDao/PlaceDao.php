@@ -87,11 +87,9 @@
 
 					$query->execute();
 
-					var_dump($query);
 					$result=$query->fetchAll();
-					var_dump($result);
 
-					return $result;
+					return $this->map($result);
 				
 			} catch(PDOException $Exception) {
 			

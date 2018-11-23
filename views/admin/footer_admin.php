@@ -28,6 +28,9 @@
 			}
 		};
 		*/
+
+
+
 		function editCategory(event){
 			
 			const id = event.target.value;
@@ -35,10 +38,10 @@
 		}
 
 		function deleteCategory(event){
-	
+
 			var parametros = {
-					id : event.target.value
-				}
+				id : event.target.value
+			}
 
 			postRequest(parametros,'AdminCategory/delete',redirect());
 		}
@@ -51,10 +54,10 @@
 		}
 
 		function deleteLocation(event){
-	
+
 			var parametros = {
-					id : event.target.value
-				}
+				id : event.target.value
+			}
 
 			postRequest(parametros,'AdminLocation/delete',redirect('AdminLocation'));
 		}
@@ -65,8 +68,8 @@
 			new XMLHttpRequest;
 			request.onload = () => {
 				if(request.status == 200){
-						callback();
-						console.log(request);
+					callback();
+					console.log(request);
 				}
 				else{
 					alert('error:' + request.status);
@@ -83,6 +86,61 @@
 
 		function redirect(url){
 			window.location.replace(url);
+		}
+
+		function addLocation(event){
+
+			event.preventDefault();
+
+			var location = document.getElementById('location').value;
+			var quantity = document.getElementById('quantity').value;
+			var price = document.getElementById('price').value;
+			var tBody = document.getElementById('table-body-locations');
+			addRow([location,quantity,price],tBody);
+			
+		}
+
+		function addSubEvent(event){
+
+			event.preventDefault();
+
+			var artist = document.getElementById('artist').value;
+			var initialHour = document.getElementById('initial-hour').value;
+			var finishHour = document.getElementById('finish-hour').value;
+			var tBody = document.getElementById('table-body-subEvents');
+			addRow([artist,initialHour,finishHour],tBody);
+
+		}
+
+		function addRow(items,tBody){
+			var index = tBody.getElementsByTagName('tr').length;
+			console.log(index);
+			
+			let tr = document.createElement('tr');
+			items.forEach(function(item){
+				let textNode = document.createTextNode(item);
+				let td = document.createElement('td');
+				td.appendChild(textNode);
+				tr.appendChild(td);
+			});
+			let button = document.createElement('button');
+			button.className='btn btn-danger btn-sm fas fa-trash-alt';
+			button.value=index;
+			button.addEventListener('click',function(event){
+				deleteRow(event,tBody)},false);
+			let td = document.createElement('td');
+			td.appendChild(button);
+			tr.appendChild(td);
+			tBody.appendChild(tr);
+		}
+
+		function deleteRow(event){
+			event.preventDefault();
+			let button = event.target;
+			let tr=button.parentElement.parentElement;
+
+			tr.parentNode.removeChild(tr);
+
 		}
 	</script>
 

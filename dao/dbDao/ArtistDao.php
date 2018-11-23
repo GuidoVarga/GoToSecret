@@ -90,7 +90,7 @@ class ArtistDao extends Singleton implements iDao{
 
 			$result=$query->fetchAll();
 
-			return $result;
+			return $this->map($result);
 
 		} catch(PDOException $Exception) {
 			

@@ -7,21 +7,29 @@
 	use config\Autoload as Autoload;
 	use config\Request as Request;
 	use models\Date as Date;
-	use dao\dbDao\DateDao as DateDao;
+	use dao\dbDao\ArtistDao as ArtistDao;
+	use dao\dbDao\LocationDao as LocationDao;
+	use dao\dbDao\PlaceDao as PlaceDao;
 	use dao\Singleton as Singleton;
 
 	Autoload::start();
 
 	class AdminScheduleController{
 
-		private $subEventDao;
+		private $placeDao;
+		private $locationDao;
+		private $artistDao;
 
 		function __construct(){
-			//A$this->subEventDao=SubEventDao::getInstance();
+			$this->placeDao=PlaceDao::getInstance();
+			$this->locationDao=LocationDao::getInstance();
+			$this->artistDao=ArtistDao::getInstance();
 		}
 
 
 		public function index(){
+
+
 			
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\admin\date\date_view.php');
@@ -29,6 +37,10 @@
 		}
 
 		public function addView(){
+
+			$places = $this->getPlaces();
+			$artists = $this->getArtists();
+			$locations = $this->getLocations();
 			
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\admin\date\date_add.php');
@@ -50,7 +62,17 @@
 
 		public function delete(){}
 
-		public function getSubEvents(){}
+		public function getArtists(){
+			return $this->artistDao->getAll();
+		}
+
+		public function getPlaces(){
+			return $this->placeDao->getAll();
+		}
+
+		public function getLocations(){
+			return $this->locationDao->getAll();
+		}
 
 
 	}
