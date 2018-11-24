@@ -43,6 +43,40 @@
 
 		}
 
+		public function addLocationSchedule($object,$scheduleId){
+			try {
+
+				$sql = "INSERT INTO schedules_x_locations (id,schedule_id,location_id,price,surplus,total_quantity) VALUES (null,:schedule_id,:location_id,:price,:surplus,:total_quantity)";
+				
+				$obj_pdo = new Connection();
+
+				$connection = $obj_pdo->connect();
+
+				$query = $connection->prepare($sql);
+
+				$locationId=$object->getId();
+				$price=$object->getPrice();
+				$surplus=$object->getSurplus();
+				$totalQuantity=$object->getTotalQuantity();
+
+				
+				$query->bindParam(":schedule_id", $scheduleId);
+				$query->bindParam(":location_id", $locationId);
+				$query->bindParam(":price", $price);
+				$query->bindParam(":surplus", $surplus);
+				$query->bindParam(":total_quantity", $totalQuantity);
+			
+		
+				$query->execute();
+				return $connection->lastInsertId();
+			
+			} catch(PDOException $Exception) {
+			
+				throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+			}
+		}
+
 		public function get($id){
 
 				try {

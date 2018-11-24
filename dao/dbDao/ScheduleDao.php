@@ -29,7 +29,7 @@ class ScheduleDao extends Singleton implements iDao{
 
 		try {
 
-			$sql = "INSERT INTO schedules (id,day,event_id) VALUES (null,:day,1)";
+			$sql = "INSERT INTO schedules (id,day,event_id,place_id) VALUES (null,:day,:event_id,:place_id)";
 
 			$obj_pdo = new Connection();
 
@@ -38,8 +38,11 @@ class ScheduleDao extends Singleton implements iDao{
 			$query = $connection->prepare($sql);
 
 			$day=$object->getDay();
+			$placeId=$object->getPlace()->getId();
 
 			$query->bindParam(":day", $day);
+			$query->bindParam(":event_id", $eventId);
+			$query->bindParam(":place_id", $placeId);
 			
 
 			$query->execute();
@@ -50,6 +53,37 @@ class ScheduleDao extends Singleton implements iDao{
 			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
 			
 		}
+	}
+
+	public function save($schedule,$eventId){
+		try {
+
+			$sql = "INSERT INTO schedules (id,day,event_id,place_id) VALUES (null,:day,:event_id,:place_id)";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+			$query = $connection->prepare($sql);
+
+			$day=$schedule->getDay();
+			$placeId=$schedule->getPlace()->getId();
+
+			$query->bindParam(":day", $day);
+			$query->bindParam(":event_id", $eventId);
+			$query->bindParam(":place_id", $placeId);
+			
+
+			$query->execute();
+			return $connection->lastInsertId();
+			
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+		}
+
+
 	}
 
 	public function get($id){
