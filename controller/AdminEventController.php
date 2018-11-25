@@ -14,15 +14,15 @@
 
 	class AdminEventController{
 
-		private $eventDao;
+		private $dao;
 
 		function __construct(){
-			$this->eventDao=EventDao::getInstance();
+			$this->dao=EventDao::getInstance();
 		}
 
 
 		public function index(){
-			
+			$events = $this->getEvents();
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\admin\event\event_view.php');
 			include(ROOT . 'views\admin\footer_admin.php');
@@ -58,7 +58,7 @@
 		}
 
 		public function getEvents(){
-			
+			return $this->dao->getAllWithCategories();
 		}
 	
 	}

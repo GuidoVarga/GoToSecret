@@ -70,9 +70,9 @@ class Schedule{
         array_push($this->locations,$location);
     }
 
-    function getLocations($index){
+    function getLocations(){
 
-        return $this->locations[$index];
+        return $this->locations;
     }
 
     function setLocations($locations){
@@ -80,6 +80,12 @@ class Schedule{
         $this->locations = $locations;
     }
 
+    function getFormattedDay(){
+
+
+
+    }
 }
+
 
 ?>

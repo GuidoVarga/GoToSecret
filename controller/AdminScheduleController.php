@@ -39,8 +39,10 @@
 
 		public function index(){
 
+			$eventId=$_GET['id'];
 
-			
+			$schedules = $this->scheduleDao->get($eventId);
+		
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\admin\date\date_view.php');
 			include(ROOT . 'views\admin\footer_admin.php');
@@ -52,7 +54,7 @@
 			$artists = $this->getArtists();
 			$locations = $this->getLocations();
 			$j=$artists[0]->toJson();
-			var_dump($j);
+	
 
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\admin\date\date_add.php');
@@ -61,6 +63,14 @@
 		}
 
 		public function editView(){
+
+			$id=$_GET['id'];
+
+			$schedule = $this->scheduleDao->getById($id);
+			$places = $this->getPlaces();
+			$artists = $this->getArtists();
+			$locations = $this->getLocations();
+			$j=$artists[0]->toJson();
 			
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\admin\date\date_edit.php');
@@ -90,6 +100,7 @@
 		public function save(){
 
 			//str_replace('"', "'", $locations);
+			$eventId = $_POST['event_id'];
 			$day = $_POST['date'];
 			$placeId = $_POST['place_id'];
 
@@ -115,19 +126,63 @@
 			//$schedule->setSubEvents($subEvents);
 		
 
-			$scheduleId=$this->scheduleDao->save($schedule,1);
+			$scheduleId=$this->scheduleDao->save($schedule,$eventId);
 			
 			foreach ($subEvents as $subEvent) {
 				$this->subEventDao->save($subEvent,$scheduleId);
 			}
+				
 			
 			foreach ($locations as $location) {
 				$this->locationDao->addLocationSchedule($location,$scheduleId);
 			}
 
+
 		}
 
 
+		public function update(){
+
+			//str_replace('"', "'", $locations);
+			$scheduleId = $_POST['schedule_id'];
+			$day = $_POST['date'];
+			$placeId = $_POST['place_id'];
+
+			$locationsArray = $_POST['locations'];
+			$locations=array();
+			foreach ($locationsArray as $l) {
+				$location = new Location($l['id'],null,$l['quantity'],$l['price'],$l['quantity']);
+				array_push($locations, $location);
+			}
+
+			
+			$subEventsArray = $_POST['subEvents'];
+			$subEvents=array();
+			foreach ($subEventsArray as $s) {
+				$subEvent = new SubEvent(0,new Artist($s['artist_id'],null,null),$s['start_hour'],$s['finish_hour']);
+				array_push($subEvents, $subEvent);
+			}
+
+		
+			$schedule = new Schedule($scheduleId,$day, new Place($placeId,null,null,null));
+
+	
+			$this->scheduleDao->update($schedule);
+			$this->subEventDao->deleteByScheduleId($scheduleId);
+			
+		
+			foreach ($subEvents as $subEvent) {
+				$this->subEventDao->save($subEvent,$scheduleId);
+			}
+			
+			$this->locationDao->deleteByScheduleId($scheduleId);
+			
+			foreach ($locations as $location) {
+				$this->locationDao->addLocationSchedule($location,$scheduleId);
+			}
+
+			
+		}
 	}
 
 

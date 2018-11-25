@@ -142,7 +142,7 @@ class EventDao extends Singleton implements iDao{
 
 			$result=$query->fetchAll();
 
-			return $result;
+			return $this->map($result);
 
 		} 
 		catch(PDOException $Exception) {
@@ -150,6 +150,31 @@ class EventDao extends Singleton implements iDao{
 		}
 
 	}
+
+	public function getAllWithCategories(){
+
+		try {
+			$sql = "SELECT * FROM events";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+		
+			$query = $connection->prepare($sql);
+
+			$query->execute();
+
+			$result=$query->fetchAll();
+
+			return $this->mapWithoutSchedules($result);
+
+		} 
+		catch(PDOException $Exception) {
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+		}
+
+	}
+
 
 	public function getAllWithLimit($limit){
 
@@ -164,7 +189,7 @@ class EventDao extends Singleton implements iDao{
 			//$query->bindParam(":num", $limit);
 			$query->execute();
 
-			$result=$query->fetchAll();
+			$result=$query->fetchAll();	
 
 			return $this->map($result);
 
@@ -192,6 +217,22 @@ class EventDao extends Singleton implements iDao{
 
 			$event = new Event($e['id'],$e['name'],'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum, ex vel pretium vehicula, mauris erat tristique metus, et ultricies sapien mi sit amet lectus. Nulla egestas sollicitudin lectus et porttitor.',$e['img'],$this->eventCategoryDao->get($e['event_category_id']));
 			$event->setSchedules($this->scheduleDao->get($event->getId()));
+			return $event;
+
+		}, $events);
+
+	}
+
+
+	public function mapWithoutSchedules($objects)
+	{
+		
+		$events = is_array($objects) ? $objects: [];
+	
+		return array_map(function($e){
+
+		$event = new Event($e['id'],$e['name'],'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum, ex vel pretium vehicula, mauris erat tristique metus, et ultricies sapien mi sit amet lectus. Nulla egestas sollicitudin lectus et porttitor.',$e['img'],$this->eventCategoryDao->get($e['event_category_id']));
+
 			return $event;
 
 		}, $events);

@@ -113,6 +113,33 @@ class ScheduleDao extends Singleton implements iDao{
 
 	}
 
+	public function getById($id){
+
+		try {
+			$sql = "SELECT * FROM schedules WHERE id = :id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+			$query = $connection->prepare($sql);
+
+			$query->bindParam(":id", $id);
+			
+			$query->execute();
+
+			$result=$query->fetchAll();
+
+			return $this->mapOnlyOne($result);
+
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+		}
+
+	}
+
 	public function getAll(){
 
 		try {
@@ -144,6 +171,33 @@ class ScheduleDao extends Singleton implements iDao{
 
 	public function update($object){
 
+		try {
+
+			$sql = "UPDATE schedules SET day=:day, place_id=:place_id WHERE id=:id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+
+			$query = $connection->prepare($sql);
+			$id=$object->getId();
+			$day=$object->getDay();
+			$placeId=$object->getPlace()->getId();
+
+		
+
+			$query->bindParam(":id", $id);
+			$query->bindParam(":day", $day);
+			$query->bindParam(":place_id", $placeId);
+
+			$query->execute();
+			
+		} catch(PDOException $Exception) {
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+		}
+
+
 	} 
 
 	public function map($objects)
@@ -159,6 +213,20 @@ class ScheduleDao extends Singleton implements iDao{
 			$schedule->setLocations($this->locationDao->getByScheduleId($schedule->getId()));
 			return $schedule;
 		}, $schedules);
+	}
+
+	public function mapOnlyOne($array){
+
+		if(isset($array)){
+			$p = $array[0];
+			$schedule = new Schedule($p['id'],$p['day'],$this->placeDao->get($p['place_id']));
+
+			$schedule->setSubEvents($this->subEventDao->getByScheduleId($schedule->getId()));
+
+			$schedule->setLocations($this->locationDao->getByScheduleId($schedule->getId()));
+			return $schedule;
+		}
+
 	}
 
 }

@@ -101,6 +101,8 @@
 		}
 
 		function addSubEvent(event){
+			//var c = url.searchParams.get("id");
+		
 
 			event.preventDefault();
 
@@ -182,7 +184,8 @@
 
 		function saveSchedule(event){
 			event.preventDefault();
-
+			const eventId = location.search.split('id=')[1];
+			alert(eventId);
 			let date = document.getElementById('date').value;
 			let place = document.getElementById('place').value;
 
@@ -193,6 +196,7 @@
 			let locations=getLocationsFromTable();
 
 			let parametros = {
+							"event_id": eventId,
 							"date": date,
 							"place_id":place,
         	   	"subEvents" :subEvents,
@@ -208,57 +212,69 @@
 						type: 'POST',
 						data: parametros,
 						success : function (){
-							redirect('Admin'); 		
+							redirect('');		
 						}
 					});
+		}
 
-			/*
-			let formData = new FormData();
 
-			formData.append("date",date);
-			formData.append("place_id",place);
+		function updateSchedule(event){
+			event.preventDefault();
+			const scheduleId = location.search.split('id=')[1];
 
-			let locationsArray=[];
-			for(let i=0; i<locations.length; i++){
-				let l={
-					id: locations[i].id,
-					quantity: locations[i].quantity,
-					price: locations[i].price
-			}
+			let date = document.getElementById('date').value;
+			let place = document.getElementById('place').value;
 
-			let json = JSON.stringify(l);
-				locationsArray.push(json);
-			}
+			let tableLocations = document.getElementById('table-body-locations');
+			let trs = tableLocations.childNodes;
 
-			formData.append("locations",locationsArray);
+			let subEvents = getSubEventsFromTable();
+			let locations=getLocationsFromTable();
 
-				postRequest(parametros,'save',function(){
+			let parametros = {
+							"schedule_id": scheduleId,
+							"date": date,
+							"place_id":place,
+        	   	"subEvents" :subEvents,
+        	   	"locations" :locations
+    			};
 
-					});	
-			*/
+    	console.log(parametros);
+
+    		$.ajax({
+
+						//Json
+						url: 'update',
+						type: 'POST',
+						data: parametros,
+						success : function (){
+							redirect('');		
+							
+						}
+					});
 		}
 
 		function getLocationsFromTable(){
 
 			let tableLocations = document.getElementById('table-body-locations');
-			let trs = tableLocations.childNodes;
+			let trs = tableLocations.getElementsByTagName('tr');
 
 			let locations=[];
 
-			for(let i=1; i<trs.length; i++){
+			for(let i=0; i<trs.length; i++){
 				let location={};
 				//console.log(trs[i].childNodes);
-				let tds=trs[i].childNodes
+				let tds=trs[i].getElementsByTagName('td');
 				for(let j=0; j<tds.length-1; j++){
 
 					if(j==0){
-						location.id=tds[j].lastChild.value;
+						location.id=tds[j].getElementsByTagName('input')[0].value;
 					}
 					else if(j==1){
-						location.quantity=tds[j].lastChild.value;
+						location.quantity=tds[j].getElementsByTagName('input')[0].value;
 					}
 					else if(j==2){
-						location.price=tds[j].lastChild.value;
+						location.price=tds[j].getElementsByTagName('input')[0].value;
 					}
 				}
 				locations.push(location);
@@ -271,24 +287,25 @@
 		function getSubEventsFromTable(){
 
 			let tableSubEvents = document.getElementById('table-body-subEvents');
-			let trs = tableSubEvents.childNodes;
-			
+			let trs = tableSubEvents.getElementsByTagName('tr');
+			//console.log(trs);
 			let subEvents=[];
 
-			for(let i=1; i<trs.length; i++){
+			for(let i=0; i<trs.length; i++){
 				let subEvent={};
 				//console.log(trs[i].childNodes);
-				let tds=trs[i].childNodes
+				let tds=trs[i].getElementsByTagName('td');
+			
 				for(let j=0; j<tds.length-1; j++){
 
 					if(j==0){
-						subEvent.artist_id=tds[j].lastChild.value;
+						subEvent.artist_id=tds[j].getElementsByTagName('input')[0].value;
 					}
 					else if(j==1){
-						subEvent.start_hour=tds[j].lastChild.value;
+						subEvent.start_hour=tds[j].getElementsByTagName('input')[0].value;
 					}
 					else if(j==2){
-						subEvent.finish_hour=tds[j].lastChild.value;
+						subEvent.finish_hour=tds[j].getElementsByTagName('input')[0].value;
 					}
 				}
 				subEvents.push(subEvent);

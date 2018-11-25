@@ -147,6 +147,26 @@ class SubEventDao extends Singleton implements iDao{
 
 	}
 
+	public function deleteByScheduleId($id){
+
+			
+
+			try {
+				$sql="DELETE FROM sub_events WHERE schedule_id=:id";
+				$obj_pdo = new Connection();
+				$connection = $obj_pdo->connect();
+				$query = $connection->prepare($sql);
+				$query->bindParam("id", $id);
+				$query->execute();
+			
+			} catch(PDOException $Exception) {
+			
+				throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+			}
+
+	}
+
 	public function update($object){
 
 	} 

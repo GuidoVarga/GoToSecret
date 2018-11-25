@@ -286,35 +286,38 @@
                                     <div class="col-lg-12">
                                         <div class="border border-grey p-4">
                                             <div class="text-right">
-                                                <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule/addView"?>"  class="btn btn-primary"><i class="fas fa-plus"></i> Nueva Fecha</a>
+                                                <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule/addView?=".$eventId?>"  class="btn btn-primary"><i class="fas fa-plus"></i> Nueva Fecha</a>
                                             </div>
                                             <div class="table-responsive mt-4">
                                                 <table class="table table-bordered">
                                                     <thead>
                                                         <tr>
                                                         <th scope="col">Fecha</th>
-                                                        <th scope="col">Evento</th>
-                                                        <th scope="col">Artista</th>
-                                                        <th scope="col">Hora Inicio</th>
-                                                        <th scope="col">Hora Fin</th>
+                                                        <th scope="col">Lugar</th>
+                                                     
                                                         <th scope="col"></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <?php if(isset($schedules)){
+                                                            foreach ($schedules as $schedule) {?>
+                                                        
+                                                               
+                                                           
                                                         <tr>
-                                                        <td>11/11/2018</td>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>Hola</td>
-                                                        <td>Hola</td>
+                                                        <td><?php echo $schedule->getDay()?></td>
+                                                        <td><?php echo $schedule->getPlace()->getName().' - '.$schedule->getPlace()->getCity()->getName()?></td>
                                                         <td>
                                                             <div class="btn-group">
-                                                                <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule/editView"?>"  class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>                            
+                                                                <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule/editView?id=".$schedule->getId()?>"  class="btn btn-primary btn-sm"><i class="fa fa-edit"> Ver mas</i></a>                            
                                                                 <a href="delete" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>                                 
                                                             </div>
                                                         </td>
                                                         </tr>
+                                                        <?php }
+                                                         }?>
                                                     </tbody>
+
                                                 </table>
                                             </div>
                                         </div>
