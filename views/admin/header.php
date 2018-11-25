@@ -1,6 +1,4 @@
-<body>
-    <div id="wrapper">
-        <header class="align-items-start app-header flex-column flex-md-row navbar navbar-expand-md bg-dark">
+<header class="align-items-start app-header flex-column flex-md-row navbar navbar-expand-md bg-dark">
             <div class="align-items-baseline d-flex flex-row navbar-brand p-lg-3 pl-3 pr-3 pt-3">
                  <a class="navbar-left" href=""><img class="img-responsive logo" src="<?php echo "/".DIRECTORY."/"."resources/images/logo-white.png"?>" id="logo-nav" alt="GoToEvent"></a>
                 <button class="collapsed ml-auto navbar-toggler" type="button" data-toggle="collapse"
@@ -195,27 +193,3 @@
                 </li>
             </ul>
         </header>
-        <div class="d-md-flex">
-            <?php include(ROOT . 'views/admin/sidebar.php') ?>
-            <div id="page-wrapper" class="p-4">
-                           
-				<div class="row border-bottom white-bg p-4">
-					<div class="col-12">
-						<h2 class="border-bottom pb-4">Dashboard</h2>
-						<div class="row mt-5">
-                            <div class="col-lg-12">
-                                <div class="wrapper">
-                                    <div class="col-lg-12">
-                                        <div class="border border-grey p-4">
-                                           
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>   
-					</div>	
-				</div>		
-			</div>
-		</div>
-	</div>
-</body>  

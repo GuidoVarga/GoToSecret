@@ -304,7 +304,6 @@
                             <select class="form-control" id="place" name="place" >
                               <option value="">Selecciona un lugar</option>
                               <?php if(isset($places)){
-
                                   foreach ($places as $place) {?>
 
                                 <option value="<?php echo $place->getName()?>"><?php echo $place->getName().' - '.$place->getCity()->getName()?></option>
@@ -312,7 +311,6 @@
                                 <?php
                                   }
                                 }
-
                                 ?>
                             </select>
                           </div>
@@ -347,7 +345,6 @@
                                 <option value="">Selecciona una plaza</option>
 
                                 <?php if(isset($locations)){
-
                                   foreach ($locations as $location) {?>
 
                                 <option value="<?php echo $location->getName()?>"><?php echo $location->getName()?></option>
@@ -355,7 +352,6 @@
                                 <?php
                                   }
                                 }
-
                                 ?>
                               </select>
                             </div>
@@ -402,7 +398,6 @@
                               <select class="form-control" id="artist" name="artist" >
                                 <option value="">Selecciona un Artista</option>
                                  <?php if(isset($artists)){
-
                                   foreach ($artists as $artist) {?>
 
                                 <option value="<?php echo $artist->getName()?>"><?php echo $artist->getName()?></option>
@@ -410,7 +405,6 @@
                                 <?php
                                   }
                                 }
-
                                 ?>
                               </select>
                             </div>
