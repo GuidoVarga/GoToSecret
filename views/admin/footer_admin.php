@@ -5,6 +5,17 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootlint/latest/bootlint.min.js"></script>
 	<script src="<?php echo "/".DIRECTORY."/"."resources/js/sb-admin-2.js"?>"> </script>
 	<script src="<?php echo "/".DIRECTORY."/"."resources/js/metisMenu.js"?>"> </script>
+  
+  <script>
+		$(document).ready(function(){
+		$("#search").on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			$("#myTable tr").filter(function() {
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			});
+		});
+		});
+	</script>
 
 	<script>
 		/*
@@ -28,7 +39,7 @@
 			}
 		};
 		*/
-
+    
 		function editCategory(event){
 			
 			const id = event.target.value;
@@ -180,7 +191,6 @@
 			tr.parentNode.removeChild(tr);
 
 		}
-
 
 		function saveSchedule(event){
 			event.preventDefault();

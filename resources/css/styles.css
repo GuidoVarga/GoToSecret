@@ -113,6 +113,26 @@ footer{
 
 }
 
+
+.content_breadcrumb{
+	margin-top: -25px;
+	background: url('http://localhost/GoToSecret/resources/images/breadcrumb.jpg') center no-repeat;
+	background-size:cover;
+	height:100px;
+    border-bottom: 1px solid white;
+}
+
+.contener-center-center h2{
+	color:white;
+    font-weight: 400;
+    text-shadow: 2px 2px 2px #000;
+    letter-spacing: 2px;
+}
+.contener-slider{
+	width:100%;
+}
+
+
 .main_view .title{
     background-color:#9c9494;
 }
@@ -132,7 +152,11 @@ footer{
   background-size: cover;
 }
 
-
+.card{
+    -webkit-box-shadow: 6px 6px 5px 0px rgba(219,219,219,1);
+    -moz-box-shadow: 6px 6px 5px 0px rgba(219,219,219,1);
+    box-shadow: 6px 6px 5px 0px rgba(219,219,219,1);
+}
 .card-img-top {
   height: 200px !important; /*esta es la parte importante para que todas tus card-img tengan la misma medida sin importar el tamaño de la imagen*/
   border-top-left-radius: calc(0.25rem - 1px);

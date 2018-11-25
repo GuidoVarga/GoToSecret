@@ -9,7 +9,7 @@
                 Editar Perfil
             </a>
             <a class="dropdown-item" href="" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                Cerrar Sesion
+            <i class="fas fa-sign-out-alt"></i>Cerrar Sesion
                 <form id="logout-form" action="" method="POST" style="display: none;">
                 </form>
             </a>

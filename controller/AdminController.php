@@ -25,6 +25,7 @@
 			
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\admin\dashboard.php');
+			/*include(ROOT . 'views\admin\test.php');  Cantidad Vendida y Remanente de un evento*/
 			include(ROOT . 'views\admin\footer_admin.php');
 			
 		}

@@ -33,13 +33,9 @@
 
 
 		public function addView(){
-			
-
-
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\admin\artist\artist_add.php');
-			include(ROOT . 'views\admin\footer_admin.php');
-			
+			include(ROOT . 'views\admin\footer_admin.php');			
 		}
 
 		public function editView(){
