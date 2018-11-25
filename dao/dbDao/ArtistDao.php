@@ -102,6 +102,33 @@ class ArtistDao extends Singleton implements iDao{
 
 	public function update($object){
 
+		try {
+
+			$sql = "UPDATE artists SET name=:name, description=:description WHERE id=:id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+
+			$query = $connection->prepare($sql);
+			$id=$object->getId();
+			$name=$object->getName();
+			$description=$object->getDescription();
+
+		
+
+			$query->bindParam(":id", $id);
+			$query->bindParam(":name", $name);
+			$query->bindParam(":description", $description);
+
+			$query->execute();
+			
+		} catch(PDOException $Exception) {
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+		}
+
+
 	} 
 
 	public function map($objects)

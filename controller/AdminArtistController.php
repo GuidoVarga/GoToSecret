@@ -22,6 +22,8 @@
 
 
 		public function index(){
+
+			$artists=$this->artistDao->getAll();
 			
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\admin\artist\artist_view.php');
@@ -32,6 +34,8 @@
 
 		public function addView(){
 			
+
+
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\admin\artist\artist_add.php');
 			include(ROOT . 'views\admin\footer_admin.php');
@@ -40,6 +44,11 @@
 
 		public function editView(){
 			
+			$id=$_GET['id'];
+			$artist=$this->artistDao->get($id);
+
+			var_dump($artist);
+
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\admin\artist\artist_edit.php');
 			include(ROOT . 'views\admin\footer_admin.php');
@@ -48,19 +57,25 @@
 
 		public function add(){
 
-			$artist=new Artist(0,$name,$description);
+			$name=$_POST['name'];
+			$description=$_POST['description'];
 
+			$artist = new Artist(0,$name,$description);
 			$this->artistDao->add($artist);
-
-			var_dump($this->artistDao);
-			//header("location: http://".HOST_INTERNET."/proyecto/Admin");
+			echo 'ok';
 		
 			
 		}
 
-		public function edit(){
-		
-			
+		public function update(){
+
+			$id=$_POST['id'];
+			$name=$_POST['name'];
+			$description=$_POST['description'];
+
+			$artist = new Artist($id,$name,$description);
+			$this->artistDao->update($artist);
+			echo 'ok';
 		}
 
 		public function delete(){

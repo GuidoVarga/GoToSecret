@@ -442,9 +442,6 @@
 							"event_id": eventId,
     			};
 
-    			console.log(eventId);
-
-    	
     		$.ajax({
 
 						//Json
@@ -457,7 +454,89 @@
 							
 						}
 					});
-		
+		}
+
+		function updateArtist(event){
+			event.preventDefault();
+
+
+			let id = location.search.split('id=')[1];
+			let name = document.getElementById('name').value;
+			let img = document.getElementById('img');
+			let description = document.getElementById('description').value;
+			//let oldImg = document.getElementById('oldImg').value;
+			//let checkbox = document.getElementById('oldImg-check').checked;
+
+
+
+    		let formData = new FormData();
+    		formData.append("id", id);
+			formData.append("name", name);
+			formData.append("description", description);
+			//formData.append("img", img.files[0]);
+			//formData.append("oldImg", oldImg);
+			//formData.append("checkbox", checkbox);
+
+    	
+    		$.ajax({
+
+						//Json
+						url: 'update',
+						type: 'POST',
+						data: formData,
+						contentType: false,
+       					processData: false,
+						success : function (response){
+							if(response==='ok'){
+								redirect('/GoToSecret/AdminArtist');
+							}else{
+
+							console.log(response);
+							alert(response);	
+							}
+						}
+					});
+
+		}
+
+		function addArtist(event){
+			event.preventDefault();
+
+			let name = document.getElementById('name').value;
+			let img = document.getElementById('img');
+			let description = document.getElementById('description').value;
+			//let oldImg = document.getElementById('oldImg').value;
+			//let checkbox = document.getElementById('oldImg-check').checked;
+
+
+
+    		let formData = new FormData();
+   
+			formData.append("name", name);
+			formData.append("description", description);
+			//formData.append("img", img.files[0]);
+			//formData.append("oldImg", oldImg);
+			//formData.append("checkbox", checkbox);
+
+    	
+    		$.ajax({
+
+						//Json
+						url: 'add',
+						type: 'POST',
+						data: formData,
+						contentType: false,
+       					processData: false,
+						success : function (response){
+							if(response==='ok'){
+								redirect('/GoToSecret/AdminArtist');
+							}else{
+
+							console.log(response);
+							alert(response);	
+							}
+						}
+					});
 
 		}
 
