@@ -42,7 +42,7 @@
                                     <div class="card" style="width: 10rem;">
                                         <div class="card-body">
                                             <h5 class="card-title">Torre</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">Cantidad: 300</h6>
+                                            <h6 class="card-subtitle mb-2 text-muted">Remanente: 300</h6>
                                             <h6 class="card-subtitle mb-2 text-muted">Precio: $300</h6>
                                         </div>
                                     </div>
@@ -51,7 +51,7 @@
                                     <div class="card" style="width: 10rem;">
                                         <div class="card-body">
                                             <h5 class="card-title">Palco</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">Cantidad: 300</h6>
+                                            <h6 class="card-subtitle mb-2 text-muted">Remanente: 300</h6>
                                             <h6 class="card-subtitle mb-2 text-muted">Precio: $300</h6>
                                         </div>
                                     </div>
@@ -60,7 +60,7 @@
                                     <div class="card" style="width: 10rem;">
                                         <div class="card-body">
                                             <h5 class="card-title">Palco</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">Cantidad: 300</h6>
+                                            <h6 class="card-subtitle mb-2 text-muted">Remanente: 300</h6>
                                             <h6 class="card-subtitle mb-2 text-muted">Precio: $300</h6>
                                         </div>
                                     </div>
@@ -69,7 +69,7 @@
                                     <div class="card" style="width: 10rem;">
                                         <div class="card-body">
                                             <h5 class="card-title">Palco</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">Cantidad: 300</h6>
+                                            <h6 class="card-subtitle mb-2 text-muted">Remanente: 300</h6>
                                             <h6 class="card-subtitle mb-2 text-muted">Precio: $300</h6>
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@
                                     <div class="card" style="width: 10rem;">
                                         <div class="card-body">
                                             <h5 class="card-title">Palco 3</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">Cantidad: 300</h6>
+                                            <h6 class="card-subtitle mb-2 text-muted">Remanente: 300</h6>
                                             <h6 class="card-subtitle mb-2 text-muted">Precio: $300</h6>
                                         </div>
                                     </div>

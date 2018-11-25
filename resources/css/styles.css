@@ -126,6 +126,7 @@ footer{
 	color:white;
     font-weight: 400;
     text-shadow: 2px 2px 2px #000;
+    letter-spacing: 2px;
 }
 .contener-slider{
 	width:100%;
