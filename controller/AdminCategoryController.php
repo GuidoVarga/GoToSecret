@@ -66,6 +66,7 @@
 		}
 
 		public function delete($id){
+
 			$this->dao->delete($id);
 		}
 

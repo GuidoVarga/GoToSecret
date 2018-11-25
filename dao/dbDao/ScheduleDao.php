@@ -29,7 +29,7 @@ class ScheduleDao extends Singleton implements iDao{
 
 		try {
 
-			$sql = "INSERT INTO schedules (id,day,event_id) VALUES (null,:day,1)";
+			$sql = "INSERT INTO schedules (id,day,event_id,place_id) VALUES (null,:day,:event_id,:place_id)";
 
 			$obj_pdo = new Connection();
 
@@ -38,8 +38,11 @@ class ScheduleDao extends Singleton implements iDao{
 			$query = $connection->prepare($sql);
 
 			$day=$object->getDay();
+			$placeId=$object->getPlace()->getId();
 
 			$query->bindParam(":day", $day);
+			$query->bindParam(":event_id", $eventId);
+			$query->bindParam(":place_id", $placeId);
 			
 
 			$query->execute();
@@ -50,6 +53,37 @@ class ScheduleDao extends Singleton implements iDao{
 			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
 			
 		}
+	}
+
+	public function save($schedule,$eventId){
+		try {
+
+			$sql = "INSERT INTO schedules (id,day,event_id,place_id) VALUES (null,:day,:event_id,:place_id)";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+			$query = $connection->prepare($sql);
+
+			$day=$schedule->getDay();
+			$placeId=$schedule->getPlace()->getId();
+
+			$query->bindParam(":day", $day);
+			$query->bindParam(":event_id", $eventId);
+			$query->bindParam(":place_id", $placeId);
+			
+
+			$query->execute();
+			return $connection->lastInsertId();
+			
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+		}
+
+
 	}
 
 	public function get($id){
@@ -70,6 +104,33 @@ class ScheduleDao extends Singleton implements iDao{
 			$result=$query->fetchAll();
 
 			return $this->map($result);
+
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+		}
+
+	}
+
+	public function getById($id){
+
+		try {
+			$sql = "SELECT * FROM schedules WHERE id = :id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+			$query = $connection->prepare($sql);
+
+			$query->bindParam(":id", $id);
+			
+			$query->execute();
+
+			$result=$query->fetchAll();
+
+			return $this->mapOnlyOne($result);
 
 		} catch(PDOException $Exception) {
 			
@@ -106,9 +167,51 @@ class ScheduleDao extends Singleton implements iDao{
 
 	public function delete($id){
 
+		$sql="DELETE FROM schedules WHERE id=:id";
+				$obj_pdo = new Connection();
+
+			try {
+
+				$connection = $obj_pdo->connect();
+				$query = $connection->prepare($sql);
+				$query->bindParam("id", $id);
+				$query->execute();
+			
+			} catch(PDOException $Exception) {
+			
+				throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+			}
 	}
 
 	public function update($object){
+
+		try {
+
+			$sql = "UPDATE schedules SET day=:day, place_id=:place_id WHERE id=:id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+
+			$query = $connection->prepare($sql);
+			$id=$object->getId();
+			$day=$object->getDay();
+			$placeId=$object->getPlace()->getId();
+
+		
+
+			$query->bindParam(":id", $id);
+			$query->bindParam(":day", $day);
+			$query->bindParam(":place_id", $placeId);
+
+			$query->execute();
+			
+		} catch(PDOException $Exception) {
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+		}
+
 
 	} 
 
@@ -125,6 +228,20 @@ class ScheduleDao extends Singleton implements iDao{
 			$schedule->setLocations($this->locationDao->getByScheduleId($schedule->getId()));
 			return $schedule;
 		}, $schedules);
+	}
+
+	public function mapOnlyOne($array){
+
+		if(isset($array)){
+			$p = $array[0];
+			$schedule = new Schedule($p['id'],$p['day'],$this->placeDao->get($p['place_id']));
+
+			$schedule->setSubEvents($this->subEventDao->getByScheduleId($schedule->getId()));
+
+			$schedule->setLocations($this->locationDao->getByScheduleId($schedule->getId()));
+			return $schedule;
+		}
+
 	}
 
 }

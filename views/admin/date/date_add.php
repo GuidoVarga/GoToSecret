@@ -4,7 +4,7 @@
 
     <header class="align-items-start app-header flex-column flex-md-row navbar navbar-expand-md bg-dark">
       <div class="align-items-baseline d-flex flex-row navbar-brand p-lg-3 pl-3 pr-3 pt-3">
-       <a class="navbar-left" href=""><img class="img-responsive logo" src="<?php ROOT?>resources/images/logo-white.png" id="logo-nav" alt="GoToEvent"></a>
+       <a class="navbar-left" href=""><img class="img-responsive logo" src="<?php echo IMAGES?>logo-white.png" id="logo-nav" alt="GoToEvent"></a>
        <button class="collapsed ml-auto navbar-toggler" type="button" data-toggle="collapse"
        data-target="#side-menu-wrapper" aria-controls="side-menu" aria-expanded="false"
        aria-label="Toggle navigation">
@@ -278,7 +278,7 @@
     <div id="page-wrapper" class="p-4">
       <div class="row white-bg p-4">
        <div class="col-12">
-        <h2 class="border-bottom pb-4">Fechas</h2>
+        <h2 class="border-bottom pb-4"><?php echo $event->getName()?></h2>
         <div class=" mt-5">
           <div class="col-lg-12">
             <div class="wrapper">
@@ -286,7 +286,7 @@
                 <form action="" method="POST">
                   <div class="border border-grey p-4">
                     <div class="text-right">
-                      <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Crear</button>
+                      <button type="submit" onclick="saveSchedule(event)" class="btn btn-primary"><i class="fas fa-plus"></i> Crear</button>
                       <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule"?>" class="btn btn-danger mt-2 mt-sm-0"><i class="fa fa-arrow-circle-left"></i> Volver</a>
                     </div>
                     <div class="row">
@@ -306,7 +306,7 @@
                               <?php if(isset($places)){
                                   foreach ($places as $place) {?>
 
-                                <option value="<?php echo $place->getName()?>"><?php echo $place->getName().' - '.$place->getCity()->getName()?></option>
+                                <option value="<?php echo $place->getId()?>"><?php echo $place->getName().' - '.$place->getCity()->getName()?></option>
 
                                 <?php
                                   }
@@ -347,7 +347,7 @@
                                 <?php if(isset($locations)){
                                   foreach ($locations as $location) {?>
 
-                                <option value="<?php echo $location->getName()?>"><?php echo $location->getName()?></option>
+                                <option value="<?php echo $location->toJson() ?>"><?php echo $location->getName()?></option>
 
                                 <?php
                                   }
@@ -400,7 +400,7 @@
                                  <?php if(isset($artists)){
                                   foreach ($artists as $artist) {?>
 
-                                <option value="<?php echo $artist->getName()?>"><?php echo $artist->getName()?></option>
+                                <option value="<?php echo $artist->toJson() ?>"> <?php echo $artist->getName()?></option>
 
                                 <?php
                                   }

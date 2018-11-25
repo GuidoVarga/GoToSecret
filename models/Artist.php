@@ -39,5 +39,11 @@ class Artist
         return $this->name;
     }
 
+    function toJson(){
+        $json=json_encode(array('id' => $this->getId(), 'name' => $this->getName()));
+
+        return str_replace('"', "'", $json);
+    }
+
 
 }

@@ -56,8 +56,8 @@ class EventCategoryDao extends Singleton implements iDao{
 			$query->execute();
 		
 			$result=$query->fetchAll();
-		
-			return $this->map($result);
+	
+			return $this->mapOnlyOne($result);
 
 		} catch(PDOException $Exception) {
 			
@@ -152,6 +152,15 @@ class EventCategoryDao extends Singleton implements iDao{
 		return array_map(function($p){
 			return new EventCategory($p['id'],$p['name']);
 		}, $eventCategories);
+	}
+
+	public function mapOnlyOne($array){
+
+		if(isset($array)){
+			$p=$array[0];
+			return new EventCategory($p['id'],$p['name']);
+		}
+
 	}
 
 }

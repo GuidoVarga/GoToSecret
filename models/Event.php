@@ -54,7 +54,7 @@ class Event
         $this->eventCategory =$eventCategory;
     }
 
-    function getEventCategory($eventCategory){
+    function getEventCategory(){
         return $this->eventCategory;
     }
 
