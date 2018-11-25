@@ -292,26 +292,33 @@
                                                 <table class="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                        <th scope="col"><i class="far fa-image"></i></th>
-                                                        <th scope="col">Nombre</th>
-                                                        <th scope="col">Descripción</th>
-                                                        <th scope="col">Categoría</th>
-                                                        <th scope="col"></th>
+                                                        <th scope="col" style="width:300px"><i class="far fa-image"></i></th>
+                                                        <th scope="col" style="width:90px">Nombre</th>
+                                                        <th scope="col" style="width:500px">Descripción</th>
+                                                        <th scope="col" style="width:90px">Categoría</th>
+                                                        <th scope="col" style="width:200px"></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                        <th scope="row"></th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>Hola</td>
-                                                        <td>
-                                                            <div class="btn-group">
-                                                                <a href="<?php echo "/".DIRECTORY."/"."AdminEvent/editView"?>"  class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>                            
-                                                                <a href="delete" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>                        
-                                                            </div>
-                                                        </td>
-                                                        </tr>
+                                                        <?php if(isset($events)){
+                                                        foreach ($events as $event) { ?>
+                                                            <tr>
+                                                            <th scope="row" style="width:300px"><img style="width:300px; height:150px" src="<?php echo IMAGES.$event->getImg()?>" alt=""></th>
+                                                            <td style="width:90px"><?php echo $event->getName()?></td>
+                                                            <td style="width:200px"><?php echo $event->getDescription()?></td>
+                                                            <td style="width:90px"><?php echo $event->getEventCategory()->getName()?></td>
+                                                            <td style="width:200px">
+                                                                <div class="btn-group">
+                                                                    <a href="<?php echo "/".DIRECTORY."/"."AdminEvent/editView?id=".$event->getId()?>"  class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>                            
+                                                                    <button value="<?php echo $event->getId()?>" onclick="deleteEvent(event)" class="btn btn-danger btn-sm fas fa-trash-alt"></button>
+                                                                    <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule?id=".$event->getId()?>"  style="background-color:#49B8CF; border-color:#49B8CF; width: 125px; font-size: 11px" class="btn btn-primary btn-sm"><i class="fas fa-list-ul"></i> Ver programaciones</a>
+                                                                    <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule/addView?id=".$event->getId()?>"  style="background-color:#1F872B; border-color:#1F872B; width: 125px; font-size: 11px" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Nueva programacion</a>                        
+                                                                </div>
+                                                            </td>
+                                                            </tr>
+                                                        <?php
+                                                            }
+                                                        }?>
                                                     </tbody>
                                                 </table>
                                             </div>

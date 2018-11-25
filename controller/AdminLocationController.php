@@ -2,8 +2,7 @@
 	
 	require_once(ROOT.'config\Autoload.php');
 	
-	//require_once(ROOT.'Dao\Singleton.php');
-	
+
 	use config\Autoload as Autoload;
 	use config\Request as Request;
 	use models\Location as Location;
@@ -67,6 +66,7 @@
 		}
 
 		public function delete($id){
+
 			$this->dao->delete($id);
 		}
 

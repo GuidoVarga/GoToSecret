@@ -61,6 +61,11 @@ class Location{
         return $this->totalQuantity-$this->surplus;
     }
 
+    function toJson(){
+        $json=json_encode(array('id' => $this->getId(), 'name' => $this->getName()));
+        return str_replace('"', "'", $json);
+    }
+
 }
 
 
