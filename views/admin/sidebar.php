@@ -2,7 +2,7 @@
                 <div class="sidebar-nav collapse navbar-collapse show" id="side-menu-wrapper">
                     <ul class="nav navbar-nav navbar-collapse flex-column side-nav list-group" id="side-menu">
                         <li class="list-group-item">
-                            <a href="index.html"><i class="fas fa-home"></i> Dashboard</a>
+                            <a href="<?php echo "/".DIRECTORY."/"."Admin"?>"><i class="fas fa-home"></i> Dashboard</a>
                         </li>                   
                         <li class="list-group-item">
                             <a href="#"><i class="fa fa-wrench fa-fw"></i>ABM<span class="fa arrow"></span></a>

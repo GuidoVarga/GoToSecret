@@ -36,7 +36,7 @@
 
             include(ROOT . 'views\head.php');
 			include(ROOT . 'views\user\header.php');
-			include(ROOT . 'views\user\specific_item.php');
+			include(ROOT . 'views\user\main_view.php');
 			include(ROOT . 'views\user\footer.php');
 		}
 
