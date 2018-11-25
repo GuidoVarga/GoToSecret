@@ -15,6 +15,7 @@
 	use dao\dbDao\LocationDao as LocationDao;
 	use dao\dbDao\PlaceDao as PlaceDao;
 	use dao\dbDao\SubEventDao as SubEventDao;
+	use dao\dbDao\EventDao as EventDao;
 	use dao\dbDao\ScheduleDao as ScheduleDao;
 	use dao\Singleton as Singleton;
 
@@ -27,6 +28,7 @@
 		private $artistDao;
 		private $subEventDao;
 		private $scheduleDao;
+		private $eventDao;
 
 		function __construct(){
 			$this->placeDao=PlaceDao::getInstance();
@@ -34,6 +36,7 @@
 			$this->artistDao=ArtistDao::getInstance();
 			$this->scheduleDao=ScheduleDao::getInstance();
 			$this->subEventDao= SubEventDao::getInstance();
+			$this->eventDao= EventDao::getInstance();
 		}
 
 
@@ -42,6 +45,7 @@
 			$eventId=$_GET['id'];
 
 			$schedules = $this->scheduleDao->get($eventId);
+			$event = $this->eventDao->get($eventId);
 		
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\admin\date\date_view.php');
@@ -49,7 +53,8 @@
 		}
 
 		public function addView(){
-
+			$eventId=$_GET['id'];
+			$event = $this->eventDao->get($eventId);
 			$places = $this->getPlaces();
 			$artists = $this->getArtists();
 			$locations = $this->getLocations();
@@ -82,7 +87,18 @@
 
 		public function edit(){}
 
-		public function delete(){}
+		public function delete(){
+
+			$id= $_POST['schedule_id'];
+
+		
+
+			$this->locationDao->deleteByScheduleId($id);
+			$this->subEventDao->deleteByScheduleId($id);
+			$this->scheduleDao->delete($id);
+			
+
+		}
 
 		public function getArtists(){
 			return $this->artistDao->getAll();
@@ -99,7 +115,6 @@
 
 		public function save(){
 
-			//str_replace('"', "'", $locations);
 			$eventId = $_POST['event_id'];
 			$day = $_POST['date'];
 			$placeId = $_POST['place_id'];
@@ -119,13 +134,7 @@
 				array_push($subEvents, $subEvent);
 			}
 
-		
 			$schedule = new Schedule(0,$day, new Place($placeId,null,null,null));
-
-			//$schedule->setLocations($locations);
-			//$schedule->setSubEvents($subEvents);
-		
-
 			$scheduleId=$this->scheduleDao->save($schedule,$eventId);
 			
 			foreach ($subEvents as $subEvent) {

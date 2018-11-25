@@ -254,6 +254,32 @@
 					});
 		}
 
+
+		function deleteSchedule(event){
+			event.preventDefault();
+			const scheduleId = event.target.value;
+
+			let parametros = {
+							"schedule_id": scheduleId,
+    			};
+
+    	
+    		$.ajax({
+
+						//Json
+						url: 'AdminSchedule/delete',
+						type: 'POST',
+						data: parametros,
+						success : function (){
+							
+							redirect('');		
+							
+						}
+					});
+					
+		}
+
+
 		function getLocationsFromTable(){
 
 			let tableLocations = document.getElementById('table-body-locations');

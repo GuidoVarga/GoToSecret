@@ -278,7 +278,7 @@
     <div id="page-wrapper" class="p-4">
       <div class="row white-bg p-4">
        <div class="col-12">
-        <h2 class="border-bottom pb-4">Fechas</h2>
+        <h3 class="border-bottom pb-4">Fecha: <?php echo $schedule->getDay().' - '.$schedule->getPlace()->getName().', '.$schedule->getPlace()->getCity()->getName()?></h3>
         <div class=" mt-5">
           <div class="col-lg-12">
             <div class="wrapper">
@@ -291,7 +291,7 @@
                     </div>
                     <div class="row">
                       <div class="col-12 mt-5 mb-3">
-                        <h2 style="color:#da4f49">Crear Fecha</h2>
+                        <h2 style="color:#da4f49">Editar Fecha</h2>
                       </div>
                       <div class="col-md-12">
                         <div class="form-row">

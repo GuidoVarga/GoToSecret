@@ -279,15 +279,19 @@
                            
 				<div class="row border-bottom white-bg p-4">
 					<div class="col-12 ">
-						<h2 class="border-bottom pb-4">Fechas</h2>
+						<h2 class="border-bottom pb-4"><?php echo $event->getName()?> </h2>
 						<div class="row mt-5">
 						    <div class="col-lg-12">
                                 <div class="wrapper">
                                     <div class="col-lg-12">
                                         <div class="border border-grey p-4">
-                                            <div class="text-right">
-                                                <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule/addView?=".$eventId?>"  class="btn btn-primary"><i class="fas fa-plus"></i> Nueva Fecha</a>
+                                            <div class="text-left">
+                                                <h3>Fechas</h3>
                                             </div>
+                                            <div class="text-right">
+                                                <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule/addView?id=".$eventId?>" class="btn btn-primary"><i class="fas fa-plus"></i> Nueva Fecha</a>
+                                            </div>
+
                                             <div class="table-responsive mt-4">
                                                 <table class="table table-bordered">
                                                     <thead>
@@ -310,7 +314,7 @@
                                                         <td>
                                                             <div class="btn-group">
                                                                 <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule/editView?id=".$schedule->getId()?>"  class="btn btn-primary btn-sm"><i class="fa fa-edit"> Ver mas</i></a>                            
-                                                                <a href="delete" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>                                 
+                                                                <button onclick="deleteSchedule(event)"  value="<?php echo $schedule->getId()?>" class="btn btn-danger btn-sm fas fa-trash-alt"></button>                                 
                                                             </div>
                                                         </td>
                                                         </tr>

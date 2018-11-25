@@ -167,6 +167,21 @@ class ScheduleDao extends Singleton implements iDao{
 
 	public function delete($id){
 
+		$sql="DELETE FROM schedules WHERE id=:id";
+				$obj_pdo = new Connection();
+
+			try {
+
+				$connection = $obj_pdo->connect();
+				$query = $connection->prepare($sql);
+				$query->bindParam("id", $id);
+				$query->execute();
+			
+			} catch(PDOException $Exception) {
+			
+				throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+			}
 	}
 
 	public function update($object){
