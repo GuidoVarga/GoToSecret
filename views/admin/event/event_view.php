@@ -303,13 +303,13 @@
                                                         <?php if(isset($events)){
                                                         foreach ($events as $event) { ?>
                                                             <tr>
-                                                            <th scope="row" style="width:300px"><?php echo $event->getImg()?></th>
+                                                            <th scope="row" style="width:300px"><img style="width:300px; height:150px" src="<?php echo IMAGES.$event->getImg()?>" alt=""></th>
                                                             <td style="width:90px"><?php echo $event->getName()?></td>
                                                             <td style="width:200px"><?php echo $event->getDescription()?></td>
                                                             <td style="width:90px"><?php echo $event->getEventCategory()->getName()?></td>
                                                             <td style="width:200px">
                                                                 <div class="btn-group">
-                                                                    <a href="<?php echo "/".DIRECTORY."/"."AdminEvent/editView"?>"  class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>                            
+                                                                    <a href="<?php echo "/".DIRECTORY."/"."AdminEvent/editView?id=".$event->getId()?>"  class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>                            
                                                                     <a href="delete" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
                                                                     <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule?id=".$event->getId()?>"  style="background-color:#49B8CF; border-color:#49B8CF; width: 125px; font-size: 11px" class="btn btn-primary btn-sm"><i class="fas fa-list-ul"></i> Ver programaciones</a>
                                                                     <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule/addView?id=".$event->getId()?>"  style="background-color:#1F872B; border-color:#1F872B; width: 125px; font-size: 11px" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Nueva programacion</a>                        

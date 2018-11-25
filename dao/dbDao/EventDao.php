@@ -204,7 +204,34 @@ class EventDao extends Singleton implements iDao{
 
 	}
 
-	public function update($event){
+	public function update($object){
+
+		try {
+
+			$sql = "UPDATE events SET name=:name, event_category_id=:event_category_id WHERE id=:id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+
+			$query = $connection->prepare($sql);
+			$id=$object->getId();
+			$name=$object->getName();
+			$eventCategoryId=$object->getEventCategory()->getId();
+
+		
+
+			$query->bindParam(":id", $id);
+			$query->bindParam(":name", $name);
+			$query->bindParam(":event_category_id", $eventCategoryId);
+
+			$query->execute();
+			
+		} catch(PDOException $Exception) {
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+		}
+
 
 	} 	
 	

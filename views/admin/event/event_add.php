@@ -300,14 +300,19 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label">Imagen</label>
-                                                            <input class="form-control " name="img-event" type="file" required="">
+                                                            <input class="form-control" name="img-event" type="file" required="">
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label">Categoría</label>
                                                             <select class="form-control" name="category-event" >
                                                                 <option value="">Selecciona una categoría</option>
-                                                                <option value="1">Hola</option>
-                                                                <option value="2">Chau</option>
+                                                                <?php if(isset($categories)){
+                                                                     foreach ($categories as $category) { ?>
+                                                                
+                                                                <option value="<?php echo $category->getId()?>"><?php echo $category->getName()?></option>
+                                                            <?php }
+                                                                }
+                                                                ?>
                                                             </select>
                                                         </div>
                                                         <div class="form-group">

@@ -283,7 +283,8 @@
                             <div class="col-lg-12">
                                 <div class="wrapper">
                                         <div class="col-lg-12">
-                                            <form action="edit" method="POST">
+                                            <form action="update" method="POST">
+                                                <input name="id" value="<?php echo $event->getId()?>" hidden>
                                                 <div class="border border-grey p-4">
                                                     <div class="text-right">
                                                         <button type="submit" class="btn btn-primary"><i class="fas fa-hdd"></i> Guardar</button>
@@ -296,23 +297,36 @@
                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label">Nombre Evento</label>
-                                                            <input class="form-control" name="name-event" type="text" required="">
+                                                            <input class="form-control" value="<?php echo $event->getName()?>" name="name" type="text" required="">
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label">Imagen</label>
-                                                            <input class="form-control " name="img-event" type="file" required="">
+                                                            <input class="form-control" name="img" type="file" required="">
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label">Nombre Evento</label>
-                                                            <select class="form-control" name="category-event" >
+                                                            <select class="form-control" name="category" >
                                                                 <option value="">Selecciona una categoría</option>
-                                                                <option value="1">Hola</option>
-                                                                <option value="2">Chau</option>
+                                                                <?php 
+                                                                    if(isset($categories)){
+                                                                        foreach ($categories as $category) { 
+                                                                            if($category->getId()==$event->getEventCategory()->getId()){  ?>
+
+                                                                                <option value="<?php echo $category->getId()?>" selected><?php echo $category->getName()?></option>
+                                                                  <?php  }
+                                                                    else
+                                                                    {?>
+
+                                                                                 <option value="<?php echo $category->getId()?>"><?php echo $category->getName()?></option>
+                                                                     <?php }
+                                                           }
+                                                                }
+                                                                ?>
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
                                                         <label class="control-label">Descripción</label>
-                                                        <textarea class="form-control" name="description-event" rows="3" required=""></textarea>
+                                                        <textarea class="form-control" name="description" rows="3" required=""><?php echo $event->getDescription()?></textarea>
                                                         </div>
                                                     </div>
                                                 </div> 
