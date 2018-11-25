@@ -283,10 +283,10 @@
                             <div class="col-lg-12">
                                 <div class="wrapper">
                                         <div class="col-lg-12">
-                                            <form action="add" method="POST">
+                                            <form action="add" method="POST" enctype="multipart/form-data">
                                                 <div class="border border-grey p-4">
                                                     <div class="text-right">
-                                                        <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Crear</button>
+                                                        <button type="submit" onclick="addEvent(event)" class="btn btn-primary"><i class="fas fa-plus"></i> Crear</button>
                                                         <a href="<?php echo "/".DIRECTORY."/"."AdminEvent"?>" class="btn btn-danger mt-2 mt-sm-0"><i class="fa fa-arrow-circle-left"></i> Volver</a>
                                                     </div>
                                                 <div class="row">
@@ -296,15 +296,15 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label">Nombre Evento</label>
-                                                            <input class="form-control" name="name-event" type="text" required="">
+                                                            <input class="form-control" id="name" name="name" type="text" required="">
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label">Imagen</label>
-                                                            <input class="form-control" name="img-event" type="file" required="">
+                                                            <input class="form-control" id="img" name="img" type="file">
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label">Categoría</label>
-                                                            <select class="form-control" name="category-event" >
+                                                            <select class="form-control" id="category" name="category" >
                                                                 <option value="">Selecciona una categoría</option>
                                                                 <?php if(isset($categories)){
                                                                      foreach ($categories as $category) { ?>
@@ -317,7 +317,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                         <label class="control-label">Descripción</label>
-                                                        <textarea class="form-control" name="description-event" rows="3" required=""></textarea>
+                                                        <textarea class="form-control" id="description" name="description" rows="3" required=""></textarea>
                                                         </div>
                                                     </div>
                                                 </div> 

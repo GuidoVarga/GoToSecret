@@ -6,8 +6,8 @@
 		define('DB_NAME', "v2_go_to_event");
 		define('USER',"root");
 		define('PASS',"123-escapa");
-		define('HOST',"");
-		define('HOST_INTERNET',"gotoevent.localtest.me");
+		define('HOST',"localhost");
+		define('HOST_INTERNET',"GoToSecret.localtest.me");
 		define('DIRECTORY',"GoToSecret");
 		define('PROD-DIRECTORY',"GoToSecret");
 		define('VIEWS',"views/");

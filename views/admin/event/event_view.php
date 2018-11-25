@@ -310,7 +310,7 @@
                                                             <td style="width:200px">
                                                                 <div class="btn-group">
                                                                     <a href="<?php echo "/".DIRECTORY."/"."AdminEvent/editView?id=".$event->getId()?>"  class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>                            
-                                                                    <a href="delete" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+                                                                    <button value="<?php echo $event->getId()?>" onclick="deleteEvent(event)" class="btn btn-danger btn-sm fas fa-trash-alt"></button>
                                                                     <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule?id=".$event->getId()?>"  style="background-color:#49B8CF; border-color:#49B8CF; width: 125px; font-size: 11px" class="btn btn-primary btn-sm"><i class="fas fa-list-ul"></i> Ver programaciones</a>
                                                                     <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule/addView?id=".$event->getId()?>"  style="background-color:#1F872B; border-color:#1F872B; width: 125px; font-size: 11px" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Nueva programacion</a>                        
                                                                 </div>

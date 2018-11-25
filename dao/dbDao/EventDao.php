@@ -27,17 +27,20 @@ class EventDao extends Singleton implements iDao{
 	public function add($object){
 		
 		try {
-			$sql = "INSERT INTO events (id,name,event_category_id) VALUES (null,:name,:event_category_id)";
+			$sql = "INSERT INTO events (id,name,description,img,event_category_id) VALUES (null,:name,:description,:img,:event_category_id)";
 			$obj_pdo = new Connection();
-			$conexion = $obj_pdo->connect();
-			$query = $conexion->prepare($sql);
+			$connection = $obj_pdo->connect();
+			$query = $connection->prepare($sql);
 
 			$name=$object->getName();
 			$description=$object->getDescription();
 			$img=$object->getImg();
-			$id=1;
+			$categoryId=$object->getEventCategory()->getId();
+
 			$query->bindParam(":name", $name);
-			$query->bindParam(":event_category_id", $id);
+			$query->bindParam(":description", $description);
+			$query->bindParam(":img", $img);
+			$query->bindParam(":event_category_id", $categoryId);
 
 			$query->execute();
 
@@ -202,13 +205,28 @@ class EventDao extends Singleton implements iDao{
 
 	public function delete($id){
 
+				$sql="DELETE FROM events WHERE id=:id";
+				$obj_pdo = new Connection();
+			try {
+
+				$connection = $obj_pdo->connect();
+				$query = $connection->prepare($sql);
+				$query->bindParam("id", $id);
+				$query->execute();
+			
+			} catch(PDOException $Exception) {
+			
+				throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+			}
+
 	}
 
 	public function update($object){
 
 		try {
 
-			$sql = "UPDATE events SET name=:name, event_category_id=:event_category_id WHERE id=:id";
+			$sql = "UPDATE events SET name=:name, description=:description,img=:img, event_category_id=:event_category_id WHERE id=:id";
 
 			$obj_pdo = new Connection();
 
@@ -218,12 +236,16 @@ class EventDao extends Singleton implements iDao{
 			$query = $connection->prepare($sql);
 			$id=$object->getId();
 			$name=$object->getName();
+			$img=$object->getImg();
+			$description=$object->getDescription();
 			$eventCategoryId=$object->getEventCategory()->getId();
 
 		
 
 			$query->bindParam(":id", $id);
 			$query->bindParam(":name", $name);
+			$query->bindParam(":description", $description);
+			$query->bindParam(":img", $img);
 			$query->bindParam(":event_category_id", $eventCategoryId);
 
 			$query->execute();
@@ -258,7 +280,7 @@ class EventDao extends Singleton implements iDao{
 	
 		return array_map(function($e){
 
-		$event = new Event($e['id'],$e['name'],'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum, ex vel pretium vehicula, mauris erat tristique metus, et ultricies sapien mi sit amet lectus. Nulla egestas sollicitudin lectus et porttitor.',$e['img'],$this->eventCategoryDao->get($e['event_category_id']));
+		$event = new Event($e['id'],$e['name'],$e['description'],$e['img'],$this->eventCategoryDao->get($e['event_category_id']));
 
 			return $event;
 
@@ -270,7 +292,7 @@ class EventDao extends Singleton implements iDao{
 
 		if(isset($array)){
 			$e = $array[0];
-			$event = new Event($e['id'],$e['name'],'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum, ex vel pretium vehicula, mauris erat tristique metus, et ultricies sapien mi sit amet lectus. Nulla egestas sollicitudin lectus et porttitor.',$e['img'],$this->eventCategoryDao->get($e['event_category_id']));
+			$event = new Event($e['id'],$e['name'],$e['description'],$e['img'],$this->eventCategoryDao->get($e['event_category_id']));
 			$event->setSchedules($this->scheduleDao->get($event->getId()));
 
 			return $event;

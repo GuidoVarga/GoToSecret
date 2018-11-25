@@ -341,21 +341,125 @@
 		}
 
 
-		/*
-   			$.ajax({
+		function addEvent(event){
 
-				url: 'AdminCategory/delete',
-				type: 'POST',
-				data: formData,
-				contentType: false,
-		        processData: false,
-				success : function(rta){
-				
-					console.log(rta);
-				}
+			event.preventDefault();
+			let name = document.getElementById('name').value;
+			let img = document.getElementById('img');
+			let category = document.getElementById('category').value;
+			let description = document.getElementById('description').value;
+		
 
-			});
-			*/
+			let parametros = {
+							"name": name,
+							"description": description,
+							"img": img,
+							"category": category,
+						
+    			};
+
+
+    		let formData = new FormData();
+
+			formData.append("name", name);
+			formData.append("description", description);
+			formData.append("img", img.files[0]);
+			formData.append("category", category);
+    	
+    		$.ajax({
+
+						//Json
+						url: 'add',
+						type: 'POST',
+						data: formData,
+						contentType: false,
+       					processData: false,
+						success : function (response){
+							if(response==='ok'){
+								redirect('');
+							}else{
+
+
+							alert(response);	
+							}
+						}
+					});
+
+
+		}
+
+		function updateEvent(event){
+
+			event.preventDefault();
+			let id = document.getElementById('id').value;
+			let name = document.getElementById('name').value;
+			let img = document.getElementById('img');
+			let category = document.getElementById('category').value;
+			let description = document.getElementById('description').value;
+			let oldImg = document.getElementById('oldImg').value;
+			let checkbox = document.getElementById('oldImg-check').checked;
+
+
+
+    		let formData = new FormData();
+    		formData.append("id", id);
+			formData.append("name", name);
+			formData.append("description", description);
+			formData.append("img", img.files[0]);
+			formData.append("category", category);
+			formData.append("oldImg", oldImg);
+			formData.append("checkbox", checkbox);
+
+    	
+    		$.ajax({
+
+						//Json
+						url: 'update',
+						type: 'POST',
+						data: formData,
+						contentType: false,
+       					processData: false,
+						success : function (response){
+							if(response==='ok'){
+								redirect('/GoToSecret/AdminEvent');
+							}else{
+
+							console.log(response);
+							alert(response);	
+							}
+						}
+					});
+
+
+		}
+
+		function deleteEvent(event){
+
+			event.preventDefault();
+			const eventId = event.target.value;
+
+			let parametros = {
+							"event_id": eventId,
+    			};
+
+    			console.log(eventId);
+
+    	
+    		$.ajax({
+
+						//Json
+						url: 'delete',
+						type: 'POST',
+						data: parametros,
+						success : function (){
+							
+							redirect('');		
+							
+						}
+					});
+		
+
+		}
 
 		</script>
 
