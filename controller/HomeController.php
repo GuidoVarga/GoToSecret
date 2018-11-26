@@ -27,7 +27,6 @@
 			
 			
 			}else if(isset($_SESSION['admin'])){
-
 				$user=$_SESSION['admin'][0];
 			
 			}
