@@ -6,22 +6,35 @@
 	
 	use config\Autoload as Autoload;
 	use config\Request as Request;
-	use models\Artist as Artist;
 	use dao\dbDao\ArtistDao as ArtistDao;
+	use dao\dbDao\EventDao as EventDao;
+	use dao\dbDao\PlaceDao as PlaceDao;
+	use dao\dbDao\EventCategoryDao as EventCategoryDao;
 	use dao\Singleton as Singleton;
 
 	Autoload::start();
 
 	class AdminController{
 
-		
+		private $artistDao;
+		private $eventDao;
+		private $placeDao;
+		private $eventCategoryDao;
 
 		function __construct(){
-		
+			$this->artistDao=ArtistDao::getInstance();
+			$this->eventDao=EventDao::getInstance();
+			$this->placeDao=PlaceDao::getInstance();	
+			$this->eventCategoryDao=EventCategoryDao::getInstance();		
 		}
 
 
 		public function index(){
+
+			$artists=$this->artistDao->getAll();
+			$events=$this->eventDao->getAll();
+			$places=$this->placeDao->getAll();
+			$eventCategories=$this->eventCategoryDao->getAll();
 			
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\admin\dashboard.php');
@@ -29,6 +42,9 @@
 			include(ROOT . 'views\admin\footer_admin.php');
 			
 		}
+
+
+
 
 		
 	}

@@ -286,7 +286,7 @@
                 <form action="" method="POST">
                   <div class="border border-grey p-4">
                     <div class="text-right">
-                      <button type="submit" onclick="updateSchedule(event)" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Cambios</button>
+                      <button type="submit" onclick="updateSchedule(event)" class="btn btn-primary"><i class="fas fa-hdd"></i> Guardar</button>
                       <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule"?>" class="btn btn-danger mt-2 mt-sm-0"><i class="fa fa-arrow-circle-left"></i> Volver</a>
                     </div>
                     <div class="row">
@@ -339,8 +339,6 @@
                                 <th>
                                     Precio
                                 </th>
-                                <th>
-                                    
                                 </th>
                               </tr>
                               </thead>
@@ -413,7 +411,6 @@
                         </div>
                         <div class="col-12 mt-5 mb-3">
                           <h3 style="color:#000">Sub Evento</h3>
-
                            <div id="table-subEvents-container" style="align-items: center" class="table-container col-10 mx-auto mt-4" >
                             <table class="table table-bordered table-hover" id="table-subEvents">
                               <thead>

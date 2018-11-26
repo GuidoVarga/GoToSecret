@@ -7,7 +7,7 @@
                         <li class="list-group-item">
                             <a href="#"><i class="fa fa-wrench fa-fw"></i>ABM<span class="fa arrow"></span></a>
                             <ul class="nav-second-level list-group nested">
-                               <li class="list-group-item">
+                                <li class="list-group-item">
                                     <a href="<?php echo "/".DIRECTORY."/"."AdminArtist"?>"><i class="fas fa-user-tie"></i> Artistas</a>
                                 </li>
                                 <li class="list-group-item">
@@ -36,7 +36,7 @@
                                     <a href="#">Eventos <span class="fa arrow"></span></a>
                                     <ul class="nav-third-level list-group nested">
                                         <li class="list-group-item">
-                                            <a href="#"><i class="fas fa-book"></i> Cantidad Vendida y Remantente</a>
+                                            <a href="<?php echo "/".DIRECTORY."/"."AdminQuery"?>"><i class="fas fa-book"></i> Cantidad Vendida y Remantente</a>
                                         </li>
                                         <li class="list-group-item">
                                             <a href="#"><i class="fas fa-dollar-sign"></i> Total Vendido por Fecha</a>

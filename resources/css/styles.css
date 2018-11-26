@@ -230,6 +230,10 @@ footer{
 	}
 }
 
+.hrefAdmin:hover{
+    text-decoration: none;
+}
+
 
 
 
@@ -279,4 +283,3 @@ footer{
     }
 
 }
-

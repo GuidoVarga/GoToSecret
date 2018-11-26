@@ -7,7 +7,7 @@
                            
 				<div class="row border-bottom white-bg p-4">
 					<div class="col-12">
-						<h2 class="border-bottom pb-4">Ciudades</h2>
+						<h2 class="border-bottom pb-4">Lugares</h2>
 						<div class="row mt-5">
                             <div class="col-lg-12">
                                 <div class="wrapper">
