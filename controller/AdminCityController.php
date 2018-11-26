@@ -14,32 +14,29 @@
 
 	Autoload::start();
 
-	class AdminPlaceController{
+	class AdminCityController{
 
-		private $placeDao;
 		private $cityDao;
 
 		function __construct(){
-			$this->placeDao=PlaceDao::getInstance();
 			$this->cityDao=CityDao::getInstance();
 		}
 
 		
 		public function index(){
+			
+			$cities=$this->cityDao->getAll();
 
-			$places=$this->placeDao->getAll();
 			include(ROOT . 'views\head.php');
-			include(ROOT . 'views\admin\place\place_view.php');
+			include(ROOT . 'views\admin\city\city_view.php');
 			include(ROOT . 'views\admin\footer_admin.php');
 			
 		}
 
 		public function addView(){
 			
-			$cities = $this->cityDao->getAll();
-
 			include(ROOT . 'views\head.php');
-			include(ROOT . 'views\admin\place\place_add.php');
+			include(ROOT . 'views\admin\city\city_add.php');
 			include(ROOT . 'views\admin\footer_admin.php');
 			
 		}
@@ -47,43 +44,41 @@
 		public function editView(){
 
 			$id=$_GET['id'];
-			$place=$this->placeDao->get($id);
-			$cities = $this->cityDao->getAll();
+
+			$city=$this->cityDao->get($id);
 			
 			include(ROOT . 'views\head.php');
-			include(ROOT . 'views\admin\place\place_edit.php');
+			include(ROOT . 'views\admin\city\city_edit.php');
 			include(ROOT . 'views\admin\footer_admin.php');
 			
 		}
 
 		public function add(){
+
 			$name=$_POST['name'];
-			$address=$_POST['address'];
-			$cityId=$_POST['city'];
 
-			$place = new Place(0,$name,$address,new City($cityId,null));
+			$city = new City(0,$name);
 
-			$this->placeDao->add($place);
+			$this->cityDao->add($city);
+
 		}
 
 		public function update(){
 
 			$id = $_POST['id'];
 			$name= $_POST['name'];
-			$address=$_POST['address'];
-			$cityId=$_POST['city'];
 
-			$place = new Place($id,$name,$address,new City($cityId,null));
-			$this->placeDao->update($place);
+			$city=new City($id,$name);
+			$this->cityDao->update($city);
 
-			header('location: http://'.HOST.'/'.DIRECTORY.'/AdminPlace');
+			header('location: http://'.HOST.'/'.DIRECTORY.'/AdminCity');
 
 		}
 
 		public function delete(){
 
-			$id = $_POST['place_id'];
-			$this->placeDao->delete($id);
+			$id = $_POST['city_id'];
+			$this->cityDao->delete($id);
 		}
 
 		public function getPlaces(){}
