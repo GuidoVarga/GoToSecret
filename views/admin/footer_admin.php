@@ -573,6 +573,29 @@
 					});
 		}
 
+		function deletePlace(event){
+
+			event.preventDefault();
+			const placeId = event.target.value;
+
+			let parametros = {
+					"place_id": placeId
+    			};
+
+    		$.ajax({
+
+						//Json
+						url: 'AdminPlace/delete',
+						type: 'POST',
+						data: parametros,
+						success : function (){
+						
+							redirect('');		
+							
+						}
+					});
+		}
+
 		
 
 		</script>

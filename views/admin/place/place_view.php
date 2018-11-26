@@ -37,7 +37,7 @@
                                                         <td>
                                                             <div class="btn-group">
                                                                 <a href="<?php echo "/".DIRECTORY."/"."AdminPlace/editView?id=".$place->getId()?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>                            
-                                                                <button onclick="deleteCity(event)" value="<?php echo $place->getId()?>" class="btn btn-danger btn-sm fas fa-trash-alt"></button>                        
+                                                                <button onclick="deletePlace(event)" value="<?php echo $place->getId()?>" class="btn btn-danger btn-sm fas fa-trash-alt"></button>                        
                                                             </div>
                                                         </td>
                                                         </tr>
