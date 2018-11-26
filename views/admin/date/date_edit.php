@@ -326,7 +326,7 @@
                         </div>
                         <div class="col-12 mt-5 mb-3">
                           <h3 style="color:#000">Plazas</h3>
-                          <div id="table-locations-container" style="align-items: center" class="table-container col-10 mt-4" >
+                          <div id="table-locations-container" style="align-items: center" class="table-container col-10 mx-auto mt-4" >
                             <table class="table table-bordered table-hover">
                               <thead>
                                 <tr style="text-align:center">
@@ -338,6 +338,9 @@
                                 </th>
                                 <th>
                                     Precio
+                                </th>
+                                <th>
+                                    
                                 </th>
                               </tr>
                               </thead>
@@ -411,7 +414,7 @@
                         <div class="col-12 mt-5 mb-3">
                           <h3 style="color:#000">Sub Evento</h3>
 
-                           <div id="table-subEvents-container" style="align-items: center" class="table-container col-10 mt-4" >
+                           <div id="table-subEvents-container" style="align-items: center" class="table-container col-10 mx-auto mt-4" >
                             <table class="table table-bordered table-hover" id="table-subEvents">
                               <thead>
                                 <tr style="text-align:center">
@@ -423,6 +426,9 @@
                                 </th>
                                 <th>
                                     Hora Fin
+                                </th>
+                                <th>
+                                
                                 </th>
                               </tr>
                               </thead>
