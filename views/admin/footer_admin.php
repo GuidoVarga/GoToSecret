@@ -550,6 +550,31 @@
 
 		}
 
+		function deleteCity(event){
+
+			event.preventDefault();
+			const cityId = event.target.value;
+
+			let parametros = {
+					"city_id": cityId
+    			};
+
+    		$.ajax({
+
+						//Json
+						url: 'AdminCity/delete',
+						type: 'POST',
+						data: parametros,
+						success : function (){
+						
+							redirect('');		
+							
+						}
+					});
+		}
+
+		
+
 		</script>
 
 	</footer>

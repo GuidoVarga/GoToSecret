@@ -14,27 +14,30 @@
                                     <div class="col-lg-12">
                                         <div class="border border-grey p-4">
                                             <div class="text-right">
-                                                <a href="<?php echo "/".DIRECTORY."/"."AdminCity/addView"?>" class="btn btn-primary"><i class="fas fa-plus"></i> Nueva Ciudad</a>
+                                                <a href="<?php echo "/".DIRECTORY."/"."AdminPlace/addView"?>" class="btn btn-primary"><i class="fas fa-plus"></i> Nueva Ciudad</a>
                                             </div>
                                             <div class="table-responsive mt-4">
                                                 <table class="table table-bordered">
                                                     <thead>
                                                         <tr>
                                                         <th scope="col">Nombre</th>
+                                                        <th scope="col">Direccion</th>
+                                                         <th scope="col">Ciudad</th>
                                                         <th scope="col"></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <?php if(isset($places)){
 
-                                                        <?php if(isset($cities)){
-
-                                                            foreach ($cities as $city) {?>
+                                                            foreach ($places as $place) {?>
                                                         <tr>
-                                                        <td><?php echo $city->getName()?></td>
+                                                        <td><?php echo $place->getName()?></td>
+                                                        <td><?php echo $place->getAddress()?></td>
+                                                        <td><?php echo $place->getCity()->getName()?></td>
                                                         <td>
                                                             <div class="btn-group">
-                                                                <a href="<?php echo "/".DIRECTORY."/"."AdminCity/editView?id=".$city->getId()?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>                            
-                                                                <button onclick="deleteCity(event)" value="<?php echo $city->getId()?>" class="btn btn-danger btn-sm fas fa-trash-alt"></button>                        
+                                                                <a href="<?php echo "/".DIRECTORY."/"."AdminPlace/editView?id=".$place->getId()?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>                            
+                                                                <button onclick="deleteCity(event)" value="<?php echo $place->getId()?>" class="btn btn-danger btn-sm fas fa-trash-alt"></button>                        
                                                             </div>
                                                         </td>
                                                         </tr>
