@@ -42,9 +42,6 @@
 			
 			$id=$_GET['id'];
 			$artist=$this->artistDao->get($id);
-
-			var_dump($artist);
-
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\admin\artist\artist_edit.php');
 			include(ROOT . 'views\admin\footer_admin.php');

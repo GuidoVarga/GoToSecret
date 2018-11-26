@@ -13,14 +13,14 @@
 
 	Autoload::start();
 
-	class PlaceDao extends Singleton implements iDao{
+	class CityDao extends Singleton implements iDao{
 
 
 		public function add($object){
 
 				try {
 
-				$sql = "INSERT INTO places (id,name,address,city_id) VALUES (null,:name,:address,:city_id)";
+				$sql = "INSERT INTO cities (id,name) VALUES (null,:name)";
 				
 				$obj_pdo = new Connection();
 
@@ -29,12 +29,10 @@
 				$query = $connection->prepare($sql);
 
 				$name=$object->getName();
-				$address=$object->getAddress();
-				$cityId=$object->getCity()->getId();
+			
 				
 				$query->bindParam(":name", $name);
-				$query->bindParam(":address", $address);
-				$query->bindParam(":city_id", $cityId);
+			
 			
 		
 				$query->execute();
@@ -52,12 +50,12 @@
 
 		public function get($id){
 			try {
-					$sql = "SELECT * FROM places INNER JOIN cities ON cities.id=places.id WHERE places.id=:id";
+					$sql = "SELECT * FROM cities";
 					
 					$obj_pdo = new Connection();
 
 					$connection = $obj_pdo->connect();
-					$connection->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES,true);
+				
 					$query = $connection->prepare($sql);
 					$query->bindParam(":id", $id);
 					$query->execute();	
@@ -79,12 +77,11 @@
 		public function getAll(){
 
 				try {
-					$sql = "SELECT * FROM places INNER JOIN cities ON cities.id=places.city_id";
-					
+					$sql = "SELECT * FROM cities";
 					$obj_pdo = new Connection();
 
 					$connection = $obj_pdo->connect();
-					$connection->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES,true);
+					
 					$query = $connection->prepare($sql);
 
 					$query->execute();
@@ -103,7 +100,7 @@
 
 		public function delete($id){
 			try {
-				$sql="DELETE FROM places WHERE id=:id";
+				$sql="DELETE FROM cities WHERE id=:id";
 				$obj_pdo = new Connection();
 			
 
@@ -119,11 +116,12 @@
 			}
 
 	}
+
 		public function update($object){
 
 		try {
 
-			$sql = "UPDATE places SET name=:name, address=:address, city_id=:city_id WHERE id=:id";
+			$sql = "UPDATE cities SET name=:name WHERE id=:id";
 
 			$obj_pdo = new Connection();
 
@@ -132,14 +130,10 @@
 
 			$query = $connection->prepare($sql);
 			$id=$object->getId();
-				$name=$object->getName();
-				$address=$object->getAddress();
-				$cityId=$object->getCity()->getId();
-				
-				$query->bindParam(":id",$id);
-				$query->bindParam(":name", $name);
-				$query->bindParam(":address", $address);
-				$query->bindParam(":city_id", $cityId);
+			$name=$object->getName();
+			
+			$query->bindParam(":id", $id);
+			$query->bindParam(":name", $name);
 		
 			$query->execute();
 			
@@ -148,24 +142,23 @@
 		}
 
 
-	}
+	} 
 
 		public function map($objects)
 		{
 			
-			$places = is_array($objects) ? $objects : [];
+			$cities = is_array($objects) ? $objects : [];
 			return array_map(function($p){
-				return new Place($p['places.id'],$p['places.name'],$p['places.address'], new City($p['cities.id'],$p['cities.name']));
-			}, $places);
+				return new City($p['id'],$p['name']);
+			}, $cities);
 		}
 
 		public function mapOnlyOne($array){
 
 			if(isset($array)){
 				$p = $array[0];
-				return new Place($p['places.id'],$p['places.name'],$p['places.address'], new City($p['cities.id'],$p['cities.name']));
+				return new City($p['id'],$p['name']);
 			}
-
 		}
 
 	}

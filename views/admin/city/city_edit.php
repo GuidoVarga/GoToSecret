@@ -8,12 +8,12 @@
             <div id="page-wrapper" class="p-4">
 				<div class="row white-bg p-4">
 					<div class="col-12">
-						<h2 class="border-bottom pb-4">Ciudades</h2>
+						<h2 class="border-bottom pb-4">Ciudad: <?php echo $city->getName()?></h2>
 						<div class=" mt-5">
                             <div class="col-lg-12">
                                 <div class="wrapper">
                                         <div class="col-lg-12">
-                                            <form action="edit" method="POST">
+                                            <form action="update" method="POST">
                                                     <div class="border border-grey p-4">
                                                         <div class="text-right">
                                                             <button type="submit" class="btn btn-primary"><i class="fas fa-hdd"></i> Guardar</button>
@@ -26,7 +26,8 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label class="control-label">Nombre Ciudad</label>
-                                                                <input class="form-control" name="name-city" type="text" required="">
+                                                                <input value="<?php echo $city->getId()?>" name="id" hidden>
+                                                                <input  value="<?php echo $city->getName()?>"class="form-control" name="name" type="text" required="">
                                                         </div>
                                                     </div>
                                                 </div> 

@@ -550,6 +550,54 @@
 
 		}
 
+		function deleteCity(event){
+
+			event.preventDefault();
+			const cityId = event.target.value;
+
+			let parametros = {
+					"city_id": cityId
+    			};
+
+    		$.ajax({
+
+						//Json
+						url: 'AdminCity/delete',
+						type: 'POST',
+						data: parametros,
+						success : function (){
+						
+							redirect('');		
+							
+						}
+					});
+		}
+
+		function deletePlace(event){
+
+			event.preventDefault();
+			const placeId = event.target.value;
+
+			let parametros = {
+					"place_id": placeId
+    			};
+
+    		$.ajax({
+
+						//Json
+						url: 'AdminPlace/delete',
+						type: 'POST',
+						data: parametros,
+						success : function (){
+						
+							redirect('');		
+							
+						}
+					});
+		}
+
+		
+
 		</script>
 
 	</footer>
