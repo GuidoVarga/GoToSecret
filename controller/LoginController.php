@@ -57,15 +57,20 @@ class LoginController{
 
 		$_SESSION['user']=$user;
 
-		if($user->getRole()=='user')
-			header('Location: http://'.HOST_INTERNET.'/'.DIRECTORIO.'/Home');
+		if($user->getAccount()->getRole()->getDescription()=='user')
+			header('Location: http://'.HOST.'/'.DIRECTORY.'/Home');
 		else
-			header('Location: http://'.HOST_INTERNET.'/'.DIRECTORIO.'/Admin');
+			header('Location: http://'.HOST.'/'.DIRECTORY.'/Admin');
 	}
 
 	public function logOut(){
 		session_start();
 		session_destroy();
+	}
+
+	public function showSession(){
+		session_start();
+		var_dump($_SESSION);
 	}
 
 }
