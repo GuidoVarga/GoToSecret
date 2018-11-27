@@ -157,8 +157,12 @@ class UserDao extends Singleton implements iDao{
 				$query->execute();
 
 				$resultado=$query->fetchAll();
-				
+
+				if($resultado){
 				return $resultado[0][0];
+				}else{
+					return null;
+				}	
 				
 			}
 			catch(PDOException $Exception) {

@@ -4,7 +4,7 @@
 require_once(ROOT.'Config\Autoload.php');
 
 use Config\Autoload as Autoload;
-
+use controller\Middleware as Middleware;
 Autoload::start();
 
 use dao\dbDao\UserDao as UserDao;
@@ -15,6 +15,8 @@ class LoginController{
 	private $userDao;
 
 	public function __construct(){
+		$middleware = Middleware::getInstance();
+			$middleware->checkNotLogged();
 		$this->userDao = UserDao::getInstance();
 	}
 
@@ -55,11 +57,15 @@ class LoginController{
 
 		$_SESSION['user']=$user;
 
-		echo '<pre>';
-		var_dump($user);
-		echo '</pre>';
+		if($user->getRole()=='user')
+			header('Location: http://'.HOST_INTERNET.'/'.DIRECTORIO.'/Home');
+		else
+			header('Location: http://'.HOST_INTERNET.'/'.DIRECTORIO.'/Admin');
+	}
 
-
+	public function logOut(){
+		session_start();
+		session_destroy();
 	}
 
 }

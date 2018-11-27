@@ -7,7 +7,7 @@
 	use Config\Autoload as Autoload;
 	use Facebook\Config as Config;
 	use Facebook\Facebook as Facebook;
-
+	use controller\Middleware as Middleware;
 	Autoload::start();
 
 
@@ -21,6 +21,8 @@
 		private $userDao;
 
 		public function __construct(){
+			$middleware = Middleware::getInstance();
+			$middleware->checkNotLogged();
 			$this->userDao = UserDao::getInstance();
 		}
 

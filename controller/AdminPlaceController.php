@@ -11,7 +11,7 @@
 	use dao\dbDao\CityDao as CityDao;
 	use dao\dbDao\PlaceDao as PlaceDao;
 	use dao\Singleton as Singleton;
-
+use controller\Middleware as Middleware;
 	Autoload::start();
 
 	class AdminPlaceController{
@@ -20,6 +20,8 @@
 		private $cityDao;
 
 		function __construct(){
+			$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();
 			$this->placeDao=PlaceDao::getInstance();
 			$this->cityDao=CityDao::getInstance();
 		}
@@ -47,6 +49,7 @@
 		public function editView(){
 
 			$id=$_GET['id'];
+
 			$place=$this->placeDao->get($id);
 			$cities = $this->cityDao->getAll();
 			
@@ -64,6 +67,7 @@
 			$place = new Place(0,$name,$address,new City($cityId,null));
 
 			$this->placeDao->add($place);
+			header('location: http://'.HOST.'/'.DIRECTORY.'/AdminPlace');
 		}
 
 		public function update(){
