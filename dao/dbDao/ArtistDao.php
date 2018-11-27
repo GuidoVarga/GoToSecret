@@ -136,7 +136,7 @@ class ArtistDao extends Singleton implements iDao{
 
 		$artists = is_array($objects) ? $objects : [];
 		return array_map(function($p){
-			return new Artist($p['id'],$p['name'],$p['description']);
+			return new Artist($p['id'],$p['name'],$p['description'],$p['img']);
 		}, $artists);
 	}
 
@@ -144,7 +144,7 @@ class ArtistDao extends Singleton implements iDao{
 
 		if(isset($array)){
 			$a = $array[0];
-			return new Artist($a['id'],$a['name'],$a['description']);
+			return new Artist($a['id'],$a['name'],$a['description'],$a['img']);
 		}
 
 	}

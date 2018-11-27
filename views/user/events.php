@@ -13,37 +13,36 @@
 						<span class="fas fa-search form-control-search"></span>
 						<select id="search" name="search" class="form-control" onchange="searchCategory()">
 							<option value="">Selecciona una Categoría</option>
-							<option value="Entretenimiento">Entretenimiento</option>
+							<?php if(isset($categories)){
+										foreach($categories as $category){?>
+							<option value="<?php echo $category->getName();?>"><?php echo $category->getName();?></option>
+							<?php 
+								}
+							}?>
 						</select>
 				</div>
 			</div>	
 		</div>
 		<div class="row" id="myItems">
+			<?php if(isset($events)){
+				foreach ($events as $event) {?>
 			<div class="col-12 col-md-6 col-lg-6 contener-card">
 				<div class="card mt-5 mx-auto ">
-					<img class="card-img-top" src="<?php ROOT ?>resources/images/card1.jpg" alt="Card image cap">
+					<img class="card-img-top" src="<?php echo IMAGES.$event->getImg()?>" alt="Card image cap">
 					<div class="card-body">
-						<h5 class="card-title">Card one</h5>
-						<p class="card-text">Especiales</p>
+						<h5 class="card-title"><?php echo $event->getName();?></h5>
+						<p class="card-text"><?php echo $event->getEventCategory()->getName();?></p>
 					</div>
 					<div class="card-footer">
-						<a href="#" class="btn btn-all">+info</a>
+						<a href="<?php echo 'EventDetail?id='.$event->getId() ?>" class="btn btn-all">+info</a>
 					</div>
 				</div>
 			</div>
-			<div class="col-12 col-md-12 col-lg-6 contener-card">
-				<div class="card mt-5 mx-auto">
-					<img class="card-img-top" src="<?php ROOT ?>resources/images/card2.jpg" alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">Card two</h5>
-						<p class="card-text">Entretenimiento</p>
-						
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-all">+info</a>
-					</div>
-				</div>
-			</div>
+			<?php 
+				}
+			}
+
+			?>
 		</div>
 	</div>		
 </body>

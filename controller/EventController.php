@@ -7,19 +7,19 @@
 	use config\Autoload as Autoload;
 	use config\Request as Request;
 	use dao\dbDao\EventDao as EventDao;
+	use dao\dbDao\EventCategoryDao as EventCategoryDao;
 	use dao\Singleton as Singleton;
 	use models\Event as Event;
-	use models\Calendar as Calendar;
-	use models\SubEvent as SubEvent;
 
 	Autoload::start();
 
 	class EventController{
 
 		private $eventDao;
-
+		private $categoriesEventDao;
 		function __construct(){
 			$this->eventDao=EventDao::getInstance();
+			$this->eventCategoryDao=EventCategoryDao::getInstance();
 		}
 
 
@@ -27,17 +27,8 @@
 
 			session_start();
 			//session_destroy();
-
-			if(isset($_SESSION['user'])){
-
-				$user=$_SESSION['user'];
-			
-			
-			}else if(isset($_SESSION['admin'])){
-
-				$user=$_SESSION['admin'][0];
-			
-			}
+			$events = $this->eventDao->getAll();
+			$categories = $this->eventCategoryDao->getAll();
 
             include(ROOT . 'views\head.php');
 			include(ROOT . 'views\user\header.php');

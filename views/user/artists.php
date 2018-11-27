@@ -16,29 +16,25 @@
 			</div>	
 		</div>
 		<div class="row" id="myItems">
+			<?php if(isset($artists)){
+				foreach ($artists as $artist) {?>
 			<div class="col-12 col-md-6 col-lg-6 contener-card">
 				<div class="card mt-5 mx-auto ">
-					<img class="card-img-top" src="<?php ROOT ?>resources/images/artist1.jpg" alt="Card image cap">
+					<img class="card-img-top" src="<?php echo IMAGES.$artist->getImg()?>" alt="Card image cap">
 					<div class="card-body">
-						<h5 class="card-title">Ed Sheeran</h5>
+						<h5 class="card-title"><?php echo $artist->getName();?></h5>
 					</div>
 					<div class="card-footer">
-						<a href="#" class="btn btn-all">+info</a>
+						<a href="<?php echo 'ArtistDetail?id='.$artist->getId() ?>" class="btn btn-all">+info</a>
 					</div>
 				</div>
 			</div>
-			<div class="col-12 col-md-6 col-lg-6 contener-card">
-				<div class="card mt-5 mx-auto">
-					<img class="card-img-top" src="<?php ROOT ?>resources/images/artist2.jpg" alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">Foo Fighters</h5>
-						
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-all">+info</a>
-					</div>
-				</div>
-			</div>
+
+			<?php 
+				}
+			}
+
+			?>
 		</div>
 	</div>	
 </body>
