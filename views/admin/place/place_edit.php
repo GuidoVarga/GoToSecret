@@ -8,7 +8,7 @@
       <div id="page-wrapper" class="p-4">
         <div class="row white-bg p-4">
          <div class="col-12">
-          <h2 class="border-bottom pb-4">Ciudades</h2>
+          <h2 class="border-bottom pb-4">Lugares</h2>
           <div class=" mt-5">
             <div class="col-lg-12">
               <div class="wrapper">
@@ -21,7 +21,7 @@
                       </div>
                       <div class="row">
                         <div class="col-12 mt-5 mb-3">
-                          <h2 style="color:#da4f49">Editar Ciudad</h2>
+                          <h2 style="color:#da4f49">Editar Lugar</h2>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">

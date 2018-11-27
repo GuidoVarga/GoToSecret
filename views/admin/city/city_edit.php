@@ -17,7 +17,7 @@
                                                     <div class="border border-grey p-4">
                                                         <div class="text-right">
                                                             <button type="submit" class="btn btn-primary"><i class="fas fa-hdd"></i> Guardar</button>
-                                                            <a href="<?php echo "/".DIRECTORY."/"."AdminPlace"?>" class="btn btn-danger mt-2 mt-sm-0"><i class="fa fa-arrow-circle-left"></i> Volver</a>
+                                                            <a href="<?php echo "/".DIRECTORY."/"."AdminCity"?>" class="btn btn-danger mt-2 mt-sm-0"><i class="fa fa-arrow-circle-left"></i> Volver</a>
                                                         </div>
                                                     <div class="row">
                                                         <div class="col-12 mt-5 mb-3">

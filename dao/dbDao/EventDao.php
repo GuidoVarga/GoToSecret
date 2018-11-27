@@ -202,6 +202,30 @@ class EventDao extends Singleton implements iDao{
 
 	}
 
+	public function getEventByArtist($id){
+		try{
+			$sql = "SELECT * FROM events INNER JOIN schedules ON schedules.event_id = events.id INNER JOIN sub_events ON sub_events.schedule_id = schedules.id INNER JOIN artists ON artists.id = sub_events.artist_id WHERE artists.id = :id";
+
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+			$connection->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES,true);
+		
+			$query = $connection->prepare($sql);
+			$query->bindParam(":id", $id);
+
+			$query->execute();
+
+			$result=$query->fetchAll();
+			return $this->mapByArtist($result);
+		}
+		catch(PDOException $Exception) {
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+		}
+	}
+
 
 	public function getAllWithLimit($limit){
 
@@ -322,6 +346,25 @@ class EventDao extends Singleton implements iDao{
 			return $event;
 		}
 
+	}
+
+	public function mapByArtist($objects){
+		$events = is_array($objects) ? $objects : [];
+		$array = array();
+
+		foreach ($events as $e) {
+
+			$event = new Event($e['events.id'],$e['events.name'],$e['events.description'],$e['events.img'],$this->eventCategoryDao->get($e['events.event_category_id']));
+			if(!empty($array)){
+				$lastEvent = array_values(array_slice($array, -1))[0];
+				if($lastEvent->getId()!=$event->getId()){
+					array_push($array, $event);
+				}
+			}else{
+				array_push($array, $event);
+			}
+		}
+		return $array;
 	}
 
 	public function mapOnlyOneWithoutSchedules($array){

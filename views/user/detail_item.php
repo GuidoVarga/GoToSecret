@@ -48,6 +48,7 @@
                                                         </dd>
                                                         </dl>
                                                 </div>
+
                                             <form action="<?php echo 'Schedule?id='.$schedule->getId()?>" method="POST">
                                             <input value="<?php echo $event->getId()?>" name="event_id" hidden>
                                             <button type="submit" class="btn btn-all">+ INFO</button>

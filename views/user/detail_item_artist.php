@@ -9,46 +9,36 @@
    <div class="container">
         <div class="row mt-5">
             <div class="col-12 p-2">
-                <img class="w-75 w-lg-50 mx-auto d-block" style="border-style: solid;" src="<?php ROOT ?>resources/images/artist2.jpg" alt="Card image cap">
+                <img class="w-75 w-lg-50 mx-auto d-block" style="border-style: solid;" src="<?php echo IMAGES.$artist->getImg()?>" alt="Card image cap">
             </div>
         </div>
         <div class="row mt-5">
         <div class="col-12">
             <div class="bg-white">
                 <article class="card-body">
-                    <h3 class="card-title mb-3 mx">Nombre de artista - Próximos Shows</h3>
+                    <h3 class="card-title mb-3 mx"><?php echo $artist->getName() ?> - Eventos</h3>
                     <hr>
                     <div class=" card-text row">
-                        
-                        <?php if(isset($schedules)){
+                        <?php
+                         if(isset($events)){
 
-                        foreach ($schedules as $schedule) {
+                        foreach ($events as $event) {
                         ?>
                       
                                 <div class="col-12 col-md-6">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h3 class="card-title" style="font-weight: bold; color:#443d3d;"><?php echo $schedule->getPlace()->getName()?></h3>
+                                            <h3 class="card-title" style="font-weight: bold; color:#443d3d;"><?php echo $event->getName()?></h3>
                                             <hr>
                                             <div class="card-text" style="line-height: 20px;">
-                                                    <dl class="place-detail">
-                                                    <dt>Direccion</dt>
+                                                    <dl class="category-detail">
+                                                    <dt>Categoría</dt>
                                                     <dd>
-                                                    <p><?php echo $schedule->getPlace()->getAddress()?></p>
-                                                    </dd>
-                                                    <dt>Ciudad</dt>
-                                                    <dd>
-                                                    <p><?php echo $schedule->getPlace()->getCity()->getName()?></p>
-                                                    </dd>
-                                                    </dl>
-                                                    <dl class="date-detail">
-                                                    <dt>Fecha</dt>
-                                                    <dd>
-                                                    <p><?php echo $schedule->getDay()?></p>
+                                                    <p><?php echo $event->getEventCategory()->getName()?></p>
                                                     </dd>
                                                     </dl>
                                              </div>
-                                        <a href="#" class="btn btn-all">+ INFO</a>
+                                        <a href="<?php echo 'EventDetail?id='.$event->getId() ?>" class="btn btn-all">+ INFO</a>
                                       </div>
                                     </div>
                                 </div>

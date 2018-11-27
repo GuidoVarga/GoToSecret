@@ -20,32 +20,17 @@
 
 		public function index(){
 
-			/*
+			
 			session_start();
 			//session_destroy();
 
-			if(isset($_SESSION['user'])){
-
-				$user=$_SESSION['user'];
-			
-			
-			}else if(isset($_SESSION['admin'])){
-
-				$user=$_SESSION['admin'][0];
-			
-			}
+			$artists = $this->dao->getAll();
 
             include(ROOT . 'views\head.php');
 			include(ROOT . 'views\user\header.php');
 			include(ROOT . 'views\user\artists.php');
 			include(ROOT . 'views\user\footer.php');
-			*/
-
-			$artists = $this->dao->get(1);
-
-			echo '<pre>';
-			var_dump($artists);
-			echo '</pre>';
+			
 		}
 	}
 
