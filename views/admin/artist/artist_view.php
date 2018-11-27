@@ -30,7 +30,7 @@
                         <?php if(isset($artists)){
                           foreach ($artists as $artist) {?>            
                         <tr>
-                          <td></td>
+                        <td scope="row" style="width:300px"><img style="width:300px; height:150px" src="<?php echo IMAGES.$artist->getImg()?>" alt=""></td>
                           <td><?php echo $artist->getName()?></td>
                           <td><?php echo $artist->getDescription()?></td>
                           <td>

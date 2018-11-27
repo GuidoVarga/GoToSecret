@@ -18,7 +18,7 @@ class ArtistDao extends Singleton implements iDao{
 
 		try {
 
-			$sql = "INSERT INTO artists (id,name,description) VALUES (null,:name,:description)";
+			$sql = "INSERT INTO artists (id,name,img,description) VALUES (null,:name,:description,:img)";
 
 			$obj_pdo = new Connection();
 
@@ -28,10 +28,12 @@ class ArtistDao extends Singleton implements iDao{
 
 
 			$name=$object->getName();
+			$img=$object->getImg();
 			$description=$object->getDescription();
 
 
 			$query->bindParam(":name", $name);
+			$query->bindParam(":img", $img);
 			$query->bindParam(":description", $description);
 			
 
@@ -97,7 +99,21 @@ class ArtistDao extends Singleton implements iDao{
 	}
 
 	public function delete($id){
+		try {
+			$sql="DELETE FROM artists WHERE id=:id";
+			$obj_pdo = new Connection();
+		
 
+			$connection = $obj_pdo->connect();
+			$query = $connection->prepare($sql);
+			$query->bindParam("id", $id);
+			$query->execute();
+		
+		} catch(PDOException $Exception) {
+		
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+		
+		}
 	}
 
 	public function update($object){

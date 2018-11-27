@@ -29,9 +29,9 @@ class LoginController{
 
 
 		include(VIEWS.'head.php');
-		include(VIEWS.'header.php');
+		include(VIEWS.'user\header.php');
 		include(VIEWS.'user\login.php');
-		include(VIEWS.'footer.php');
+		include(VIEWS.'user\footer.php');
 	}
 
 

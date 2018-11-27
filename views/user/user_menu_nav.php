@@ -8,10 +8,9 @@
             <a class="dropdown-item" href="">
                 Editar Perfil
             </a>
-            <a class="dropdown-item" href="" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+            
+            <a class="dropdown-item" href="Home/signOut">
             <i class="fas fa-sign-out-alt"></i>Cerrar Sesion
-                <form id="logout-form" action="" method="POST" style="display: none;">
-                </form>
             </a>
         </div>
     </li>

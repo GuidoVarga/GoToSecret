@@ -18,8 +18,8 @@
 		private $artistDao;
 
 		function __construct(){
-			$middleware = Middleware::getInstance();
-			$middleware->checkAdmin();
+			/*$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();*/
 			$this->artistDao=ArtistDao::getInstance();
 		}
 
@@ -54,11 +54,18 @@
 		public function add(){
 
 			$name=$_POST['name'];
+			$image = $this->loadImage();
 			$description=$_POST['description'];
 
-			$artist = new Artist(0,$name,$description);
-			$this->artistDao->add($artist);
-			echo 'ok';
+			
+			if(isset($image)){
+				$imgName=basename($_FILES['img']['name']);
+				echo $imgName;
+				$artist = new Artist(0,$name,$imgName,$description);
+				$this->artistDao->add($artist);
+			}
+			
+			
 		
 			
 		}
@@ -75,7 +82,8 @@
 		}
 
 		public function delete(){
-
+			$id = $_POST['artist_id'];
+			$this->artistDao->delete($id);
 		}
 
 		public function getArtists(){
@@ -84,6 +92,57 @@
 			$artists=$this->artistDao->map($result);
 			var_dump($artists);
 		}	
+
+		public function loadImage(){
+
+
+			$imageDirectory = IMAGES;
+	
+			if(!file_exists($imageDirectory))
+				mkdir($imageDirectory);
+	
+	
+	
+			if($_FILES)
+			{
+	
+				if((isset($_FILES['img'])) && ($_FILES['img']['name'] != ''))
+				{
+					$extensionsAllowed = array('png','jpg','jpeg');
+					$nameFile =  basename($_FILES['img']['name']);
+					$file = $imageDirectory . $nameFile;	
+					$img_info = getimagesize($_FILES["img"]["tmp_name"]); 
+					$width=$img_info[0];
+					$height=$img_info[1];
+					
+					$fileExtension = pathinfo($file, PATHINFO_EXTENSION);
+	
+					
+					if(in_array($fileExtension, $extensionsAllowed))
+					{
+	
+						if($width <= 960 && $height <=900) 
+						{
+							if (move_uploaded_file($_FILES["img"]["tmp_name"], $file)) 																		
+							{
+	
+								return $file;
+	
+							}
+							else
+								echo'No se pudo subir el archivo ';
+						}
+						else
+							echo 'El archivo es demasiado grande';
+					}
+					else
+						echo 'El archivo cargado no es una imagen';
+				}
+			}else
+			echo 'Elija una imagen';
+	
+			return null;
+		}
 
 
 	 }

@@ -66,11 +66,10 @@
                             <a class="dropdown-item" href="">
                                 Mis Pedidos
                             </a>
-                            @endif
+                            
                             <a class="dropdown-item" href="" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                 Cerrar Sesion
                                 <form id="logout-form" action="" method="POST" style="display: none;">
-                                    @csrf
                                 </form>
                             </a>
                         </div>
