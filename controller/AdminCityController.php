@@ -61,6 +61,8 @@
 
 			$this->cityDao->add($city);
 
+			header('location: http://'.HOST.'/'.DIRECTORY.'/AdminCity');
+
 		}
 
 		public function update(){

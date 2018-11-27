@@ -6,12 +6,16 @@ class OrderLine
     private $quantity;
     private $price;
     private $tickets;
+    private $schedule;
+    private $location;
    
-    function __construct($id,$quantity,$price)
+    function __construct($id,$quantity,$price,$schedule,$location)
     {
         $this->id=$id;
         $this->quantity=$quantity;
         $this->price=$price;
+        $this->schedule=$schedule;
+        $this->location=$location;
         $this->tickets = array();
        
     }

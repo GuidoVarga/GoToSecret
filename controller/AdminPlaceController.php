@@ -47,6 +47,7 @@
 		public function editView(){
 
 			$id=$_GET['id'];
+
 			$place=$this->placeDao->get($id);
 			$cities = $this->cityDao->getAll();
 			
@@ -64,6 +65,7 @@
 			$place = new Place(0,$name,$address,new City($cityId,null));
 
 			$this->placeDao->add($place);
+			header('location: http://'.HOST.'/'.DIRECTORY.'/AdminPlace');
 		}
 
 		public function update(){

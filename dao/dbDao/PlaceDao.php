@@ -52,7 +52,9 @@
 
 		public function get($id){
 			try {
-					$sql = "SELECT * FROM places INNER JOIN cities ON cities.id=places.id WHERE places.id=:id";
+
+				
+					$sql = "SELECT * FROM places INNER JOIN cities ON cities.id=places.city_id WHERE places.id=:id";
 					
 					$obj_pdo = new Connection();
 
@@ -64,7 +66,7 @@
 
 			
 					$result=$query->fetchAll();
-					
+				
 
 					return $this->mapOnlyOne($result);
 				

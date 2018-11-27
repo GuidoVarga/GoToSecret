@@ -71,7 +71,7 @@
 
 			$id=$_GET['id'];
 
-			$schedule = $this->scheduleDao->getById($id);
+			$schedule = $this->scheduleDao->getByIdForEdit($id);
 			$places = $this->getPlaces();
 			$artists = $this->getArtists();
 			$locations = $this->getLocations();
@@ -165,6 +165,7 @@
 			}
 
 			
+			
 			$subEventsArray = $_POST['subEvents'];
 			$subEvents=array();
 			foreach ($subEventsArray as $s) {
@@ -172,7 +173,8 @@
 				array_push($subEvents, $subEvent);
 			}
 
-		
+			
+			
 			$schedule = new Schedule($scheduleId,$day, new Place($placeId,null,null,null));
 
 	
@@ -189,8 +191,42 @@
 			foreach ($locations as $location) {
 				$this->locationDao->addLocationSchedule($location,$scheduleId);
 			}
+			
 
 			
+		}
+
+
+		public function prueba(){
+
+			$scheduleId = 2;
+			$locations=array();
+			$subEvents=array();
+
+			$subEvent = new SubEvent(0,new Artist(1,null,null),23,27);
+			array_push($subEvents, $subEvent);
+			$subEvent = new SubEvent(0,new Artist(2,null,null),29,33);
+			array_push($subEvents, $subEvent);
+
+			$location = new Location(1,null,399,250,399);
+			array_push($locations, $location);
+			$location = new Location(2,null,322,19,322);
+			array_push($locations, $location);
+			
+
+
+			$this->subEventDao->deleteByScheduleId($scheduleId);
+			
+			foreach ($subEvents as $subEvent) {
+				$this->subEventDao->save($subEvent,$scheduleId);
+			}
+			
+			$this->locationDao->deleteByScheduleId($scheduleId);
+			
+			foreach ($locations as $location) {
+				$this->locationDao->addLocationSchedule($location,$scheduleId);
+			}
+
 		}
 	}
 

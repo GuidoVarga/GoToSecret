@@ -100,6 +100,35 @@
 		}
 		}
 
+
+		public function getByScheduleLocationId($id){
+
+			try {
+
+					$sql = "SELECT * FROM schedules_x_locations INNER JOIN locations ON locations.id = schedules_x_locations.location_id WHERE schedules_x_locations.id = :id";
+					
+					$obj_pdo = new Connection();
+
+					$connection = $obj_pdo->connect();
+					$connection->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES,true);
+					$query = $connection->prepare($sql);
+					$query->bindParam(":id", $id);
+					$query->execute();
+
+					$result=$query->fetchAll();
+
+					return $this->mapByDate($result);
+				
+			} catch(PDOException $Exception) {
+			
+				throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+			}
+
+		}
+
+
+
 		public function getByScheduleId($id){
 
 			try {
@@ -117,6 +146,32 @@
 					$result=$query->fetchAll();
 
 					return $this->mapByDate($result);
+				
+			} catch(PDOException $Exception) {
+			
+				throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+			}
+
+		}
+
+		public function getByScheduleIdEdit($id){
+
+			try {
+
+					$sql = "SELECT * FROM schedules_x_locations INNER JOIN locations ON locations.id = schedules_x_locations.location_id WHERE schedules_x_locations.schedule_id = :id";
+					
+					$obj_pdo = new Connection();
+
+					$connection = $obj_pdo->connect();
+					$connection->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES,true);
+					$query = $connection->prepare($sql);
+					$query->bindParam(":id", $id);
+					$query->execute();
+
+					$result=$query->fetchAll();
+
+					return $this->mapByDateForEdit($result);
 				
 			} catch(PDOException $Exception) {
 			
@@ -236,6 +291,17 @@
 				return new Location($p['schedules_x_locations.id'],$p['locations.name'],$p['schedules_x_locations.total_quantity'],$p['schedules_x_locations.surplus'],$p['schedules_x_locations.price']);
 			}, $locations);
 		}
+
+		public function mapByDateForEdit($objects)
+		{
+			
+			$locations = is_array($objects) ? $objects : [];
+			return array_map(function($p){
+				return new Location($p['locations.id'],$p['locations.name'],$p['schedules_x_locations.total_quantity'],$p['schedules_x_locations.surplus'],$p['schedules_x_locations.price']);
+			}, $locations);
+		}
+
+
 
 	}
 

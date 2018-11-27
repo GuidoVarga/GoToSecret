@@ -97,7 +97,7 @@ class AdminEventController{
 
 	public function delete(){
 
-		$id=$_POST['id'];
+		$id=$_POST['event_id'];
 
 		$this->dao->delete($id);
 

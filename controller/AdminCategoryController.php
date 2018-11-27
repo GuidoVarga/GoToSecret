@@ -57,6 +57,7 @@
 		public function add($name){
 			$category = new EventCategory(0,$name);
 			$this->dao->add($category);
+			header('Location: http://'.HOST_INTERNET.'/'.DIRECTORY.'/AdminCategory');
 		}
 
 		public function edit($id,$name){
