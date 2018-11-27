@@ -11,7 +11,7 @@
 	use dao\dbDao\CityDao as CityDao;
 	use dao\dbDao\PlaceDao as PlaceDao;
 	use dao\Singleton as Singleton;
-
+use controller\Middleware as Middleware;
 	Autoload::start();
 
 	class AdminCityController{
@@ -19,6 +19,8 @@
 		private $cityDao;
 
 		function __construct(){
+			$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();
 			$this->cityDao=CityDao::getInstance();
 		}
 

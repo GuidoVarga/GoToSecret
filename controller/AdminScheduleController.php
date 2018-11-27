@@ -18,7 +18,7 @@
 	use dao\dbDao\EventDao as EventDao;
 	use dao\dbDao\ScheduleDao as ScheduleDao;
 	use dao\Singleton as Singleton;
-
+use controller\Middleware as Middleware;
 	Autoload::start();
 
 	class AdminScheduleController{
@@ -31,6 +31,8 @@
 		private $eventDao;
 
 		function __construct(){
+			$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();
 			$this->placeDao=PlaceDao::getInstance();
 			$this->locationDao=LocationDao::getInstance();
 			$this->artistDao=ArtistDao::getInstance();

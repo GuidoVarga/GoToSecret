@@ -18,10 +18,6 @@
                                             <span class="d-md-none">Fech.</span>
                                         </th>
                                         <th>
-                                            <span class="d-none d-md-block">Artista</span>
-                                            <span class="d-md-none">Art.</span>
-                                        </th>
-                                        <th>
                                             <span class="d-none d-md-block">Plaza</span>
                                             <span class="d-md-none">Pla.</span>
                                         </th>
@@ -40,32 +36,44 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <td>
-                                           <label for="">Puto</label>
-                                        </td>    
-                                        <td>
-                                           <label for="">Puto</label>
-                                        </td>   
-                                        <td>
-                                           <label for="">Puto</label>
-                                        </td>   
-                                        <td>
-                                           <label for="">Puto</label>
-                                        </td>   
-                                        <td>
-                                           <label for="">Puto</label>
-                                        </td>   
-                                        <td>
-                                           <label for="">Puto</label>
-                                        </td>   
-                                        <td>
-                                           <label for="">Puto</label>
-                                        </td>   
+
+                                        <?php if(isset($cart)){
+
+
+                                            foreach ($cart as $orderLine) {
+                                                ?>
+                                            <tr>
+                                                <td>
+                                                 <label for=""><?php echo $orderLine->getEvent()->getName()?></label>
+                                                </td>  
+                                                <td>
+                                                 <label for=""><?php echo $orderLine->getSchedule()->getDay()?></label>
+                                                </td>
+                                                <td>
+                                                 <label for=""><?php echo $orderLine->getLocation()->getName()?></label>
+                                                </td>
+                                                <td>
+                                                 <label for=""><?php echo $orderLine->getQuantity()?></label>
+                                                </td>
+                                                 <td>
+                                                 <label for=""><?php echo $orderLine->getLocation()->getPrice()?></label>
+                                                </td>
+                                                <td>
+                                                 <label for=""><?php echo $orderLine->getPrice()?></label>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            }
+                                        }
+                                          ?>
+                                       
                                     <tr style="background-color: #fafafa; color #575757; font-size:2rem;font-weight: 400;text-transform: uppercase; ">
                                         <td colspan="5"></td>
                                         <td align="right">TOTAL</td>
                                         <td align="right">
-                                            $0,00
+                                            $<?php if(isset($total)){
+                                                echo $total;
+                                            }?>
                                         </td>
                                         <td></td>
                                     </tr>

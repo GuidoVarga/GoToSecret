@@ -9,6 +9,7 @@
 	use models\EventCategory as EventCategory;
 	use dao\dbDao\EventCategoryDao as EventCategoryDao;
 	use dao\Singleton as Singleton;
+	use controller\Middleware as Middleware;
 
 	Autoload::start();
 
@@ -18,6 +19,8 @@
 		private $categories;
 
 		function __construct(){
+			$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();
 			$this->dao=EventCategoryDao::getInstance();
 			$this->categories = $this->getCategories();
 		}

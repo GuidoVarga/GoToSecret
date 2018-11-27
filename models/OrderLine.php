@@ -8,16 +8,23 @@ class OrderLine
     private $tickets;
     private $schedule;
     private $location;
+    private $event;
    
-    function __construct($id,$quantity,$price,$schedule,$location)
+    function __construct($id,$quantity,$price,$schedule,$location,$event)
     {
         $this->id=$id;
         $this->quantity=$quantity;
-        $this->price=$price;
         $this->schedule=$schedule;
         $this->location=$location;
+        $this->event=$event;
         $this->tickets = array();
        
+        if($price){
+             $this->price=$price;
+        }else{
+             $this->price=$quantity*$location->getPrice();
+        }
+
     }
 
     function getId(){
@@ -55,4 +62,27 @@ class OrderLine
         return $this->tickets;
     }
 
+    function setEvent($event){
+        $this->event=$event;
+    }
+
+    function getEvent(){
+        return $this->event;
+    }
+
+    function setSchedule($schedule){
+        $this->schedule=$schedule;
+    }
+
+    function getSchedule(){
+        return $this->schedule;
+    }
+
+    function setLocation($location){
+        $this->location=$location;
+    }
+
+    function getLocation(){
+        return $this->location;
+    }
 }

@@ -8,7 +8,7 @@
 	use dao\dbDao\LocationDao as LocationDao;
 	use models\Event as Event;
 	use models\OrderLine as OrderLine;
-
+use controller\Middleware as Middleware;
 	Autoload::start();
 
 
@@ -20,6 +20,8 @@
 		private $locationDao;
 
 		public function __construct(){
+			$middleware = Middleware::getInstance();
+			$middleware->checkUser();
 			//$this->cartController = new cartController();
 			$this->scheduleDao = ScheduleDao::getInstance();
 			$this->eventDao = EventDao::getInstance();
@@ -27,6 +29,8 @@
 		}	
 
 		public function index(){
+			
+			//session_destroy();
 
 			$scheduleId=$_GET['id'];
 			$eventId=$_POST['event_id'];
@@ -49,6 +53,7 @@
 
 			session_start();
 
+
 			$scheduleId=$_POST['schedule_id'];
 			$eventId=$_POST['event_id'];
 			$quantity=$_POST['quantity'];
@@ -68,15 +73,13 @@
 				$cart=array();
 			}
 
-			$orderLine = new OrderLine(0,$quantity,0,$schedule,$location);
-			var_dump($orderLine);
+			$orderLine = new OrderLine(0,$quantity,0,$schedule,$location,$event);
+		
 			array_push($cart, $orderLine);
 
 			$_SESSION['cart']=$cart;
 
-			echo '<pre>';
-			var_dump($_SESSION['cart']);
-			echo '</pre>';
+		
 
 		}
 

@@ -11,7 +11,7 @@ use models\EventCategory as EventCategory;
 use dao\dbDao\EventDao as EventDao;
 use dao\dbDao\EventCategoryDao as EventCategoryDao;
 use dao\Singleton as Singleton;
-
+use controller\Middleware as Middleware;
 Autoload::start();
 
 class AdminEventController{
@@ -20,6 +20,8 @@ class AdminEventController{
 	private $eventCategoryDao;
 
 	function __construct(){
+		$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();
 		$this->dao=EventDao::getInstance();
 		$this->eventCategoryDao=eventCategoryDao::getInstance();
 	}

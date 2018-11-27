@@ -259,7 +259,7 @@
 						data: parametros,
 						success : function (response){
 							console.log(response);
-							//redirect('');		
+							redirect('/GoToSecret/AdminEvent');		
 							
 						}
 					});
