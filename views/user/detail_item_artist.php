@@ -16,7 +16,7 @@
         <div class="col-12">
             <div class="bg-white">
                 <article class="card-body">
-                    <h3 class="card-title mb-3 mx"><?php echo $artist->getName() ?> - Próximos Shows</h3>
+                    <h3 class="card-title mb-3 mx"><?php echo $artist->getName() ?> - Eventos</h3>
                     <hr>
                     <div class=" card-text row">
                         <?php
@@ -38,7 +38,7 @@
                                                     </dd>
                                                     </dl>
                                              </div>
-                                        <a href="#" class="btn btn-all">+ INFO</a>
+                                        <a href="<?php echo 'EventDetail?id='.$event->getId() ?>" class="btn btn-all">+ INFO</a>
                                       </div>
                                     </div>
                                 </div>

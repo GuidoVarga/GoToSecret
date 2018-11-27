@@ -195,7 +195,6 @@ class EventDao extends Singleton implements iDao{
 			$query->execute();
 
 			$result=$query->fetchAll();
-			var_dump($result);
 			return $this->mapByArtist($result);
 		}
 		catch(PDOException $Exception) {
@@ -327,12 +326,22 @@ class EventDao extends Singleton implements iDao{
 
 	public function mapByArtist($objects){
 		$events = is_array($objects) ? $objects : [];
-		return array_map(function($e){
-			return new Event($e['events.id'],$e['events.name'],$e['events.description'],$e['events.img'],$this->eventCategoryDao->get($e['events.event_category_id']));
-		},$events);
+		$array = array();
 
+		foreach ($events as $e) {
+
+			$event = new Event($e['events.id'],$e['events.name'],$e['events.description'],$e['events.img'],$this->eventCategoryDao->get($e['events.event_category_id']));
+			if(!empty($array)){
+				$lastEvent = array_values(array_slice($array, -1))[0];
+				if($lastEvent->getId()!=$event->getId()){
+					array_push($array, $event);
+				}
+			}else{
+				array_push($array, $event);
+			}
+		}
+		return $array;
 	}
-
 }
 
 

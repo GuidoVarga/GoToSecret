@@ -48,7 +48,7 @@
                                                         </dd>
                                                         </dl>
                                                 </div>
-                                            <a href="#" class="btn btn-all">+ INFO</a>
+                                            <a href="<?php echo 'EventSpecific?id='.$event->getId() ?>" class="btn btn-all">+ INFO</a>
                                         </div>
                                         </div>
                                     </div>
