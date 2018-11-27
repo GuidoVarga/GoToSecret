@@ -11,7 +11,7 @@
 	use dao\dbDao\PlaceDao as PlaceDao;
 	use dao\dbDao\EventCategoryDao as EventCategoryDao;
 	use dao\Singleton as Singleton;
-
+use controller\Middleware as Middleware;
 	Autoload::start();
 
 	class AdminController{
@@ -22,6 +22,8 @@
 		private $eventCategoryDao;
 
 		function __construct(){
+			$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();
 			$this->artistDao=ArtistDao::getInstance();
 			$this->eventDao=EventDao::getInstance();
 			$this->placeDao=PlaceDao::getInstance();	

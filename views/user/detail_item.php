@@ -48,7 +48,11 @@
                                                         </dd>
                                                         </dl>
                                                 </div>
-                                            <a href="<?php echo 'EventSpecific?id='.$event->getId() ?>" class="btn btn-all">+ INFO</a>
+
+                                            <form action="<?php echo 'Schedule?id='.$schedule->getId()?>" method="POST">
+                                            <input value="<?php echo $event->getId()?>" name="event_id" hidden>
+                                            <button type="submit" class="btn btn-all">+ INFO</button>
+                                             </form>
                                         </div>
                                         </div>
                                     </div>

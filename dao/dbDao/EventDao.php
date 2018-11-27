@@ -80,6 +80,30 @@ class EventDao extends Singleton implements iDao{
 
 	}
 
+	public function getOnlyWithCategory($id){
+
+		try {
+			$sql = "SELECT * FROM events WHERE id=:id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+		
+			$query = $connection->prepare($sql);
+			$query->bindParam(":id", $id);
+
+			$query->execute();
+
+			$result=$query->fetchAll();
+			return $this->mapOnlyOneWithoutSchedules($result);
+
+		} 
+		catch(PDOException $Exception) {
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+		}
+
+	}
+
 	public function getByDate($date){
 
 		try {
@@ -342,6 +366,18 @@ class EventDao extends Singleton implements iDao{
 		}
 		return $array;
 	}
+
+	public function mapOnlyOneWithoutSchedules($array){
+
+		if(isset($array)){
+			$e = $array[0];
+			$event = new Event($e['id'],$e['name'],$e['description'],$e['img'],$this->eventCategoryDao->get($e['event_category_id']));
+
+			return $event;
+		}
+
+	}
+
 }
 
 

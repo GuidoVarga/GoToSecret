@@ -4,7 +4,7 @@
 
 	use config\Autoload as Autoload;
 	use dao\dbDao\EventDao as EventDao;
-
+use controller\Middleware as Middleware;
 	Autoload::start();
 
 
@@ -13,6 +13,8 @@
 		private $eventDao;
 
 		public function __construct(){
+			$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();
 			$this->eventDao=EventDao::getInstance();
 			
 		}	

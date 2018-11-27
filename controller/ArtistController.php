@@ -14,6 +14,7 @@
 		
 
 		function __construct(){
+		
 			$this->dao=ArtistDao::getInstance();
 		}
 

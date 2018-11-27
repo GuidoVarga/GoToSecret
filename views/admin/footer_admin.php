@@ -257,8 +257,9 @@
 						url: 'update',
 						type: 'POST',
 						data: parametros,
-						success : function (){
-							redirect('');		
+						success : function (response){
+							console.log(response);
+							redirect('/GoToSecret/AdminEvent');		
 							
 						}
 					});
@@ -455,11 +456,11 @@
     		$.ajax({
 
 						//Json
-						url: 'delete',
+						url: 'AdminEvent/delete',
 						type: 'POST',
 						data: parametros,
-						success : function (){
-							
+						success : function (response){
+							console.log(response);
 							redirect('');		
 							
 						}

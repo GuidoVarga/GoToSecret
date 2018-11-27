@@ -9,6 +9,7 @@
 	use models\Artist as Artist;
 	use dao\dbDao\ArtistDao as ArtistDao;
 	use dao\Singleton as Singleton;
+	use controller\Middleware as Middleware;
 
 	Autoload::start();
 
@@ -17,6 +18,8 @@
 		private $artistDao;
 
 		function __construct(){
+			$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();
 			$this->artistDao=ArtistDao::getInstance();
 		}
 

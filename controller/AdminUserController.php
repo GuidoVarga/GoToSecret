@@ -9,7 +9,7 @@
 	use models\Artist as Location;
 	use dao\dbDao\LocationDao as LocationDao;
 	use dao\Singleton as Singleton;
-
+use controller\Middleware as Middleware;
 	Autoload::start();
 
 	class AdminLocationController{
@@ -17,6 +17,8 @@
 		private $userDao;
 
 		function __construct(){
+			$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();
 			$this->dao=LocationDao::getInstance();
 		}
 
