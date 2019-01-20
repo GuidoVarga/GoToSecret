@@ -58,6 +58,8 @@ use controller\Middleware as Middleware;
 
 		public function add(){
 
+		
+
 			$name=$_POST['name'];
 
 			$city = new City(0,$name);

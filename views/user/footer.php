@@ -152,17 +152,20 @@
 
                 function searchCategory() {
                   var input, filter, cards, cardContainer, h5, title, i;
-                  input = document.getElementById("search");
+                  var input = document.getElementById("search");
                   console.log(input.value);
-                  filter = input.value.toUpperCase();
-                  cardContainer = document.getElementById("myItems");
-                  cards = cardContainer.getElementsByClassName("contener-card");
+                  var filter = input.value.toUpperCase();
+                  var cardContainer = document.getElementById("myItems");
+                  var cards = cardContainer.getElementsByClassName("contener-card");
                   for (i = 0; i < cards.length; i++) {
                       title = cards[i].querySelector(".card-body p");
                       if (title.innerText.toUpperCase().indexOf(filter) > -1) {
-                          cards[i].style.display = "";
+                          //cards[i].style.display = "";
+                          cards[i].classList.remove('fade');
                       } else {
-                          cards[i].style.display = "none";
+                          //cards[i].style.display = "none";
+                          cards[i].classList.add('fade');
+                      
                       }
                   }
                 }

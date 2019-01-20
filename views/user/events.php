@@ -26,7 +26,7 @@
 		<div class="row" id="myItems">
 			<?php if(isset($events)){
 				foreach ($events as $event) {?>
-			<div class="col-12 col-md-6 col-lg-6 contener-card">
+			<div class="event-card col-12 col-md-6 col-lg-6 contener-card">
 				<div class="card mt-5 mx-auto ">
 					<img class="card-img-top" src="<?php echo IMAGES.$event->getImg()?>" alt="Card image cap">
 					<div class="card-body">

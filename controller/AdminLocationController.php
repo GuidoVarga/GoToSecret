@@ -57,7 +57,11 @@ use controller\Middleware as Middleware;
 		}
 
 
-		public function add(){}
+		public function add($name){
+			$location = new Location($id,$name,null,null,null);
+			$this->dao->add($location);
+			header('Location: http://'.HOST_INTERNET.'/'.DIRECTORY.'/AdminLocation');
+		}
 
 		public function edit($id,$name){
 

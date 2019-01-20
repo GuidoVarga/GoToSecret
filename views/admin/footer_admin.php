@@ -221,8 +221,8 @@
 						url: 'save',
 						type: 'POST',
 						data: parametros,
-						success : function (){
-							redirect('');		
+						success : function (rta){
+							console.log(rta);	
 						}
 					});
 		}

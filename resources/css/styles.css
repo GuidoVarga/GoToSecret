@@ -179,6 +179,14 @@ footer{
     color: #aaa;
 }
 
+.event-card {
+    opacity: 1;
+    transition: 1s;
+}
+
+.fade {
+    opacity: 0;
+}
 
  
 

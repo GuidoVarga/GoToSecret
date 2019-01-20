@@ -133,7 +133,7 @@ use controller\Middleware as Middleware;
 			$subEventsArray = $_POST['subEvents'];
 			$subEvents=array();
 			foreach ($subEventsArray as $s) {
-				$subEvent = new SubEvent(0,new Artist($s['artist_id'],null,null),$s['start_hour'],$s['finish_hour']);
+				$subEvent = new SubEvent(0,new Artist($s['artist_id'],null,null,null),$s['start_hour'],$s['finish_hour']);
 				array_push($subEvents, $subEvent);
 			}
 
@@ -172,7 +172,7 @@ use controller\Middleware as Middleware;
 			$subEventsArray = $_POST['subEvents'];
 			$subEvents=array();
 			foreach ($subEventsArray as $s) {
-				$subEvent = new SubEvent(0,new Artist($s['artist_id'],null,null),$s['start_hour'],$s['finish_hour']);
+				$subEvent = new SubEvent(0,new Artist($s['artist_id'],null,null,null),$s['start_hour'],$s['finish_hour']);
 				array_push($subEvents, $subEvent);
 			}
 
