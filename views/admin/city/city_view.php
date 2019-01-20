@@ -3,8 +3,7 @@
         <?php include(ROOT . 'views/admin/header.php') ?>
         <div class="d-md-flex">
             <?php include(ROOT . 'views/admin/sidebar.php') ?>
-            <div id="page-wrapper" class="p-4">
-                           
+            <div id="page-wrapper" class="p-4">                    
 				<div class="row border-bottom white-bg p-4">
 					<div class="col-12">
 						<h2 class="border-bottom pb-4">Ciudades</h2>

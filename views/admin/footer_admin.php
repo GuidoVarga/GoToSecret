@@ -347,7 +347,6 @@
 				}
 				subEvents.push(subEvent);
 			}
-
 			return subEvents;
 		}
 
@@ -574,7 +573,8 @@
 						}
 					});
 		}
-
+		
+		
 		function deleteCity(event){
 
 			event.preventDefault();

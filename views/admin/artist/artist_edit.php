@@ -4,7 +4,7 @@
         <div class="d-md-flex">
             <?php include(ROOT . 'views/admin/sidebar.php') ?>
             <div id="page-wrapper" class="p-4">
-				<div class="row white-bg p-4">
+				<div class="row border bottom white-bg p-4">
 					<div class="col-12">
 						<h2 class="border-bottom pb-4">Artista: <?php echo $artist->getName()?></h2>
 						<div class=" mt-5">

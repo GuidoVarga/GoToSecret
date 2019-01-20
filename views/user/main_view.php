@@ -4,16 +4,17 @@
 		 <h4>EVENTOS RECIENTES</h4>
 		</div>
 		<div id="carouselExampleControls" class="carousel slide mt-5 mx-auto" data-ride="carousel">
- 			 <div class="carousel-inner">
+			<div class="carousel-inner">
+			<?php $i=0; foreach($events as $event){?>
+			<?php if($i==0){ ?>
     			<div class="carousel-item active">
-     		 		<img class="d-block w-100" src="<?php ROOT ?>resources/images/flyer1.jpg" alt="First slide">
+     		 		<img class="d-block w-100" src="<?php echo IMAGES.$event->getImg()?>" alt="First slide">
     			</div>
+			<?php }else{ ?>	
 				<div class="carousel-item">
-      				<img class="d-block w-100" src="<?php ROOT ?>resources/images/flyer2.jpg" alt="Second slide">
-    			</div>
-			    <div class="carousel-item">
-			      <img class="d-block w-100" src="<?php ROOT ?>resources/images/flyer3.jpg" alt="Third slide">
-			    </div>
+					<img class="d-block w-100" src="<?php echo IMAGES.$event->getImg()?>" alt="Second slide">
+				</div>
+					<?php }  $i++; }?>
   			</div>
 		  	<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
 			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -50,7 +50,7 @@
 
 		public function get($id){
 			try {
-					$sql = "SELECT * FROM cities";
+					$sql = "SELECT * FROM cities WHERE id = :id";
 					
 					$obj_pdo = new Connection();
 

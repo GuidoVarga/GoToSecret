@@ -20,6 +20,7 @@
                                             </div>
                                             <div class="text-right">
                                                 <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule/addView?id=".$eventId?>" class="btn btn-primary"><i class="fas fa-plus"></i> Nueva Fecha</a>
+                                                <a href="javascript:history.go(-1)" class="btn btn-danger mt-2 mt-sm-0"><i class="fa fa-arrow-circle-left"></i> Volver</a>
                                             </div>
 
                                             <div class="table-responsive mt-4">

@@ -46,8 +46,8 @@ use controller\Middleware as Middleware;
 		public function editView(){
 
 			$id=$_GET['id'];
-			var_dump($id);
 			$city=$this->cityDao->get($id);
+			var_dump($city);
 			
 			
 			include(ROOT . 'views\head.php');

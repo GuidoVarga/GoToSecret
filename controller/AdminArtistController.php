@@ -8,6 +8,7 @@
 	use config\Request as Request;
 	use models\Artist as Artist;
 	use dao\dbDao\ArtistDao as ArtistDao;
+	//use dao\listDao\ArtistDao as ArtistDao;
 	use dao\Singleton as Singleton;
 	use controller\Middleware as Middleware;
 
@@ -20,7 +21,9 @@
 		function __construct(){
 			/*$middleware = Middleware::getInstance();
 			$middleware->checkAdmin();*/
+
 			$this->artistDao=ArtistDao::getInstance();
+			/*$this->artistDao = new ArtistDao(); LISTA*/ 
 		}
 
 
