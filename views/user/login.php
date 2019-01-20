@@ -4,7 +4,7 @@
             <div class="col-sm-8 col-md-10 col-lg-6">
                 <div class="card">
                     <header class="card-header">
-                        <a href="" class="float-right btn btn-outline-secondary mt-1">Registrarse</a>
+                        <a href="Register" class="float-right btn btn-outline-secondary mt-1">Registrarse</a>
                         <h4 class="card-title mt-2 text-left">Iniciar Sesión</h4>
                     </header>
                     <article class="card-body">

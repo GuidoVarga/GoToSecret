@@ -20,8 +20,8 @@ class AdminEventController{
 	private $eventCategoryDao;
 
 	function __construct(){
-		$middleware = Middleware::getInstance();
-			$middleware->checkAdmin();
+		/*$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();*/
 		$this->dao=EventDao::getInstance();
 		$this->eventCategoryDao=eventCategoryDao::getInstance();
 	}
@@ -138,7 +138,7 @@ class AdminEventController{
 				if(in_array($fileExtension, $extensionsAllowed))
 				{
 
-					if($width <= 2000 && $height <=2000) 
+					if($width <= 960 && $height <=400) 
 					{
 						if (move_uploaded_file($_FILES["img"]["tmp_name"], $file)) 																		
 						{

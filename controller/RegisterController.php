@@ -1,8 +1,8 @@
-<?php namespace Controladores;
+<?php namespace Controllers;
 
 
 	require_once(ROOT.'Config\Autoload.php');
-	require_once(ROOT.'Facebook\Config.php');
+	//require_once(ROOT.'Facebook\Config.php');
 
 	use Config\Autoload as Autoload;
 	use Facebook\Config as Config;
@@ -16,7 +16,7 @@
 	use models\Account as Account;
 	use models\Role as Role;
 
-	class RegistroControlador{
+	class RegisterController{
 
 		private $userDao;
 

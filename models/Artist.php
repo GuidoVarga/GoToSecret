@@ -14,7 +14,6 @@ class Artist
         $this->name=$name;
         $this->img=$img;
         $this->description=$description;
-      
     }
 
 

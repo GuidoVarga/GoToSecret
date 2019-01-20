@@ -1,7 +1,9 @@
-<?php namespace dao\listDao
+<?php namespace dao\listDao;
 
+use config\Autoload as Autoload;
+use models\Artist as Artist;
 
-	class ArtistDao implements iDao{
+	class ArtistDao {
 
 		private $list;
 
@@ -14,9 +16,11 @@
 	    {
 	        
 	        if (!isset($_SESSION['ArtistList'])) {
+				
 	            $_SESSION['ArtistList'] = array();
 	        }
-	        return $_SESSION['ArtistList'];
+			return $_SESSION['ArtistList'];
+			
 	    }
 	    
 	    public function setSessionArtist($value)
@@ -36,13 +40,19 @@
 			return null;
 		}
 
+		public function getAll(){
+
+			if (!isset($_SESSION['ArtistList'])) {
+				$_SESSION['ArtistList'] = array();
+	        }
+	        return $_SESSION['ArtistList'];
+		}
+
 		function add($object){
 
 			$this->list=$this->getSessionArtist();
-	        array_push($this->list, $artist);
-	        $this->setSessionArtist($this->list);
-	      //  print_r($this->list);
-
+	        array_push($this->list, $object);
+			$this->setSessionArtist($this->list);
 		}
 
 		function delete($id){
@@ -72,10 +82,6 @@
 
 
 		}
-
-
-
-
 	}
 
 

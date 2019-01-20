@@ -19,8 +19,8 @@ use controller\Middleware as Middleware;
 		private $cityDao;
 
 		function __construct(){
-			$middleware = Middleware::getInstance();
-			$middleware->checkAdmin();
+			/*$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();*/
 			$this->cityDao=CityDao::getInstance();
 		}
 
@@ -46,8 +46,9 @@ use controller\Middleware as Middleware;
 		public function editView(){
 
 			$id=$_GET['id'];
-
 			$city=$this->cityDao->get($id);
+			var_dump($city);
+			
 			
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\admin\city\city_edit.php');

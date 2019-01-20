@@ -13,8 +13,8 @@ use controller\Middleware as Middleware;
 		private $eventDao;
 
 		public function __construct(){
-			$middleware = Middleware::getInstance();
-			$middleware->checkAdmin();
+			/*$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();*/
 			$this->eventDao=EventDao::getInstance();
 			
 		}	
@@ -22,7 +22,7 @@ use controller\Middleware as Middleware;
 		public function index(){
 			$events=$this->eventDao->getAll();
 			include(ROOT . 'views\head.php');
-			include(ROOT . 'views\admin\test.php');
+			include(ROOT . 'views\admin\check.php');
 			include(ROOT . 'views\admin\footer_admin.php');
 			
 		}

@@ -347,7 +347,6 @@
 				}
 				subEvents.push(subEvent);
 			}
-
 			return subEvents;
 		}
 
@@ -511,6 +510,7 @@
 		}
 
 		function addArtist(event){
+			
 			event.preventDefault();
 
 			let name = document.getElementById('name').value;
@@ -525,7 +525,7 @@
    
 			formData.append("name", name);
 			formData.append("description", description);
-			//formData.append("img", img.files[0]);
+			formData.append("img", img.files[0]);
 			//formData.append("oldImg", oldImg);
 			//formData.append("checkbox", checkbox);
 
@@ -544,13 +544,37 @@
 							}else{
 
 							console.log(response);
-							alert(response);	
+							alert(response);
 							}
 						}
 					});
 
 		}
 
+		function deleteArtist(event){
+
+			event.preventDefault();
+			const artistId = event.target.value;
+
+			let parametros = {
+							"artist_id": artistId,
+    			};
+
+    		$.ajax({
+
+						//Json
+						url: 'AdminArtist/delete',
+						type: 'POST',
+						data: parametros,
+						success : function (response){
+							console.log(response);
+							redirect('');		
+							
+						}
+					});
+		}
+		
+		
 		function deleteCity(event){
 
 			event.preventDefault();

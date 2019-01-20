@@ -31,8 +31,8 @@ use controller\Middleware as Middleware;
 		private $eventDao;
 
 		function __construct(){
-			$middleware = Middleware::getInstance();
-			$middleware->checkAdmin();
+			/*$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();*/
 			$this->placeDao=PlaceDao::getInstance();
 			$this->locationDao=LocationDao::getInstance();
 			$this->artistDao=ArtistDao::getInstance();
@@ -84,6 +84,7 @@ use controller\Middleware as Middleware;
 			include(ROOT . 'views\admin\footer_admin.php');
 			
 		}
+
 
 		public function add(){}
 

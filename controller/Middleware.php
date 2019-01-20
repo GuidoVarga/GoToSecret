@@ -17,9 +17,10 @@
 
 		public function checkAdmin(){
 			session_start();
-			$user=$_SESSION['user'];
-			if(!isset($user)){
-
+			if(isset($user)){
+				$user=$_SESSION['user'];
+			}
+			else if(!isset($user)){
 				header('location: http://'.HOST.'/'.DIRECTORY.'/Login');
 			}else if($user->getRole()!='admin'){
 				header('location: http://'.HOST.'/'.DIRECTORY.'/Home');
@@ -57,9 +58,12 @@
 
 			session_start();
 
-			$user=$_SESSION['user'];
-			if(isset($user)){
-
+			
+			if(isset($_SESSION['user'])){
+				$user=$_SESSION['user'];
+				
+			}
+			else{
 				header('location: http://'.HOST.'/'.DIRECTORY.'/Home');
 			}
 

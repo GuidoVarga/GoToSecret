@@ -31,7 +31,7 @@
                                                         <?php if(isset($events)){
                                                         foreach ($events as $event) { ?>
                                                             <tr>
-                                                            <th scope="row" style="width:300px"><img style="width:300px; height:150px" src="<?php echo IMAGES.$event->getImg()?>" alt=""></th>
+                                                            <td scope="row" style="width:300px"><img style="width:300px; height:150px" src="<?php echo IMAGES.$event->getImg()?>" alt=""></td>
                                                             <td style="width:90px"><?php echo $event->getName()?></td>
                                                             <td style="width:200px"><?php echo $event->getDescription()?></td>
                                                             <td style="width:90px"><?php echo $event->getEventCategory()->getName()?></td>

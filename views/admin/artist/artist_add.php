@@ -14,7 +14,7 @@
                                             <form action="add" method="POST">
                                                 <div class="border border-grey p-4">
                                                     <div class="text-right">
-                                                        <button onclick="addArtist(event)" type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Crear</button>
+                                                        <button type="submit" onclick="addArtist(event)" class="btn btn-primary"><i class="fas fa-plus"></i> Crear</button>
                                                         <a href="<?php echo "/".DIRECTORY."/"."AdminArtist"?>" class="btn btn-danger mt-2 mt-sm-0"><i class="fa fa-arrow-circle-left"></i> Volver</a>
                                                     </div>
                                                 <div class="row">

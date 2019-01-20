@@ -43,6 +43,12 @@
 
 			return $this->eventDao->getAllWithLimit(8);
 		}
+
+		public function signOut(){
+			session_start();
+			session_destroy();
+			header('Location: http://'.HOST.'/GoToSecret/Home');
+		}
 	}
 
 

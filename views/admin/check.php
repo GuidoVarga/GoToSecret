@@ -21,7 +21,6 @@
                                                 <table class="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                        <th scope="col"><i class="far fa-image"></i></th>
                                                         <th scope="col">Nombre</th>
                                                         <th scope="col">Descripción</th>
                                                         <th scope="col">Categoría</th>
@@ -29,11 +28,12 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody id="myTable">
+                                                    <?php if(isset($events)){
+                                                        foreach ($events as $event) {?>  
                                                         <tr>
-                                                        <th scope="row"></th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>Hola</td>
+                                                        <td><?php echo $event->getName()?></td>
+                                                        <td><?php echo $event->getDescription()?></td>
+                                                        <td><?php echo $event->getEventCategory()->getName()?></td>
                                                         <td>
                                                             <div class="btn-group">
                                                                 <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa fa-search"></i></button>
@@ -66,6 +66,9 @@
                                                             </div>
                                                         </td>
                                                         </tr>
+                                                        <?php
+                                                        }
+                                                        }?>
                                                     </tbody>
                                                 </table>  
                                             </div>

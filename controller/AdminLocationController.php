@@ -16,8 +16,8 @@ use controller\Middleware as Middleware;
 		private $dao;
 
 		function __construct(){
-			$middleware = Middleware::getInstance();
-			$middleware->checkAdmin();
+			/*$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();*/
 			$this->dao=LocationDao::getInstance();
 		}
 
