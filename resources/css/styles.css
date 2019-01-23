@@ -184,17 +184,9 @@ footer{
     transition: 1s;
 }
 
-.fade {
+.fade-card {
     opacity: 0;
 }
-
- 
-
-
-
-
-
-
 
 /*/ LOGIN ADMIN */
 .login_admin{
