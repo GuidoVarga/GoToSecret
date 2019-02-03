@@ -1,4 +1,4 @@
-<?php namespace views;
+<?php namespace views\user;
 
 ?>
 

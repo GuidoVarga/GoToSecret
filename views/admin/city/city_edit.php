@@ -1,4 +1,5 @@
-<body>
+<?php namespace views\admin\city; ?>
+<body class="city_edit">
     <div id="wrapper">
 
 

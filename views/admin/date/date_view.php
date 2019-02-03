@@ -1,4 +1,5 @@
-<body>
+<?php namespace views\admin\date; ?>
+<body class="date_view">
     <div id="wrapper">
 
 

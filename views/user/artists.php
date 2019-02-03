@@ -1,3 +1,4 @@
+<?php namespace views\user; ?>
 <body class="artists">
 	<section class="content_breadcrumb d-flex justify-content-center align-items-center">
 		<div class="contener-center-center">
@@ -18,15 +19,16 @@
 		<div class="row" id="myItems">
 			<?php if(isset($artists)){
 				foreach ($artists as $artist) {?>
-			<div class="col-12 col-md-6 col-lg-6 contener-card">
+			<div class="artist-card col-12 col-md-6 col-lg-6 contener-card">
 				<div class="card mt-5 mx-auto ">
 					<img class="card-img-top" src="<?php echo IMAGES.$artist->getImg()?>" alt="Card image cap">
 					<div class="card-body">
 						<h5 class="card-title"><?php echo $artist->getName();?></h5>
 					</div>
-					<div class="card-footer">
+					<a href="<?php echo 'ArtistDetail?id='.$artist->getId() ?>" class="card-footer btn btn-all font-weight-bold">Ver más</a>
+					<?php /*<div class="card-footer">
 						<a href="<?php echo 'ArtistDetail?id='.$artist->getId() ?>" class="btn btn-all">+info</a>
-					</div>
+					</div> */?>
 				</div>
 			</div>
 

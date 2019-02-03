@@ -1,4 +1,5 @@
-<body>
+<?php namespace views\admin\place; ?>
+<body class="place_edit">
   <div id="wrapper">
 
 

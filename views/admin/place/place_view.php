@@ -1,4 +1,5 @@
-<body>
+<?php namespace views\admin\place; ?>
+<body class="place_view">
     <div id="wrapper">
         <?php include(ROOT . 'views/admin/header.php') ?>
         <div class="d-md-flex">

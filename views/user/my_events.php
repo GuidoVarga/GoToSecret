@@ -1,4 +1,5 @@
-<body class="main_view">
+<?php namespace views\user; ?>
+<body class="my_events">
     <section class="content_breadcrumb d-flex justify-content-center align-items-center">
 		<div class="contener-center-center">
 			<div class="container">

@@ -1,6 +1,4 @@
-<?php namespace views;
-
-?>
+<?php namespace views\user; ?>
 <header class="header mb-4">
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">

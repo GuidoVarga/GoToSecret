@@ -1,3 +1,4 @@
+<?php namespace views\user; ?>
 <body class="events">
 	<section class="content_breadcrumb d-flex justify-content-center align-items-center">
 		<div class="contener-center-center">
@@ -33,9 +34,10 @@
 						<h5 class="card-title"><?php echo $event->getName();?></h5>
 						<p class="card-text"><?php echo $event->getEventCategory()->getName();?></p>
 					</div>
-					<div class="card-footer">
+					<a href="<?php echo 'EventDetail?id='.$event->getId() ?>" class="card-footer btn btn-all font-weight-bold">Ver más</a>
+					<?php /*<div class="card-footer">
 						<a href="<?php echo 'EventDetail?id='.$event->getId() ?>" class="btn btn-all">+info</a>
-					</div>
+					</div>*/ ?>
 				</div>
 			</div>
 			<?php 

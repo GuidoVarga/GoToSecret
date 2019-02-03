@@ -1,4 +1,5 @@
-<body>
+<?php namespace views\admin\category; ?>
+<body class="category_add">
     <div id="wrapper">
 
         <?php include(ROOT . 'views/admin/header.php') ?>

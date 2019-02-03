@@ -1,4 +1,4 @@
-<?php namespace views; ?>
+<?php namespace views\user; ?>
 <!-- Footer -->
 <footer class="page-footer font-small blue-grey lighten-5">
 
@@ -140,12 +140,18 @@
                   filter = input.value.toUpperCase();
                   cardContainer = document.getElementById("myItems");
                   cards = cardContainer.getElementsByClassName("contener-card");
-                  for (i = 0; i < cards.length; i++) {
+                  for (let i = 0; i < cards.length; i++) {
                       title = cards[i].querySelector(".card-body h5.card-title");
                       if (title.innerText.toUpperCase().indexOf(filter) > -1) {
-                          cards[i].style.display = "";
+                        cards[i].style.display = "block";
+                          setTimeout(function() {
+                            cards[i].classList.remove('fade-card');
+                        }, 300); // 1000ms = 1 second
                       } else {
-                          cards[i].style.display = "none";
+                        cards[i].classList.add('fade-card');
+                        setTimeout(function() {
+                            cards[i].style.display = "none";
+                        }, 300); // 1000ms = 1 second
                       }
                   }
                 }
@@ -157,15 +163,20 @@
                   var filter = input.value.toUpperCase();
                   var cardContainer = document.getElementById("myItems");
                   var cards = cardContainer.getElementsByClassName("contener-card");
-                  for (i = 0; i < cards.length; i++) {
+                  for (let i = 0; i < cards.length; i++) {
                       title = cards[i].querySelector(".card-body p");
                       if (title.innerText.toUpperCase().indexOf(filter) > -1) {
                           //cards[i].style.display = "";
-                          cards[i].classList.remove('fade');
+                          cards[i].style.display = "block";
+                          setTimeout(function() {
+                            cards[i].classList.remove('fade-card');
+                        }, 100); // 1000ms = 1 second
+                          
                       } else {
-                          //cards[i].style.display = "none";
-                          cards[i].classList.add('fade');
-                      
+                          cards[i].classList.add('fade-card');
+                          setTimeout(function() {
+                            cards[i].style.display = "none";
+                        }, 300); // 1000ms = 1 second
                       }
                   }
                 }

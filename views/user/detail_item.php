@@ -1,3 +1,4 @@
+<?php namespace views\user; ?>
 <body class="detail_item">
     <section class="content_breadcrumb d-flex justify-content-center align-items-center">
 		<div class="contener-center-center">

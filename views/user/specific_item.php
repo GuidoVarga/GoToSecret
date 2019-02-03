@@ -1,3 +1,4 @@
+<?php namespace views\user; ?>
 <body class="specific_item">
     <section class="content_breadcrumb d-flex justify-content-center align-items-center">
       <div class="contener-center-center">
@@ -9,23 +10,23 @@
 <div class="container">
     <div class="row">
         <div class="col-12 mx-auto">
-            <img class="w-100" src="<?php ROOT ?>resources/images/flyer2.jpg" style="border-style: solid;" >
+            <img class="w-100 mt-4" src="<?php echo IMAGES.$event->getImg()?>" style="border-style: solid;" >
         </div>
     </div>
     <div class="row mt-5">
         <div class="col-10 mx-auto">
             <div class="card">
                 <article class="card-body">
-                    <h3 class="title mb-3 mx"><?php echo $event->getName()?> - <?php echo $schedule->getDay()?></h3>
-                    <p class="price-detail-wrap"> 
+                    <h3 class="title mb-5 mx"><?php echo $event->getName()?> - <?php echo $schedule->getDay()?></h3>
+                    <!--p class="price-detail-wrap"> 
                         <span class="price h3 text-warning"> 
                             <span class="currency">Precios desde $</span><span class="num">500</span>
                         </span> 
-                    </p> <!-- price-detail-wrap .// -->
+                    </p!--> <!-- price-detail-wrap .// -->
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <dl class="categoty-detail">
-                                <dt>Categoría</dt>
+                                <dt >Categoría</dt>
                                 <dd>
                                     <p><?php echo $event->getEventCategory()->getName()?></p>
                                 </dd>
@@ -71,7 +72,7 @@
                                 <dl class="param param-inline">
                                     <dt>Cantidad: </dt>
                                     <dd>
-                                        <input type="number" name="quantity" class="form-control form-control-sm" style="width:70px;" min="1" max="10">
+                                        <input type="number" name="quantity" class="form-control form-control-sm" style="width:70px;" min="1" max="10" required>
                                     </dd>
                                 </dl>  <!-- item-property .// -->
                             </div> <!-- col.// -->
@@ -83,7 +84,7 @@
                                             
                                              <?php foreach ($schedule->getLocations() as $location) {?>                        
                                              <label class="form-check form-check-inline">
-                                                <input name="location" value="<?php echo $location->getId()?>" class="form-check-input" type="radio" name="group1">
+                                                <input name="location" value="<?php echo $location->getId()?>" class="form-check-input" type="radio" name="group1" required>
                                                 <span class="form-check-label"><?php echo $location->getName()?></span>
                                             </label>
                                          <?php }?>

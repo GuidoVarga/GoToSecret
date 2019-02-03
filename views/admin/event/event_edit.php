@@ -1,4 +1,5 @@
-<body>
+<?php namespace views\admin\event; ?>
+<body class="event_edit">
     <div id="wrapper">
         <?php include(ROOT . 'views/admin/header.php') ?>
         <div class="d-md-flex">
