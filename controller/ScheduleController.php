@@ -30,7 +30,6 @@ use controller\Middleware as Middleware;
 
 		public function index(){
 			
-			//session_destroy();
 
 			$scheduleId=$_GET['id'];
 			$eventId=$_POST['event_id'];
@@ -38,6 +37,7 @@ use controller\Middleware as Middleware;
 
 			$schedule = $this->getSchedule($scheduleId);
 			$event = $this->getEvent($eventId);
+			isset($_SESSION['user']) ? $user = $_SESSION['user']: null;
 
 
             include(ROOT . 'views\head.php');
@@ -79,7 +79,10 @@ use controller\Middleware as Middleware;
 
 			$_SESSION['cart']=$cart;
 
-		
+				
+			echo '<pre>';
+			var_dump($cart);
+			echo '</pre>';
 
 		}
 

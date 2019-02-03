@@ -1,6 +1,6 @@
 <body class="cart">
 
-        <section>
+        <section class="section-cart">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -67,15 +67,14 @@
                                         }
                                           ?>
                                        
-                                    <tr style="background-color: #fafafa; color #575757; font-size:2rem;font-weight: 400;text-transform: uppercase; ">
-                                        <td colspan="5"></td>
-                                        <td align="right">TOTAL</td>
-                                        <td align="right">
+                                    <tr style="background-color: rgb(148, 134, 107); color: white; font-size:20px;font-weight: 400;text-transform: uppercase; ">
+                                        <td colspan="4"></td>
+                                        <td align="left">TOTAL</td>
+                                        <td align="left">
                                             $<?php if(isset($total)){
                                                 echo $total;
                                             }?>
                                         </td>
-                                        <td></td>
                                     </tr>
                                     </tbody>
                                 </table>

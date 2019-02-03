@@ -121,8 +121,7 @@ class UserDao extends Singleton implements iDao{
 
 			$result=$query->fetchAll();
 
-			var_dump($result);
-			return $this->map($result);
+			return $this->mapOnlyOne($result);
 
 		} catch(PDOException $Exception) {
 			
@@ -179,6 +178,18 @@ class UserDao extends Singleton implements iDao{
 		return array_map(function($p){
 			return new User($p['users.id'],$p['users.name'],$p['users.last_name'],new Account($p['accounts.id'],$p['accounts.email'],$p['accounts.password'],$p['accounts.token'], new Role($p['roles.id'],$p['roles.description'])));
 		}, $users);
+	}
+
+	public function mapOnlyOne($array)
+	{
+		if(isset($array)){
+			$p = $array[0];
+
+			$user = new User($p['users.id'],$p['users.name'],$p['users.last_name'],new Account($p['accounts.id'],$p['accounts.email'],$p['accounts.password'],$p['accounts.token'], new Role($p['roles.id'],$p['roles.description'])));
+			return $user;
+
+		}
+		
 	}
 
 }

@@ -248,11 +248,15 @@ footer{
     color: #9c9494;
 }
 
+.section-cart {
+    margin-top: 30px;
+}
 
-
-
-
-
+@media screen and (min-width: 480px){
+    .section-cart {
+        min-height: 458px;
+    }
+}
     
 @media screen and (max-width: 486px){
 

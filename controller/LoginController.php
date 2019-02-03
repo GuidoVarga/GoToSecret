@@ -23,7 +23,7 @@ class LoginController{
 	public function index(){
 
 
-		if(isset($_SESSION['usuario']) || isset($_SESSION['admin'])){
+		if(isset($_SESSION['user']) || isset($_SESSION['admin'])){
 			header('Location: http://'.HOST_INTERNET.'/'.DIRECTORIO.'/Home');
 		}
 

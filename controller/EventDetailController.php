@@ -20,16 +20,15 @@
 		}	
 
 		public function index(){
-
+			session_start();
 			$event = $this->getEvent();
-
 			$schedules = $event->getSchedules();
+			isset($_SESSION['user']) ? $user = $_SESSION['user']:null;
 			
             include(ROOT . 'views\head.php');
 			include(ROOT . 'views\user\header.php');
 			include(ROOT . 'views\user\detail_item.php');
 			include(ROOT . 'views\user\footer.php');
-			
 		}
 
 		public function validateSelection(){}
