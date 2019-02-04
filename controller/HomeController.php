@@ -4,6 +4,7 @@
 
 	use config\Autoload as Autoload;
 	use dao\dbDao\EventDao as EventDao;
+	use models\Event as Event;
 
 	Autoload::start();
 
@@ -32,7 +33,6 @@
 			}*/	
 			isset($_SESSION['user']) ? $user = $_SESSION['user']: null;
 			$events=$this->loadPopularEvents();
-
 
             include(ROOT . 'views\head.php');
 			include(ROOT . 'views\user\header.php');

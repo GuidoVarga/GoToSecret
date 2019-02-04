@@ -78,7 +78,7 @@
                                     }
                                         ?>
                                     
-                                <tr style="background-color: rgb(148, 134, 107); color: white; font-size:20px;font-weight: 400;text-transform: uppercase;">
+                                <tr style="background-color: #9c9494; color: white; font-size:20px;font-weight: 400;text-transform: uppercase;">
                                     <td colspan="5"></td>
                                     <td align="left">TOTAL</td>
                                     <td align="left">

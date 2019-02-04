@@ -46,7 +46,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                         <label class="control-label">Descripción</label>
-                                                        <textarea class="form-control" id="description" name="description" rows="3" required=""></textarea>
+                                                        <textarea class="form-control" id="description" name="description" rows="3" maxlength="335" required=""></textarea>
                                                         </div>
                                                     </div>
                                                 </div> 
