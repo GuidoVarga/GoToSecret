@@ -127,7 +127,34 @@ class LocationDao extends Singleton implements iDao{
 
 	}
 
+	public function getByScheduleAndLocation($scheduleId, $locationId){
 
+		try {
+
+			$sql = "SELECT * FROM schedules_x_locations INNER JOIN locations ON locations.id = schedules_x_locations.location_id WHERE schedules_x_locations.location_id = :location_id AND schedules_x_locations.schedule_id = :schedule_id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+			$connection->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES,true);
+			$query = $connection->prepare($sql);
+			$query->bindParam(":location_id ", $locationId);
+			$query->bindParam(":schedule_id ", $scheduleId);
+			var_dump($scheduleId);
+			var_dump($locationId);
+			$query->execute();
+
+			$result=$query->fetchAll();
+
+			return $this->mapByDateOnlyOne($result);
+
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+		}
+
+	}
 
 	public function getByScheduleId($id){
 

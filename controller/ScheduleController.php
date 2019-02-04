@@ -63,7 +63,7 @@ use controller\Middleware as Middleware;
 
 
 
-			$schedule = $this->getSchedule($scheduleId);
+			$schedule = $this->scheduleDao->getOnlySchedule($scheduleId);
 			$event = $this->getEvent($eventId);
 
 			if(isset($_SESSION['cart'])){

@@ -19,7 +19,7 @@ class OrderDao extends Singleton implements iDao{
 
 		try {
 
-			$sql = "INSERT INTO artists (id,name,description) VALUES (null,:name,:description)";
+			$sql = "INSERT INTO orders (id,date,account_id) VALUES (null,:fecha,:account_id)";
 
 			$obj_pdo = new Connection();
 
@@ -32,10 +32,38 @@ class OrderDao extends Singleton implements iDao{
 			$description=$object->getDescription();
 
 
-			$query->bindParam(":name", $name);
-			$query->bindParam(":description", $description);
+			$query->bindParam(":fecha", $date);
+			$query->bindParam(":account_id", $account_id);
 			
 
+			$query->execute();
+			return $connection->lastInsertId();
+			
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+		}
+
+	}
+
+	public function addOrder($object,$account_id){
+
+		try {
+
+			$sql = "INSERT INTO orders (id,date,account_id) VALUES (null,:fecha,:account_id)";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+			$query = $connection->prepare($sql);
+
+			$date=$object->getDate();
+
+			$query->bindParam(":fecha", $date);
+			$query->bindParam(":account_id", $account_id);
+			
 			$query->execute();
 			return $connection->lastInsertId();
 			
