@@ -152,13 +152,15 @@ footer{
   background-size: cover;
 }
 
+
 .card{
     -webkit-box-shadow: 6px 6px 5px 0px rgba(219,219,219,1);
     -moz-box-shadow: 6px 6px 5px 0px rgba(219,219,219,1);
     box-shadow: 6px 6px 5px 0px rgba(219,219,219,1);
+    
 }
 .card-img-top {
-  height: 200px !important; /*esta es la parte importante para que todas tus card-img tengan la misma medida sin importar el tamaño de la imagen*/
+  height: 224px !important; /*esta es la parte importante para que todas tus card-img tengan la misma medida sin importar el tamaño de la imagen*/
   border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px);
 }
@@ -177,6 +179,16 @@ footer{
     text-align: center;
     pointer-events: none;
     color: #aaa;
+}
+
+.main_view .card{
+    opacity: 1;
+    transition: 1s;
+}
+
+.artist-card{
+    opacity: 1;
+    transition: 1s;
 }
 
 .event-card {
@@ -248,11 +260,20 @@ footer{
     color: #9c9494;
 }
 
+.section-cart {
+    margin-top: 30px;
+}
 
+@media screen and (min-width: 480px){
+    .section-cart {
+        min-height: 458px;
+    }
+    
+    .main_view .card{
+        min-height:415.5px;
+    }
 
-
-
-
+}
     
 @media screen and (max-width: 486px){
 
@@ -262,11 +283,13 @@ footer{
     .artists .card{
         width: 20rem;
     }
-
-    .main-view .card{
+    .main_view .card{
         width: 20rem;
     }
-
+    .main_view .card{
+        min-height:478.5px;
+    }
+    
 }
 
 @media screen and (min-width: 1199px){
@@ -278,8 +301,10 @@ footer{
         width: 38rem;
     }
 
-    .main-view .card{
-        width: 38rem;
-    }
+
 
 }
+
+
+
+

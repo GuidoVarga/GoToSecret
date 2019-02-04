@@ -25,6 +25,7 @@
 			//session_destroy();
 
 			$artists = $this->dao->getAll();
+			isset($_SESSION['user']) ? $user = $_SESSION['user']: null;
 
             include(ROOT . 'views\head.php');
 			include(ROOT . 'views\user\header.php');

@@ -15,12 +15,11 @@ use controller\Middleware as Middleware;
 
 		public function index(){
 
-
-			session_start();
 			if(isset($_SESSION['cart'])){
-			$cart=$_SESSION['cart'];
-			$total=$this->getTotal($cart);
-		}
+				$cart=$_SESSION['cart'];
+				$total=$this->getTotal($cart);
+			}
+			isset($_SESSION['user']) ? $user = $_SESSION['user']: null;
             include(ROOT . 'views\head.php');
 			include(ROOT . 'views\user\header.php');
 			include(ROOT . 'views\user\cart.php');

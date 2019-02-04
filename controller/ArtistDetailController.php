@@ -25,6 +25,7 @@
 
 			$artist = $this->getArtist();
 			$events = $this->eventDao->getEventByArtist($artist->getId());
+			isset($_SESSION['user']) ? $user = $_SESSION['user']: null;
             include(ROOT . 'views\head.php');
 			include(ROOT . 'views\user\header.php');
 			include(ROOT . 'views\user\detail_item_artist.php');

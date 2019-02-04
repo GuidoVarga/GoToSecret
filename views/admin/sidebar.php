@@ -1,3 +1,4 @@
+<?php namespace views\admin; ?>
 <div class="sidebar" role="navigation">
                 <div class="sidebar-nav collapse navbar-collapse show" id="side-menu-wrapper">
                     <ul class="nav navbar-nav navbar-collapse flex-column side-nav list-group" id="side-menu">

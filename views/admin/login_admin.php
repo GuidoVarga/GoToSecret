@@ -1,3 +1,4 @@
+<?php namespace views\admin; ?>
 <body class="login_admin text-center mt-5">
     <form class="form-signin">
       <img class="mb-4 ml-1"  src="<?php ROOT ?>resources/images/logo-black.png" >

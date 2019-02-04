@@ -1,3 +1,4 @@
+<?php namespace views\user; ?>
 <ul class="navbar-nav">
     <li class="nav-item ">
         <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-login" aria-haspopup="true" aria-expanded="false"><i class="fas fa-sign-in-alt"></i>

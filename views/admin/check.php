@@ -1,4 +1,5 @@
-<body class="test">
+<?php namespace views\admin; ?>
+<body class="check">
     <div class="wrapper">
         <?php include(ROOT . 'views/admin/header.php') ?>
         <div class="d-md-flex">

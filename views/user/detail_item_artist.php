@@ -1,4 +1,5 @@
-<body class="detail_item">
+<?php namespace views\user; ?>
+<body class="detail_item_artist">
     <section class="content_breadcrumb d-flex justify-content-center align-items-center">
 		<div class="contener-center-center">
 			<div class="container">

@@ -1,16 +1,15 @@
-
+<?php namespace views\user; ?>
 <ul class="navbar-nav">
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user"></i>
         </a>
         <div class="dropdown-menu text-sm-center text-lg-left" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="">
-                Editar Perfil
-            </a>
-            
+            <a class="dropdown-item" href="Account">
+            <i class="fas fa-user-edit"></i> Mi Perfil
+            </a>            
             <a class="dropdown-item" href="Home/signOut">
-            <i class="fas fa-sign-out-alt"></i>Cerrar Sesion
+            <i class="fas fa-sign-out-alt"></i> Cerrar Sesion
             </a>
         </div>
     </li>

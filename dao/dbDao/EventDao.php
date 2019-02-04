@@ -312,7 +312,7 @@ class EventDao extends Singleton implements iDao{
 	
 		return array_map(function($e){
 
-			$event = new Event($e['id'],$e['name'],'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum, ex vel pretium vehicula, mauris erat tristique metus, et ultricies sapien mi sit amet lectus. Nulla egestas sollicitudin lectus et porttitor.',$e['img'],$this->eventCategoryDao->get($e['event_category_id']));
+			$event = new Event($e['id'],$e['name'],$e['description'],$e['img'],$this->eventCategoryDao->get($e['event_category_id']));
 			$event->setSchedules($this->scheduleDao->get($event->getId()));
 			return $event;
 

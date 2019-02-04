@@ -1,4 +1,5 @@
-<body>
+<?php namespace views\admin\artist; ?>
+<body class="artist_view">
   <div id="wrapper">
         <?php include(ROOT . 'views/admin/header.php') ?>
         <div class="d-md-flex">

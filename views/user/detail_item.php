@@ -1,3 +1,4 @@
+<?php namespace views\user; ?>
 <body class="detail_item">
     <section class="content_breadcrumb d-flex justify-content-center align-items-center">
 		<div class="contener-center-center">
@@ -18,47 +19,55 @@
                     <article class="card-body">
                         <h3 class="card-title mb-3 mx"><?php echo $event->getName()?> - Próximos Shows</h3>
                         <hr>
-                        <div class=" card-text row">
-                            
+                        <div class=" card-text row pl-3">
                             <?php if(isset($schedules)){
-
-                            foreach ($schedules as $schedule) {
-                            ?>
-                        
-                                    <div class="col-12 col-md-6">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h3 class="card-title" style="font-weight: bold; color:#443d3d;"><?php echo $schedule->getPlace()->getName()?></h3>
-                                                <hr>
-                                                <div class="card-text" style="line-height: 20px;">
-                                                        <dl class="place-detail">
-                                                        <dt>Direccion</dt>
-                                                        <dd>
-                                                        <p><?php echo $schedule->getPlace()->getAddress()?></p>
-                                                        </dd>
-                                                        <dt>Ciudad</dt>
-                                                        <dd>
-                                                        <p><?php echo $schedule->getPlace()->getCity()->getName()?></p>
-                                                        </dd>
-                                                        </dl>
-                                                        <dl class="date-detail">
-                                                        <dt>Fecha</dt>
-                                                        <dd>
-                                                        <p><?php echo $schedule->getDay()?></p>
-                                                        </dd>
-                                                        </dl>
+                                if(empty($schedules)){ ?>
+                                    <span class="price h3 text-warning"> 
+                                        <span class="currency">No hay eventos disponibles.</span>
+                                    </span> 
+                                <?php
+                                }
+                                else{
+                                    foreach ($schedules as $schedule) {
+                                        ?>
+                                    
+                                                <div class="col-12 col-md-6">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <h3 class="card-title" style="font-weight: bold; color:#443d3d;"><?php echo $schedule->getPlace()->getName()?></h3>
+                                                            <hr>
+                                                            <div class="card-text" style="line-height: 20px;">
+                                                                    <dl class="place-detail">
+                                                                    <dt>Direccion</dt>
+                                                                    <dd>
+                                                                    <p><?php echo $schedule->getPlace()->getAddress()?></p>
+                                                                    </dd>
+                                                                    <dt>Ciudad</dt>
+                                                                    <dd>
+                                                                    <p><?php echo $schedule->getPlace()->getCity()->getName()?></p>
+                                                                    </dd>
+                                                                    </dl>
+                                                                    <dl class="date-detail">
+                                                                    <dt>Fecha</dt>
+                                                                    <dd>
+                                                                    <p><?php echo $schedule->getDay()?></p>
+                                                                    </dd>
+                                                                    </dl>
+                                                            </div>
+            
+                                                        <form action="<?php echo 'Schedule?id='.$schedule->getId()?>" method="POST">
+                                                        <input value="<?php echo $event->getId()?>" name="event_id" hidden>
+                                                        <button type="submit" class="btn btn-all">+ INFO</button>
+                                                         </form>
+                                                    </div>
+                                                    </div>
                                                 </div>
+                                                <?php
+                                        }
+                                    }
+                                }
 
-                                            <form action="<?php echo 'Schedule?id='.$schedule->getId()?>" method="POST">
-                                            <input value="<?php echo $event->getId()?>" name="event_id" hidden>
-                                            <button type="submit" class="btn btn-all">+ INFO</button>
-                                             </form>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <?php
-                            }
-                            }
+                          
                             ?>
                         </div>
                     </article>

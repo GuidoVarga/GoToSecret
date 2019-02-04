@@ -1,3 +1,4 @@
+<?php namespace views\user; ?>
 <body class="login">
     <div class="container">
         <div class="row justify-content-center mt-2">

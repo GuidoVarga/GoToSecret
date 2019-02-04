@@ -1,4 +1,5 @@
-<body>
+<?php namespace views\admin\location; ?>
+<body class="location_add">
     <div id="wrapper">
 
 

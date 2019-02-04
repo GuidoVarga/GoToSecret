@@ -46,4 +46,8 @@ class User
         return $this->lastName;
     }
 
+    function getAccount() {
+        return $this->account;
+    }
+
 }

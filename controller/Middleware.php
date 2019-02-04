@@ -22,7 +22,7 @@
 			}
 			else if(!isset($user)){
 				header('location: http://'.HOST.'/'.DIRECTORY.'/Login');
-			}else if($user->getRole()!='admin'){
+			}else if($user->getAccount()->getRole()->getDescription()!='admin'){
 				header('location: http://'.HOST.'/'.DIRECTORY.'/Home');
 			}	
 
@@ -32,12 +32,13 @@
 
 			session_start();
 			$user=$_SESSION['user'];
+			
 			if(!isset($user)){
-
 				header('location: http://'.HOST.'/'.DIRECTORY.'/Login');
-			}else if($user->getRole()!='user'){
+			}else if($user->getAccount()->getRole()->getDescription()=='admin'){
 				header('location: http://'.HOST.'/'.DIRECTORY.'/Admin');
 			}	
+			
 		}
 
 		public function checkUserOrAdmin(){

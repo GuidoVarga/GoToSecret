@@ -1,4 +1,5 @@
-<body>
+<?php namespace views\admin\event; ?>
+<body class="event_edit">
     <div id="wrapper">
         <?php include(ROOT . 'views/admin/header.php') ?>
         <div class="d-md-flex">
@@ -56,7 +57,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                         <label class="control-label">Descripción</label>
-                                                        <textarea class="form-control" id="description" name="description" rows="3" required=""><?php echo $event->getDescription()?></textarea>
+                                                        <textarea class="form-control" id="description" name="description" rows="3" maxlength="335" required=""><?php echo $event->getDescription()?></textarea>
                                                         </div>
                                                     </div>
                                                 </div> 

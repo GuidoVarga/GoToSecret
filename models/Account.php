@@ -53,4 +53,8 @@ class Account
         $this->orders=$orders;
     }
 
+    function getRole(){
+        return $this->role;
+    }
+
 }

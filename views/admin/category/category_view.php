@@ -1,4 +1,5 @@
-<body>
+<?php namespace views\admin\category; ?>
+<body class="category_view">
     <div id="wrapper">
 
 
