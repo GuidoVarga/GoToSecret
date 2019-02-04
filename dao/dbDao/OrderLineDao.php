@@ -47,6 +47,41 @@ class OrderLineDao extends Singleton implements iDao{
 
 	}
 
+	public function addOrderLine($object,$orderId, $schedule_x_location_id){
+
+		try {
+
+			$sql = "INSERT INTO order_lines (id,quantity,price,schedule_x_location_id,order_id) VALUES (null,:quantity,:price,:schedule_x_location_id,:order_id)";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+			$query = $connection->prepare($sql);
+
+
+			$quantity=$object->getQuantity();
+			$price=$object->getPrice();
+
+
+			$query->bindParam(":quantity", $quantity);
+			$query->bindParam(":price", $price);
+			$query->bindParam(":order_id", $orderId);
+			$query->bindParam(":schedule_x_location_id", $schedule_x_location_id);
+			
+
+			$query->execute();
+			return $connection->lastInsertId();
+			
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+		}
+
+	}
+
+
 	public function get($id){
 
 		try {

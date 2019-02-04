@@ -15,6 +15,7 @@ class User
     private $name;
     private $lastName;
     private $account;
+    private $orders;
 
     function __construct( $id,$name,$lastName,$account)
     {
@@ -22,6 +23,7 @@ class User
         $this->name = $name;
         $this->lastName = $lastName;
         $this->account = $account;
+        $this->orders= array();
     }
 
     function getId(){
@@ -49,5 +51,10 @@ class User
     function getAccount() {
         return $this->account;
     }
+
+    function getOrders() {
+        return $this->orders;
+    }
+
 
 }
