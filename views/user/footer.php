@@ -159,7 +159,6 @@
                 function searchCategory() {
                   var input, filter, cards, cardContainer, h5, title, i;
                   var input = document.getElementById("search");
-                  console.log(input.value);
                   var filter = input.value.toUpperCase();
                   var cardContainer = document.getElementById("myItems");
                   var cards = cardContainer.getElementsByClassName("contener-card");
@@ -235,6 +234,7 @@
                 function redirect(){
                   window.location.replace("Home");
                 }
+
 
               </script>
 

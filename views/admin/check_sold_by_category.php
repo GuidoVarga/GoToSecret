@@ -1,5 +1,5 @@
 <?php namespace views\admin; ?>
-<body class="check">
+<body class="check_surplus_quantity">
     <div class="wrapper">
         <?php include(ROOT . 'views/admin/header.php') ?>
         <div class="d-md-flex">
@@ -7,7 +7,7 @@
             <div id="page-wrapper" class="p-4">
 				<div class="row white-bg p-4">
 					<div class="col-12">
-						<h2 class="border-bottom pb-4">Cantidad Vendida y Remanente</h2>
+						<h2 class="border-bottom pb-4">Vendido por Categoría</h2>
 						<div class=" mt-5">
                             <div class="col-lg-12">
                                 <div class="wrapper">
@@ -15,26 +15,31 @@
                                         <div class="border border-grey p-4">
                                             <div class="row">
                                                 <div class="form-group group-search mx-auto">
-                                                        <span class="fas fa-search form-control-search"></span>
-                                                        <input class="form-control" id="search" type="text" placeholder="Buscar Evento">
-                            
-                                                </div>  
+                                                    <span class="fas fa-search form-control-search"></span>
+                                                    <select id="searchSoldByCategory" class="form-control">
+                                                        <option value="">Selecciona una Categoría</option>
+                                                        <?php if(isset($categories)){
+                                                                    foreach($categories as $category){?>
+                                                        <option value="<?php echo $category->getName();?>"><?php echo $category->getName();?></option>
+                                                        <?php 
+                                                            }
+                                                        }?>
+                                                    </select>
+                                                </div>
                                                 <table class="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                        <th scope="col">Nombre</th>
-                                                        <th scope="col">Descripción</th>
                                                         <th scope="col">Categoría</th>
+                                                        <th scope="col">Cantidad Vendida en pesos</th>
                                                         <th scope="col"></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="myTable">
-                                                    <?php if(isset($events)){
-                                                        foreach ($events as $event) {?>  
+                                                    <?php if(isset($categories)){
+                                                        foreach ($categories as $category) {?>  
                                                         <tr>
-                                                        <td><?php echo $event->getName()?></td>
-                                                        <td><?php echo $event->getDescription()?></td>
-                                                        <td><?php echo $event->getEventCategory()->getName()?></td>
+                                                        <td><?php echo $category->getName()?></td>
+                                                        <td> $</td>
                                                         <td>
                                                             <div class="btn-group">
                                                                 <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa fa-search"></i></button>
@@ -49,14 +54,11 @@
                                                                         </div>
                                                                         <div class="modal-body">
                                                                         <dl class="detail">
-                                                                            <dt>Cantidad Vendida</dt>
+                                                                            <dt>Dinero Vendido: </dt>
                                                                             <dd>
-                                                                            <p>150</p>
+                                                                            <p>$150</p>
                                                                             </dd>
-                                                                            <dt>Remanente</dt>
-                                                                            <dd>
-                                                                            <p>150</p>
-                                                                            </dd>
+                                                                            
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

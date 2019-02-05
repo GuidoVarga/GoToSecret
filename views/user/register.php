@@ -17,7 +17,7 @@
                                 </div> <!-- form-group end.// -->
                                 <div class="col-12 col-md col-lg form-group">
                                     <label>Apellido</label>
-                                    <input id="apellido" class="form-control" name="apellido" placeholder="Inserta tu Apellido" value="" type="text" required="">
+                                    <input id="apellido" class="form-control" name="lastname" placeholder="Inserta tu Apellido" value="" type="text" required="">
                                 </div> <!-- form-group end.// -->
                             </div>
                             <div class="form-row">

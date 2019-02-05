@@ -37,14 +37,14 @@
                                     <a href="#">Eventos <span class="fa arrow"></span></a>
                                     <ul class="nav-third-level list-group nested">
                                         <li class="list-group-item">
-                                            <a href="<?php echo "/".DIRECTORY."/"."AdminQuery"?>"><i class="fas fa-book"></i> Cantidad Vendida y Remantente</a>
+                                            <a href="<?php echo "/".DIRECTORY."/"."AdminQuery/checkQuantitySurplus"?>"><i class="fas fa-book"></i> Cantidad Vendida y Remantente</a>
                                         </li>
                                         <li class="list-group-item">
+                                            <a href="<?php echo "/".DIRECTORY."/"."AdminQuery/soldByCategory"?>"><i class="fas fa-dollar-sign"></i> Total Vendido por Categoría</a>
+                                        </li>
+                                        <!--li class="list-group-item">
                                             <a href="#"><i class="fas fa-dollar-sign"></i> Total Vendido por Fecha</a>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <a href="#"><i class="fas fa-dollar-sign"></i> Total Vendido por Categoría</a>
-                                        </li>
+                                        </li-->
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>
