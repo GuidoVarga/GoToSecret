@@ -37,13 +37,14 @@
 			include(ROOT.'Vistas\VistaRegistro.php');
 		}
 
-		public function register($nombre,$apellido,$email,$domicilio,$telefono,$password){
+		public function register($name,$lastname,$email,$password){
 
 			$hash=password_hash($password,PASSWORD_DEFAULT);
-			$cuenta= new Cuenta(0,$email, $hash);
-			$cliente= new Cliente(0,$apellido,$nombre,$domicilio,$telefono,$cuenta);
-			$usuarioDao=UsuariosDao::getInstance();
-			$usuarioDao->add($cliente);
+			$account= new Account(0,$email,$hash,1);
+			$user= new User(0,$name,$lastname,$account);
+			$userDao=UserDao::getInstance();
+			$userDao->add($user);
+			$accountDao->add($account);
 
 			header('Location: http://'.HOST_INTERNET.'/'.DIRECTORIO.'/Login');
 		}

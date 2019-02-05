@@ -70,7 +70,8 @@
                                                 <label for=""><?php echo $orderLine->getPrice()?></label>
                                             </td>
                                             <td class="text-center" style="border:0;">
-                                            <button class="btn btn-all btn-sm fas fa-times"></button>
+                                            <button class="btn btn-all btn-sm fas fa-times" onclick="deleteOrderLine(event)" value="<?php echo $orderLine->getId()?>" ></button>     
+
                                             </td>
                                         </tr>
                                     <?php

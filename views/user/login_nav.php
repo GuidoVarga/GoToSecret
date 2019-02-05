@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="col-12 col-md col-lg form-group group-modal">
                                     <span class="fas fa-user form-control-modal"></span>
-                                    <input id="apellido" class="form-control" name="apellido" placeholder="Apellido" value="" type="text" required="">
+                                    <input id="apellido" class="form-control" name="lastname" placeholder="Apellido" value="" type="text" required="">
                                 </div> <!-- form-group end.// -->
                             </div>
                             <div class="form-group group-modal">

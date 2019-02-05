@@ -7,9 +7,21 @@
 	<script src="<?php echo "/".DIRECTORY."/"."resources/js/sb-admin-2.js"?>"> </script>
 	<script src="<?php echo "/".DIRECTORY."/"."resources/js/metisMenu.js"?>"> </script>
   
-  <script>
+  	<script>
 		$(document).ready(function(){
-		$("#search").on("keyup", function() {
+		$("#searchSurplusQuantity").on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			$("#myTable tr").filter(function() {
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			});
+		});
+		});
+	</script>
+
+	<script>
+
+		$(document).ready(function(){
+		$("#searchSoldByCategory").on("change", function() {
 			var value = $(this).val().toLowerCase();
 			$("#myTable tr").filter(function() {
 			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
