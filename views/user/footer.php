@@ -128,7 +128,7 @@
                 <a class="text-primary" href="">We Made Code</a>
               </div>
               <!-- Copyright -->
-              <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+              <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
               <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
               <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
               <script src="https://maxcdn.bootstrapcdn.com/bootlint/latest/bootlint.min.js"></script>
@@ -179,6 +179,44 @@
                       }
                   }
                 }
+
+                function addToCart(event){
+
+                        event.preventDefault();
+                        const scheduleId = location.search.split('id=')[1];
+
+                        let eventId = document.getElementById('event_id').value;
+                        let quantity = document.getElementById('quantity').value;
+                        let locationId = document.querySelector('input[name = "location"]:checked').value;
+
+                        let parametros = {
+                                "schedule_id": scheduleId,
+                                "quantity": quantity,
+                                "location_id": locationId,
+                                "event_id": eventId
+                            };
+
+                        console.log(parametros);
+
+                          $.ajax({
+
+                              //Json
+                              url: 'Schedule/addToCart',
+                              type: 'POST',
+                              data: parametros,
+                              success : function (response){
+                                if(response=='true')
+                                    redirect('/GoToSecret/Cart');
+                                else{
+                                  console.log('error');
+                                  //modal error
+                                }
+
+                                
+                              }
+                            });
+             }
+
               </script>   
               
               <script>

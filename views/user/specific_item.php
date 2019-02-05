@@ -63,7 +63,7 @@
                     </div>
 
                     <hr>
-                    <form action="Schedule/addToCart" method="POST">
+                    <form action="" method="POST">
                         <input name="schedule_id" id="schedule_id" value="<?php echo $schedule->getId()?>" hidden>
                         <input name="event_id" id="event_id" value="<?php echo $event->getId()?>" hidden>
                         <div class="row">
@@ -72,7 +72,7 @@
                                 <dl class="param param-inline">
                                     <dt>Cantidad: </dt>
                                     <dd>
-                                        <input type="number" name="quantity" class="form-control form-control-sm" style="width:70px;" min="1" max="10" required>
+                                        <input type="number" id="quantity" name="quantity" class="form-control form-control-sm" style="width:70px;" min="1" max="10" required>
                                     </dd>
                                 </dl>  <!-- item-property .// -->
                             </div> <!-- col.// -->
@@ -84,7 +84,7 @@
                                             
                                              <?php foreach ($schedule->getLocations() as $location) {?>                        
                                              <label class="form-check form-check-inline">
-                                                <input name="location" value="<?php echo $location->getId()?>" class="form-check-input" type="radio" name="group1" required>
+                                                <input value="<?php echo $location->getId()?>" class="form-check-input" type="radio" name="location" required>
                                                 <span class="form-check-label"><?php echo $location->getName()?></span>
                                             </label>
                                          <?php }?>
@@ -96,7 +96,7 @@
                     </div> <!-- row.// -->
                     <hr>
                     <div class="text-right">
-                        <button href="#" class=" btn btn-all btn-lg mx-auto text-uppercase"> <i class="fas fa-shopping-cart"></i> Agregar al carrito </button>   
+                        <button type="submit" onclick="addToCart(event)" class=" btn btn-all btn-lg mx-auto text-uppercase"> <i class="fas fa-shopping-cart"></i> Agregar al carrito </button>   
                     </div>
                 </form>
             </article>
