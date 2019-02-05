@@ -51,38 +51,38 @@ use controller\Middleware as Middleware;
 
 		public function addToCart(){
 
-			session_start();
-
 
 			$scheduleId=$_POST['schedule_id'];
 			$eventId=$_POST['event_id'];
 			$quantity=$_POST['quantity'];
-			$locationId=$_POST['location'];
+			$locationId=$_POST['location_id'];
+
 
 			$location = $this->locationDao->getByScheduleLocationId($locationId);
 
-
-
-			$schedule = $this->scheduleDao->getOnlySchedule($scheduleId);
-			$event = $this->getEvent($eventId);
-
-			if(isset($_SESSION['cart'])){
-				$cart = $_SESSION['cart'];
-			}else{
-				$_SESSION['cart']=array();
-				$cart=array();
-			}
-
-			$orderLine = new OrderLine(0,$quantity,0,$schedule,$location,$event);
+			if($this->locationDao->validateSubtract($locationId,$quantity)){
 		
-			array_push($cart, $orderLine);
+				$schedule = $this->scheduleDao->getOnlySchedule($scheduleId);
+				$event = $this->getEvent($eventId);
 
-			$_SESSION['cart']=$cart;
+				if(isset($_SESSION['cart'])){
+					$cart = $_SESSION['cart'];
+				}else{
+					$_SESSION['cart']=array();
+					$cart=array();
+				}
 
-				
-			echo '<pre>';
-			var_dump($cart);
-			echo '</pre>';
+				$orderLine = new OrderLine(0,$quantity,0,$schedule,$location,$event);
+			
+				array_push($cart, $orderLine);
+
+				$_SESSION['cart']=$cart;
+
+				echo 'true';
+			}
+			else{
+				echo 'false';
+			}
 
 		}
 

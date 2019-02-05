@@ -299,7 +299,66 @@ class LocationDao extends Singleton implements iDao{
 		}
 
 
-	} 
+	}
+
+	public function validateSubtract($id, $subtractQuantity){
+
+		try {
+
+			$sql = "SELECT surplus FROM schedules_x_locations WHERE schedules_x_locations.id= :id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+			$connection->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES,true);
+			$query = $connection->prepare($sql);
+			$query->bindParam(":id", $id);
+			$query->execute();
+
+			$result=$query->fetchAll();
+
+			$surplus=$result[0][0];
+
+			if($surplus-$subtractQuantity>=0){
+				return true;
+			}
+			else{
+				return false;
+			}
+
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+		}
+
+
+	}
+
+	public function subtract($id, $subtractQuantity){
+
+		try {
+
+			$sql = "UPDATE schedules_x_locations SET surplus=surplus-:quantity WHERE id=:id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+
+			$query = $connection->prepare($sql);
+
+			$query->bindParam(":id", $id);
+			$query->bindParam(":quantity", $subtractQuantity);
+
+			$query->execute();
+
+			return true;
+			
+		} catch(PDOException $Exception) {
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+		}
+	}
 
 	public function map($objects)
 	{

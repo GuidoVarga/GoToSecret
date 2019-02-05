@@ -8,6 +8,7 @@
 	use dao\dbDao\LocationDao as LocationDao;
 	use dao\dbDao\OrderLineDao as OrderLineDao;
 	use models\Order as Order;
+	use \PDOException as PDOException;
 	Autoload::start();
 
 	class CartController {
@@ -61,7 +62,7 @@
 
 		public function empty(){
 			session_start();
-			session_destroy();
+			unset($_SESSION['cart']);
 		}
 
 		public function confirmarCompra(){
@@ -76,16 +77,17 @@
 			$orderId=$this->orderDao->addOrder($order,$user->getAccount()->getId());
 
 			foreach ($cart as $orderLine) {
-				$locationId = $orderLine->getLocation()->getId();
-
-				$this->orderLineDao->addOrderLine($orderLine, $orderId, $locationId);
-
-			}
-			
+				
+					$locationId = $orderLine->getLocation()->getId();
+					$quantity = $orderLine->getQuantity();
+					if($this->locationDao->validateSubtract($locationId,$quantity)){
+						$this->locationDao->subtract($locationId, $quantity);
+						$this->orderLineDao->addOrderLine($orderLine, $orderId, $locationId);
+					}
+					
 		}
 
 }
 
-
-
+}
 ?>
