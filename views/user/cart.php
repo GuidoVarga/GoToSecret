@@ -90,8 +90,51 @@
                                 </tr>
                                 </tbody>
                             </table>
+                           
                         </form>
                     </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-button-cart col-12 col-sm-4 col-md-4 col-xl-2 position-absolute">
+                        <button type="button" data-toggle="modal" data-target="#modalcart"class="btn btn-block btn-all"> CONFIRMAR </button>
+                    </div>
+                    <div id="modalcart" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">¿Estás seguro?</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    
+                                </div>
+                                <div class="modal-body row">
+                                    <div class="col-6">
+                                        <button type="button" class="btn btn-block btn-all"> SI </button>
+                                    </div>
+                                    <div class="col-6">
+                                    <button type="button" class="btn btn-block btn-default"> NO </button>
+                                    </div> 
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="alertcart" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Error</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    
+                                </div>
+                                <div class="modal-body">
+                                    <h6>No se pudo realizar la compra</h6>
+                                </div>
+                            </div>}
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
