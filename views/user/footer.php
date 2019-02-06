@@ -218,6 +218,32 @@
              }
 
               </script>   
+
+              <script>
+                var btn_submit=document.getElementById('btn_register');
+                var input_email=document.getElementById('email');
+                btn_submit.onclick = function(event){
+
+
+                  event.preventDefault();
+                  var name = $('#name-register').val();
+                  var lastname = $('#lastname-register').val();
+                  var email = $('#email-register').val();
+                  var password = $('#password-register').val();
+
+                  if(email!=null){
+                    email=email.toLowerCase();
+
+                    var parametros = {
+                      name : name,
+                      lastname: lastname,
+                      email : email,
+                      password : password
+                    }
+                    getRequest(parametros,'Register/validateEmail',redirect())
+                  }
+                };
+              </script>
               
               <script>
 
@@ -238,8 +264,9 @@
                       email : email,
                       password : password
                     }
-                    getRequest(parametros,'Login/validateLogin',redirect())
+                    getRequest(parametros,'Login/validateLogin',redirect());
                   }
+
                 };
 
                 function getRequest(body,url,callback){

@@ -1,17 +1,16 @@
-<?php namespace Controllers;
+<?php namespace controller;
 
 
 	require_once(ROOT.'Config\Autoload.php');
 	//require_once(ROOT.'Facebook\Config.php');
 
 	use Config\Autoload as Autoload;
-	use Facebook\Config as Config;
-	use Facebook\Facebook as Facebook;
 	use controller\Middleware as Middleware;
 	Autoload::start();
 
 
 	use dao\dbDao\UserDao as UserDao;
+	use dao\dbDao\AccountDao as AccountDao;
 	use models\User as User;
 	use models\Account as Account;
 	use models\Role as Role;
@@ -19,11 +18,12 @@
 	class RegisterController{
 
 		private $userDao;
+		private $accountDao;
 
 		public function __construct(){
-			$middleware = Middleware::getInstance();
-			$middleware->checkNotLogged();
+			
 			$this->userDao = UserDao::getInstance();
+			$this->accountDao = AccountDao::getInstance();
 		}
 
 		public function index(){
@@ -40,23 +40,31 @@
 		public function register($name,$lastname,$email,$password){
 
 			$hash=password_hash($password,PASSWORD_DEFAULT);
-			$account= new Account(0,$email,$hash,1);
-			$user= new User(0,$name,$lastname,$account);
-			$userDao=UserDao::getInstance();
-			$userDao->add($user);
-			$accountDao->add($account);
+			
+			$account= new Account(0,$email,$hash,NULL,1);
+			$idAccount=$this->accountDao->add($account);;
+			$user= new User(0,$name,$lastname,$idAccount);
+			echo $this->userDao->add($user);
+			
 
-			header('Location: http://'.HOST_INTERNET.'/'.DIRECTORIO.'/Login');
+			//header('Location: http://'.HOST_INTERNET.'/'.DIRECTORIO.'/Login');
 		}
 
-	public function validateEmail(){
-	
-		if(isset($_POST['email'])){
-			$email=$_POST['email'];
+		public function validateEmail($name,$lastname,$email,$password){
 		
-		}
-
-		echo $this->userDao->validarEmail($email);
+			/*if(isset($_POST['email'])){
+				$email=$_POST['email'];
+			}*/
+			$validEmail = $this->userDao->getAccountByEmail($email);
+			if(!$validEmail){
+				
+				$this->register($name,$lastname,$email,$password);
+				
+			}
+			else{
+				echo "<script>alert('error')</script>" ;
+			}
+			//echo $this->userDao->validarEmail($email);
 
 		}
 
@@ -133,5 +141,5 @@
 					
 	}
 			*/					
-}
+	}
 ?>
