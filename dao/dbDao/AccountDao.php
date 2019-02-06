@@ -25,7 +25,7 @@ class AccountDao extends Singleton implements iDao{
 
 		try {
 
-			$sql = "INSERT INTO users (id,name,description) VALUES (null,:name,:description)";
+			$sql = "INSERT INTO accounts (id,email,password,token,role_id) VALUES (null,:email,:password,:token,:role_id)";
 
 			$obj_pdo = new Connection();
 
@@ -34,14 +34,17 @@ class AccountDao extends Singleton implements iDao{
 			$query = $connection->prepare($sql);
 
 
-			$name=$object->getName();
-			$description=$object->getDescription();
+			$email=$object->getEmail();
+			$password =$object->getPassword();
+			$token =$object->getFbToken();
+			$role_id = $object->getRole();
 
 
-			$query->bindParam(":name", $name);
-			$query->bindParam(":description", $description);
+			$query->bindParam(":email", $email);
+			$query->bindParam(":password", $password);
+			$query->bindParam(":token", $token);
+			$query->bindParam(":role_id", $role_id);
 			
-
 			$query->execute();
 			return $connection->lastInsertId();
 			

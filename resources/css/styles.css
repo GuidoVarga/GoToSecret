@@ -246,6 +246,9 @@ footer{
     text-decoration: none;
 }
 
+.form-button-cart{
+    right:0;
+}
 
 
 
@@ -274,6 +277,15 @@ footer{
     }
 
 }
+
+@media screen and (max-width: 991px){
+
+    .form-button-cart{
+        left: 0;
+        right:auto;
+    } 
+}
+
     
 @media screen and (max-width: 486px){
 

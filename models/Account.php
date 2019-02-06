@@ -27,7 +27,9 @@ class Account
         $this->id=$id;
     }
 
-
+    function getFbToken(){
+        return $this->fbToken;
+    }
 
     function getPassword(){
         return $this->password;

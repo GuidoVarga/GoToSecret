@@ -28,7 +28,7 @@ class UserDao extends Singleton implements iDao{
 
 		try {
 
-			$sql = "INSERT INTO users (id,name,description) VALUES (null,:name,:description)";
+			$sql = "INSERT INTO users (id,name,last_name,account_id) VALUES (null,:name,:last_name,:account_id)";
 
 			$obj_pdo = new Connection();
 
@@ -38,11 +38,14 @@ class UserDao extends Singleton implements iDao{
 
 
 			$name=$object->getName();
-			$description=$object->getDescription();
+			$last_name=$object->getLastName();
+			$account_id=$object->getAccount();
 
 
 			$query->bindParam(":name", $name);
-			$query->bindParam(":description", $description);
+			$query->bindParam(":last_name", $last_name);
+			$query->bindParam(":account_id", $account_id);
+			
 			
 
 			$query->execute();
@@ -130,6 +133,7 @@ class UserDao extends Singleton implements iDao{
 		}
 
 	}
+	
 
 	public function delete($id){
 
@@ -138,6 +142,40 @@ class UserDao extends Singleton implements iDao{
 	public function update($object){
 
 	} 
+
+	public function getAccountByEmail($email){
+			
+		try{
+
+			$sql= "SELECT * FROM accounts WHERE accounts.email = :email";
+			
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+			$connection->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES,true);
+			$query=$connection->prepare($sql);
+
+			$query->bindParam(":email",$email);
+
+			$query->execute();
+
+			$resultado=$query->fetchAll();
+
+			if($resultado){
+			return $resultado[0][0];
+			}else{
+				return null;
+			}	
+			
+		}
+		catch(PDOException $Exception) {
+		
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+		
+		}	
+}
+
+
 
 	public function getPasswordByEmail($email){
 			
