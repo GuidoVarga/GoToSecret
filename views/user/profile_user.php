@@ -59,7 +59,7 @@
 <hr>*/  ?>
 
 <body class="profile_user">
-<div class="container">
+  <div class="container">
     <div class="row my-2">
         <div class="col-lg-12 order-lg-2">
             <ul class="nav nav-tabs">
@@ -67,7 +67,7 @@
                     <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Mi Perfil</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" data-target="#messages" data-toggle="tab" class="nav-link">Pedidos</a>
+                    <a href="" data-target="#orders" data-toggle="tab" class="nav-link">Pedidos</a>
                 </li>
               
             </ul>
@@ -113,27 +113,77 @@
                             </div>
                         </form>
                 </div>
-                <div class="tab-pane" id="messages">
-                    <div class="alert alert-info alert-dismissable">
+                <div class="tab-pane" id="orders">
+                    <!--div class="alert alert-info alert-dismissable">
                         <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user.
-                    </div>
-                    <table class="table table-hover table-striped">
-                        <tbody>   
-                                                            
-                            <tr>
-                            <a href="">
-                            <td>
-                                    <span class="float-right font-weight-bold">Fecha</span> Numero de Pedido
+                    </div-->
+                    <div class="table d-table">
+                      <table class="table table-hover table-striped">
+                          <tbody>   
+                                                              
+                              <tr data-toggle="collapse" data-target="#accordion1" class="clickable collapse-row collapsed">
+                                <td>
+                                    <span class="float-right font-weight-bold">19/08/2019</span> 1000
+                                </td> 
+                              </tr>
+                              <tr>
+                                <td colspan="3">
+                                  <table class="table" id="accordion1" class="collapse">
+                                    <thead>
+                                      <th>
+                                        Evento
+                                      </th>
+                                      <th>
+                                        Precio 
+                                      </th>
+                                    </thead>
+                                    <tbody>
+                                    <td>
+                                      Los Guaranies
+                                    </td>
+                                    <td>
+                                      $1000
+                                    </td>
+                                    </tbody>
+                                  </table>
                                 </td>
-                            </a> 
-  
-                            </tr>
-                        </tbody> 
-                    </table>
+                              </tr>
+                              <tr data-toggle="collapse" data-target="#accordion2" class="clickable collapse-row collapsed">
+                                <td>
+                                    <span class="float-right font-weight-bold">20/08/2019</span> 1100
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colspan="3">
+                                  <table class="table" id="accordion2" class="collapse">
+                                    <thead>
+                                      <th>
+                                        Evento
+                                      </th>
+                                      <th>
+                                        Precio 
+                                      </th>
+                                    </thead>
+                                    <tbody>
+                                    <td>
+                                      Ettap Kyle
+                                    </td>
+                                    <td>
+                                      $1000
+                                    </td>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                          </tbody> 
+                      </table>
+                      
+                    
+                         
+                    </div> 
                 </div> 
             </div>
-        </div>
-        
+        </div>    
     </div>
-</div>
+  </div>
 </body>

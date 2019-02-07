@@ -200,6 +200,10 @@ footer{
     opacity: 0;
 }
 
+.collapse-row.collapsed + tr {
+    display: none;
+}
+
 /*/ LOGIN ADMIN */
 .login_admin{
     width: 100%;
