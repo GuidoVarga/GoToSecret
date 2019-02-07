@@ -114,19 +114,50 @@
                         </form>
                 </div>
                 <div class="tab-pane" id="messages">
-                    <div class="alert alert-info alert-dismissable">
+                    <!--div class="alert alert-info alert-dismissable">
                         <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user.
-                    </div>
+                    </div-->
                     <table class="table table-hover table-striped">
+                      <thead>
+                        <th>
+                            N° Pedido
+                        </th> 
+                        <th>
+                            Fecha
+                        </th>
+                      </thead>
                         <tbody>   
-                                                            
+                            <tr data-toggle="collapse" data-target="#accordion1" class="clickable">
+                              <td>
+                                10001
+                              </td>
+                              <td>
+                              19/08/2019
+                              </td>
+                            </tr>
                             <tr>
-                            <a href="">
-                            <td>
-                                    <span class="float-right font-weight-bold">Fecha</span> Numero de Pedido
+                                <td colspan="3">
+                                  <div id="accordion1" class="collapse">
+                                      Evento: Ettap Kyle <br>
+                                      Precio: $1000
+                                  </div>
                                 </td>
-                            </a> 
-  
+                            </tr>
+                            <tr data-toggle="collapse" data-target="#accordion2" class="clickable">
+                              <td>
+                                10001
+                              </td>
+                              <td>
+                              19/08/2019
+                              </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                  <div id="accordion2" class="collapse">
+                                      Evento: Ettap Kyle <br>
+                                      Precio: $1000
+                                  </div>
+                                </td>
                             </tr>
                         </tbody> 
                     </table>
