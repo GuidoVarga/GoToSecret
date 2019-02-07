@@ -45,7 +45,7 @@
                                                         <td><?php echo $schedule->getPlace()->getName().' - '.$schedule->getPlace()->getCity()->getName()?></td>
                                                         <td>
                                                             <div class="btn-group">
-                                                                <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule/editView?id=".$schedule->getId()?>"  class="btn btn-primary btn-sm"><i class="fa fa-edit"> Ver mas</i></a>                            
+                                                                <a href="<?php echo "/".DIRECTORY."/"."AdminSchedule/editView?id=".$schedule->getId()."&eventId=".$event->getId()?>"  class="btn btn-primary btn-sm"><i class="fa fa-edit"> Ver mas</i></a>                            
                                                                 <button onclick="deleteSchedule(event)"  value="<?php echo $schedule->getId()?>" class="btn btn-danger btn-sm fas fa-trash-alt"></button>                                 
                                                             </div>
                                                         </td>

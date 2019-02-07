@@ -70,7 +70,7 @@
                           <div class="form-row mt-5">
                             <div class="form-group col-12 col-md-6">
                               <label class="control-label">Plazas</label>
-                              <select class="form-control" id="location" name="location" >
+                              <select class="form-control" id="location" name="location" onchange="onChangeLocationSelect(event)">
                                 <option value="">Selecciona una plaza</option>
 
                                 <?php if(isset($locations)){
@@ -94,7 +94,7 @@
                             </div>
 
                           </div>
-                          <button id="add-location" class="btn btn-primary" onclick="addLocation(event)" style="font-weight: bold"><i class="fas fa-plus"></i> Agregar Plaza</button>
+                          <button id="add-location" class="btn btn-primary" onclick="addLocation(event)" style="font-weight: bold" disabled="true"><i class="fas fa-plus"></i> Agregar Plaza</button>
                         </div>
                         <div class="col-12 mt-5 mb-3">
                           <h3 style="color:#000">Sub Evento</h3>
@@ -124,7 +124,7 @@
                           <div class="form-row mt-5">
                             <div class="form-group col-12 col-md-6">
                               <label class="control-label">Nombre Artista</label>
-                              <select class="form-control" id="artist" name="artist" >
+                              <select class="form-control" id="artist" name="artist" onchange="onChangeSubEventSelect(event)">
                                 <option value="">Selecciona un Artista</option>
                                  <?php if(isset($artists)){
                                   foreach ($artists as $artist) {?>
@@ -147,7 +147,7 @@
                             </div>
 
                           </div>
-                          <button id="add-subEvent" class="btn btn-primary" onclick="addSubEvent(event)" style="font-weight: bold"><i class="fas fa-plus"></i> Agregar Sub Evento</button>
+                          <button id="add-subEvent" class="btn btn-primary" onclick="addSubEvent(event)" style="font-weight: bold" disabled="true"><i class="fas fa-plus"></i> Agregar Sub Evento</button>
                           <div class="form-row">
 
                           </div>                                                            

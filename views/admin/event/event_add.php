@@ -25,7 +25,7 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label">Nombre Evento</label>
-                                                            <input class="form-control" id="name" name="name" type="text" required="">
+                                                            <input class="form-control" id="name" name="name" type="text" required=""/>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label">Imagen</label>
@@ -33,7 +33,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label">Categoría</label>
-                                                            <select class="form-control" id="category" name="category" >
+                                                            <select class="form-control" id="category" name="category" onchange="onChangeEventAddForm(event)" >
                                                                 <option value="">Selecciona una categoría</option>
                                                                 <?php if(isset($categories)){
                                                                      foreach ($categories as $category) { ?>
