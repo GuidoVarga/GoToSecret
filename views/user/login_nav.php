@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="col-12 col-md col-lg form-group group-modal">
                                     <span class="fas fa-unlock-alt form-control-modal"></span>
-                                    <input type="password" name="password-repeat" class="form-control" id="password-repeat" placeholder="Repetir Contraseña" required>       
+                                    <input type="password" name="password-repeat" class="form-control" id="password-repeat-register" placeholder="Repetir Contraseña" required>       
                                 </div>
                             </div>
                             

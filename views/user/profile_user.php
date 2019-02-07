@@ -92,7 +92,7 @@
                                     <input class="form-control" name="email" type="email" value="<?php echo $user->getAccount()->getEmail();?>">
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <!--div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Password</label>
                                 <div class="col-lg-8">
                                     <input class="form-control" name="password" type="password" value="<?php echo $user->getAccount()->getPassword(); ?>">
@@ -110,7 +110,7 @@
                                     <input type="button" class="btn btn-all" value="Guardar Cambios">
                                     <input type="reset" class="btn btn-default" value="Cancelar">
                                 </div>
-                            </div>
+                            </div-->
                         </form>
                 </div>
                 <div class="tab-pane" id="orders">
