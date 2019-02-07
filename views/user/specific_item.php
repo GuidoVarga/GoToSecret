@@ -72,7 +72,7 @@
                                 <dl class="param param-inline">
                                     <dt>Cantidad: </dt>
                                     <dd>
-                                        <input type="number" id="quantity" name="quantity" class="form-control form-control-sm" style="width:70px;" min="1" max="10" required>
+                                        <input type="number" value="1" id="quantity" name="quantity" class="form-control form-control-sm" style="width:70px;" min="1" max="10" required>
                                     </dd>
                                 </dl>  <!-- item-property .// -->
                             </div> <!-- col.// -->
@@ -84,7 +84,7 @@
                                             
                                              <?php foreach ($schedule->getLocations() as $location) {?>                        
                                              <label class="form-check form-check-inline">
-                                                <input value="<?php echo $location->getId()?>" class="form-check-input" type="radio" name="location" required>
+                                                <input value="<?php echo $location->getId()?>" class="form-check-input" type="radio" name="location" required checked>
                                                 <span class="form-check-label"><?php echo $location->getName()?></span>
                                             </label>
                                          <?php }?>
@@ -106,5 +106,3 @@
 </div> 
 
 </body>
-
-

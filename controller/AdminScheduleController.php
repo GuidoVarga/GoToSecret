@@ -149,7 +149,7 @@ use controller\Middleware as Middleware;
 				$this->locationDao->addLocationSchedule($location,$scheduleId);
 			}
 
-
+			echo 'true';
 		}
 
 

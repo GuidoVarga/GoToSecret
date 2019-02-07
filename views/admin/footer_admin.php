@@ -31,6 +31,36 @@
 	</script>
 
 	<script>
+		
+		function onChangeLocationSelect(event){
+			const button=document.getElementById('add-location');
+			if(event.target.value){
+			 	button.disabled=false;
+			}else{
+				button.disabled=true;
+			}
+		}
+
+		function onChangeEventAddForm(event){
+			const button=document.getElementById('add-location');
+			if(event.target.value){
+			 	button.disabled=false;
+			}else{
+				button.disabled=true;
+			}
+		}
+
+		function onChangeSubEventSelect(event){
+			const button=document.getElementById('add-subEvent');
+			if(event.target.value){
+			 	button.disabled=false;
+			}else{
+				button.disabled=true;
+			}
+		}
+
+		
+
 		/*
 		var btn_submit=document.getElementById('btn_login');
 		var input_email=document.getElementById('email');
@@ -120,7 +150,13 @@
 			var quantity = document.getElementById('quantity').value;
 			var price = document.getElementById('price').value;
 			var tBody = document.getElementById('table-body-locations');
-			addRow([location,quantity,price],tBody);
+
+			if(price && quantity)
+				addRow([location,quantity,price],tBody);
+			else{
+				alert('completar campos');
+				//modal
+			}
 			
 		}
 
@@ -139,7 +175,14 @@
 			var initialHour = document.getElementById('initial-hour').value;
 			var finishHour = document.getElementById('finish-hour').value;
 			var tBody = document.getElementById('table-body-subEvents');
-			addRow([artist,initialHour,finishHour],tBody);
+
+
+			if(initialHour && finishHour)
+				addRow([artist,initialHour,finishHour],tBody);
+			else{
+				alert('completar campos');
+				//modal
+			}
 
 		}
 
@@ -208,7 +251,6 @@
 		function saveSchedule(event){
 			event.preventDefault();
 			const eventId = location.search.split('id=')[1];
-			alert(eventId);
 			let date = document.getElementById('date').value;
 			let place = document.getElementById('place').value;
 
@@ -226,8 +268,6 @@
         	   	"locations" :locations
     			};
 
-    	console.log(parametros);
-
     		$.ajax({
 
 						//Json
@@ -235,7 +275,12 @@
 						type: 'POST',
 						data: parametros,
 						success : function (rta){
-							console.log(rta);	
+							if(rta==='true'){
+								//redirect(´/GoToSecret/AdminSchedule?id=$eventId´);		
+							}else{
+								alert('error');
+								//modal
+							}
 						}
 					});
 		}
@@ -243,7 +288,12 @@
 
 		function updateSchedule(event){
 			event.preventDefault();
-			const scheduleId = location.search.split('id=')[1];
+		
+
+			let searchParams = new URLSearchParams(window.location.search);
+			const eventId=searchParams.get('eventId');
+			const scheduleId=searchParams.get('id');
+			console.log(scheduleId);
 
 			let date = document.getElementById('date').value;
 			let place = document.getElementById('place').value;
@@ -262,8 +312,7 @@
         	   	"locations" :locations
     			};
 
-    	console.log(parametros);
-
+    		
     		$.ajax({
 
 						//Json
@@ -271,11 +320,10 @@
 						type: 'POST',
 						data: parametros,
 						success : function (response){
-							console.log(response);
-							redirect('/GoToSecret/AdminEvent');		
-							
+							redirect('/GoToSecret/AdminSchedule?id='+eventId);		
 						}
 					});
+    		
 		}
 
 
@@ -372,6 +420,7 @@
 			let category = document.getElementById('category').value;
 			let description = document.getElementById('description').value;
 		
+			if(name && img && category && description){
 
 			let parametros = {
 							"name": name,
@@ -399,7 +448,7 @@
        					processData: false,
 						success : function (response){
 							if(response==='ok'){
-								redirect('');
+								redirect('/GoToSecret/AdminEvent');
 							}else{
 
 
@@ -408,7 +457,11 @@
 						}
 					});
 
-
+    		}
+    		else{
+    			alert('complete campos');
+    			//modal
+    		}
 		}
 
 		function updateEvent(event){
@@ -422,7 +475,7 @@
 			let oldImg = document.getElementById('oldImg').value;
 			let checkbox = document.getElementById('oldImg-check').checked;
 
-
+			if(name && category && description && (img || checkbox.checked)){
 
     		let formData = new FormData();
     		formData.append("id", id);
@@ -433,7 +486,6 @@
 			formData.append("oldImg", oldImg);
 			formData.append("checkbox", checkbox);
 
-    	
     		$.ajax({
 
 						//Json
@@ -452,9 +504,13 @@
 							}
 						}
 					});
+    	}
+    	else{
+    		alert('complete campos');
+    		//modal
+    	}
 
-
-		}
+	}
 
 		function deleteEvent(event){
 
