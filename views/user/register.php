@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-block btn-all"> Registrarse </button>
+                                <button type="submit" onclick="registerAjax(event)" class="btn btn-block btn-all"> Registrarse </button>
                             </div> <!-- form-group// -->
                             
                         </form>

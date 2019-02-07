@@ -270,10 +270,46 @@
                   }
               }
 
+              function registerAjax(event){
+
+
+
+                  event.preventDefault();
+                  console.log('hola');
+                  var name = $('#name-register').val();
+                  var lastname = $('#lastname-register').val();
+                  var email = $('#email-register').val();
+                  var password = $('#password-register').val();
+
+                  if(email!=null){
+                    email=email.toLowerCase();
+
+                    var parametros = {
+                      "name" : name,
+                      "lastname": lastname,
+                      "email" : email,
+                      "password" : password
+                    }
+
+                     $.ajax({
+
+                      //Json
+                      url: 'Register/validateEmail',
+                      type: 'POST',
+                      data: parametros,
+                      success : function (response){
+                            console.log(response);
+                            //redirect('/GoToSecret/Order?id='+obj.id+'&order='+obj.token);
+                      }
+                    });
+                  }
+                
+
+              }
 
               </script>   
 
-              <script>
+              <script>/*
                 var btn_submit=document.getElementById('btn_register');
                 var input_email=document.getElementById('email');
                 btn_submit.onclick = function(event){
@@ -297,6 +333,7 @@
                     getRequest(parametros,'Register/validateEmail',redirect())
                   }
                 };
+                */
 
 
                 
@@ -321,7 +358,7 @@
                       email : email,
                       password : password
                     }
-                    getRequest(parametros,'Login/validateLogin',redirect());
+                    getRequest(parametros,'Login/validateLogin',redirect('home'));
                   }
 
                 };
@@ -333,7 +370,7 @@
                   request.onload = () => {
                     if(request.status == 200){
 
-                      if(reqquest.response==true){
+                      if(request.response==true){
                         callback();
                         console.log(request);
                       }

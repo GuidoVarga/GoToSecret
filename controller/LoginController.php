@@ -15,18 +15,18 @@ class LoginController{
 	private $userDao;
 
 	public function __construct(){
-		$middleware = Middleware::getInstance();
-			$middleware->checkNotLogged();
+		//$middleware = Middleware::getInstance();
+		//$middleware->checkNotLogged();
 		$this->userDao = UserDao::getInstance();
 	}
 
 	public function index(){
 
 
-		if(isset($_SESSION['user']) || isset($_SESSION['admin'])){
-			header('Location: http://'.HOST_INTERNET.'/'.DIRECTORIO.'/Home');
+		if(isset($_SESSION['user'])){
+			//echo 'if login';
+			header('Location: http://'.HOST.'/'.DIRECTORY.'/Home');
 		}
-
 
 		include(VIEWS.'head.php');
 		include(VIEWS.'user\header.php');
@@ -58,9 +58,9 @@ class LoginController{
 		$_SESSION['user']=$user;
 
 		if($user->getRole()=='user')
-			header('Location: http://'.HOST_INTERNET.'/'.DIRECTORIO.'/Home');
+			header('Location: http://'.HOST.'/'.DIRECTORY.'/Home');
 		else
-			header('Location: http://'.HOST_INTERNET.'/'.DIRECTORIO.'/Admin');
+			header('Location: http://'.HOST.'/'.DIRECTORY.'/Admin');
 	}
 
 	public function logOut(){

@@ -22,8 +22,8 @@ use controller\Middleware as Middleware;
 		private $eventCategoryDao;
 
 		function __construct(){
-			/*$middleware = Middleware::getInstance();
-			$middleware->checkAdmin();*/
+			$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();
 			$this->artistDao=ArtistDao::getInstance();
 			$this->eventDao=EventDao::getInstance();
 			$this->placeDao=PlaceDao::getInstance();	

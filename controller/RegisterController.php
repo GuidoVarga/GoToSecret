@@ -26,12 +26,7 @@
 			$this->accountDao = AccountDao::getInstance();
 		}
 
-		public function index(){
-
-			session_start();
-			if(isset($_SESSION['usuario'])){
-				header('Location: http://'.HOST_INTERNET.'/'.DIRECTORIO.'/Home');
-			}
+		public function index(){	
 			
 			include(ROOT.'Vistas\header.php');
 			include(ROOT.'Vistas\VistaRegistro.php');
@@ -55,6 +50,7 @@
 			/*if(isset($_POST['email'])){
 				$email=$_POST['email'];
 			}*/
+			echo 'r';
 			$validEmail = $this->userDao->getAccountByEmail($email);
 			if(!$validEmail){
 				
@@ -62,7 +58,7 @@
 				
 			}
 			else{
-				echo "<script>alert('error')</script>" ;
+				echo 'error' ;
 			}
 			//echo $this->userDao->validarEmail($email);
 

@@ -3,7 +3,7 @@
 require_once(ROOT.'config\Autoload.php');
 
 use config\Autoload as Autoload;
-use models\Artist as Artist;
+use models\Order as Order;
 use dao\dbDao\Connection as Connection;
 use \PDOException as PDOException;
 use dao\iDao as iDao;
@@ -78,7 +78,7 @@ class OrderDao extends Singleton implements iDao{
 	public function get($id){
 
 		try {
-			$sql = "SELECT * FROM artists WHERE id = :id";
+			$sql = "SELECT * FROM orders WHERE id = :id";
 
 			$obj_pdo = new Connection();
 
@@ -103,7 +103,7 @@ class OrderDao extends Singleton implements iDao{
 	public function getByAccountId($id){
 
 		try {
-			$sql = "SELECT * FROM artists WHERE id = :id";
+			$sql = "SELECT * FROM orders WHERE id = :id";
 
 			$obj_pdo = new Connection();
 
@@ -128,7 +128,7 @@ class OrderDao extends Singleton implements iDao{
 	public function getAll(){
 
 		try {
-			$sql = "SELECT * FROM artists";
+			$sql = "SELECT * FROM orders";
 
 			$obj_pdo = new Connection();
 
@@ -140,7 +140,7 @@ class OrderDao extends Singleton implements iDao{
 
 			$result=$query->fetchAll();
 
-			return $result;
+			return $this->map($result);
 
 		} catch(PDOException $Exception) {
 			
@@ -161,10 +161,10 @@ class OrderDao extends Singleton implements iDao{
 	public function map($objects)
 	{
 
-		$artists = is_array($objects) ? $objects : [];
+		$orders = is_array($objects) ? $objects : [];
 		return array_map(function($p){
-			return new Artist($p['id'],$p['name'],$p['description']);
-		}, $artists);
+			return new Order($p['id'],$p['date']);
+		}, $orders);
 	}
 
 }

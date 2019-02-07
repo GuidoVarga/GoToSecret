@@ -53,16 +53,16 @@
                             <div class="form-row">
                                 <div class="col-12 col-md col-lg form-group group-modal">
                                     <span class="fas fa-user form-control-modal"></span>
-                                    <input id="name" class="form-control" name="name" id="name-register" placeholder="Nombre" value="" type="text" required="" autofocus="">
+                                    <input class="form-control" name="name" id="name-register" placeholder="Nombre" value="" type="text" required="" autofocus="">
                                 </div>
                                 <div class="col-12 col-md col-lg form-group group-modal">
                                     <span class="fas fa-user form-control-modal"></span>
-                                    <input id="apellido" class="form-control" name="lastname" id="lastname-register"placeholder="Apellido" value="" type="text" required="">
+                                    <input class="form-control" name="lastname" id="lastname-register"placeholder="Apellido" value="" type="text" required="">
                                 </div> <!-- form-group end.// -->
                             </div>
                             <div class="form-group group-modal">
                                 <span class="fas fa-envelope form-control-modal"></span>
-                                <input id="email" class="form-control" name="email" value=""  id="email-register" placeholder="Inserta tu Email" type="email">
+                                <input class="form-control" name="email" value=""  id="email-register" placeholder="Inserta tu Email" type="email">
                                 <small class="form-text text-muted">No compartimos tu email con nadie.</small>
                             </div>
                             <div class="form-row">
@@ -77,7 +77,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <button type="submit" id="btn_register" class="btn btn-all btn-block"> Registrarse </button>
+                                <button type="submit" id="btn_register" onclick="registerAjax(event)" class="btn btn-all btn-block"> Registrarse </button>
                                 <small class="text-muted">Al clickear el boton 'Registrarse' confirmas que aceptas nuestros <br> Términos y Condiciones</small>
                             </div> 
                         </form>

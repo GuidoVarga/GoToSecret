@@ -17,15 +17,19 @@
 
 		public function checkAdmin(){
 			session_start();
+			$user=$_SESSION['user'];
+		
 			if(isset($user)){
-				$user=$_SESSION['user'];
-			}
-			else if(!isset($user)){
-				header('location: http://'.HOST.'/'.DIRECTORY.'/Login');
-			}else if($user->getAccount()->getRole()->getDescription()!='admin'){
-				header('location: http://'.HOST.'/'.DIRECTORY.'/Home');
-			}	
+				if($user->getAccount()->getRole()->getDescription()!='admin'){
+					header('location: http://localhost/GoToSecret/Home');
+				}	
 
+			}
+			else{
+				header('location: http://localhost/GoToSecret/Login');
+				echo 'else';
+			}
+			
 		}
 
 		public function checkUser(){
@@ -59,12 +63,7 @@
 
 			session_start();
 
-			
 			if(isset($_SESSION['user'])){
-				$user=$_SESSION['user'];
-				
-			}
-			else{
 				header('location: http://'.HOST.'/'.DIRECTORY.'/Home');
 			}
 

@@ -3,7 +3,7 @@
 require_once(ROOT.'config\Autoload.php');
 
 use config\Autoload as Autoload;
-use models\Artist as Artist;
+use models\OrderLine as OrderLine;
 use dao\dbDao\Connection as Connection;
 use \PDOException as PDOException;
 use dao\iDao as iDao;
@@ -19,7 +19,7 @@ class OrderLineDao extends Singleton implements iDao{
 
 		try {
 
-			$sql = "INSERT INTO artists (id,name,description) VALUES (null,:name,:description)";
+			$sql = "INSERT INTO order_lines (id,name,description) VALUES (null,:name,:description)";
 
 			$obj_pdo = new Connection();
 
@@ -88,7 +88,7 @@ class OrderLineDao extends Singleton implements iDao{
 	public function get($id){
 
 		try {
-			$sql = "SELECT * FROM artists WHERE id = :id";
+			$sql = "SELECT * FROM order_lines WHERE id = :id";
 
 			$obj_pdo = new Connection();
 
@@ -113,7 +113,7 @@ class OrderLineDao extends Singleton implements iDao{
 	public function getByOrderId($id){
 
 		try {
-			$sql = "SELECT * FROM artists WHERE id = :id";
+			$sql = "SELECT * FROM order_lines WHERE order_id = :id";
 
 			$obj_pdo = new Connection();
 
@@ -138,7 +138,7 @@ class OrderLineDao extends Singleton implements iDao{
 	public function getAll(){
 
 		try {
-			$sql = "SELECT * FROM artists";
+			$sql = "SELECT * FROM order_lines";
 
 			$obj_pdo = new Connection();
 
@@ -171,10 +171,10 @@ class OrderLineDao extends Singleton implements iDao{
 	public function map($objects)
 	{
 
-		$artists = is_array($objects) ? $objects : [];
+		$order_lines = is_array($objects) ? $objects : [];
 		return array_map(function($p){
-			return new Artist($p['id'],$p['name'],$p['description']);
-		}, $artists);
+			return new ($p['id'],$p['quantity'],$p['price'],'schedule','location','event');
+		}, $order_lines);
 	}
 
 }
