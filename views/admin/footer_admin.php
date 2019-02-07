@@ -1,11 +1,40 @@
 <?php namespace views\admin; ?>
 <footer style="display:none;">
+	<div id="modal_input_empty" class="modal fade" tab-index="-1" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Error</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					
+				</div>
+				<div class="modal-body">
+					<h6>Complete los campos</h6>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="modal_error" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Error</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+			
+			</div>
+		</div>
+	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootlint/latest/bootlint.min.js"></script>
 	<script src="<?php echo "/".DIRECTORY."/"."resources/js/sb-admin-2.js"?>"> </script>
 	<script src="<?php echo "/".DIRECTORY."/"."resources/js/metisMenu.js"?>"> </script>
+	
+	
   
   	<script>
 		$(document).ready(function(){
@@ -459,7 +488,8 @@
 
     		}
     		else{
-    			alert('complete campos');
+				alert('Complete campos');
+				
     			//modal
     		}
 		}
@@ -506,119 +536,141 @@
 					});
     	}
     	else{
-    		alert('complete campos');
+    		alert('Complete campos');
     		//modal
     	}
 
 	}
 
-		function deleteEvent(event){
+	function deleteEvent(event){
 
-			event.preventDefault();
-			const eventId = event.target.value;
+		event.preventDefault();
+		const eventId = event.target.value;
+
+		let parametros = {
+						"event_id": eventId,
+			};
+
+		$.ajax({
+
+					//Json
+					url: 'AdminEvent/delete',
+					type: 'POST',
+					data: parametros,
+					success : function (response){
+						console.log(response);
+						redirect('');		
+						
+					}
+				});
+	}
+
+	function addArtist(event){
+	
+		
+		event.preventDefault();
+
+		let name = document.getElementById('name').value;
+		let img = document.getElementById('img');
+		let description = document.getElementById('description').value;
+		//let oldImg = document.getElementById('oldImg').value;
+		//let checkbox = document.getElementById('oldImg-check').checked;
+
+		if(name && img && description){
 
 			let parametros = {
-							"event_id": eventId,
-    			};
-
-    		$.ajax({
-
-						//Json
-						url: 'AdminEvent/delete',
-						type: 'POST',
-						data: parametros,
-						success : function (response){
-							console.log(response);
-							redirect('');		
-							
-						}
-					});
-		}
-
-		function updateArtist(event){
-			event.preventDefault();
+							"name": name,
+							"img": img,
+							"description": description,						
+				};
 
 
-			let id = location.search.split('id=')[1];
-			let name = document.getElementById('name').value;
-			let img = document.getElementById('img');
-			let description = document.getElementById('description').value;
-			//let oldImg = document.getElementById('oldImg').value;
-			//let checkbox = document.getElementById('oldImg-check').checked;
+			let formData = new FormData();
 
-
-
-    		let formData = new FormData();
-    		formData.append("id", id);
-			formData.append("name", name);
-			formData.append("description", description);
-			//formData.append("img", img.files[0]);
-			//formData.append("oldImg", oldImg);
-			//formData.append("checkbox", checkbox);
-
-    	
-    		$.ajax({
-
-						//Json
-						url: 'update',
-						type: 'POST',
-						data: formData,
-						contentType: false,
-       					processData: false,
-						success : function (response){
-							if(response==='ok'){
-								redirect('/GoToSecret/AdminArtist');
-							}else{
-
-							console.log(response);
-							alert(response);	
-							}
-						}
-					});
-
-		}
-
-		function addArtist(event){
-			
-			event.preventDefault();
-
-			let name = document.getElementById('name').value;
-			let img = document.getElementById('img');
-			let description = document.getElementById('description').value;
-			//let oldImg = document.getElementById('oldImg').value;
-			//let checkbox = document.getElementById('oldImg-check').checked;
-
-
-
-    		let formData = new FormData();
-   
 			formData.append("name", name);
 			formData.append("description", description);
 			formData.append("img", img.files[0]);
 			//formData.append("oldImg", oldImg);
 			//formData.append("checkbox", checkbox);
 
-    	
-    		$.ajax({
+				
+			$.ajax({
 
-						//Json
-						url: 'add',
-						type: 'POST',
-						data: formData,
-						contentType: false,
-       					processData: false,
-						success : function (response){
-							if(response==='ok'){
-								redirect('/GoToSecret/AdminArtist');
-							}else{
+				//Json
+				url: 'add',
+				type: 'POST',
+				data: formData,
+				contentType: false,
+				processData: false,
+				success : function (response){
+					if(response==='ok'){
+						redirect('/GoToSecret/AdminArtist');
+						console.log();
+					}else{
 
-							console.log(response);
-							alert(response);
-							}
-						}
-					});
+					console.log(response);
+					alert(response);
+					}
+				}
+			});
 
 		}
+		else{
+			alert('Complete los campos');
+		}
+	}
+
+	function updateArtist(event){
+		event.preventDefault();
+
+		let id = location.search.split('id=')[1];
+		let name = document.getElementById('name').value;
+		let img = document.getElementById('img');
+		let description = document.getElementById('description').value;
+		let oldImg = document.getElementById('oldImg').value;
+		let checkbox = document.getElementById('oldImg-check').checked;
+
+		if (name && description && (img || checkbox.checked)){
+
+			let formData = new FormData();
+			formData.append("id", id);
+			formData.append("name", name);
+			formData.append("description", description);
+			formData.append("img", img.files[0]);
+			formData.append("oldImg", oldImg);
+			formData.append("checkbox", checkbox);
+			
+			$.ajax({
+
+				//Json
+				url: 'update',
+				type: 'POST',
+				data: formData,
+				contentType: false,
+				processData: false,
+				success : function (response){
+					if(response==='ok'){
+						redirect('/GoToSecret/AdminArtist');
+					}else{
+
+					console.log(response);
+					alert(response);	
+					}
+				}
+			});
+		}
+		else{
+			alert('Complete los campos');
+			
+		//modal
+		}
+
+	}
+
+	
+			
+    	
+    		
 
 		function deleteArtist(event){
 

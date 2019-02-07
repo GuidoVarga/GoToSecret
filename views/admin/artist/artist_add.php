@@ -28,7 +28,7 @@
                                                             <input class="form-control" name="name" id="name" type="text" required="">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label">Imagen</label>
+                                                            <label class="control-label">Imagen (Máximo: 960x900)</label>
                                                             <input class="form-control" id="img" name="img" type="file">
                                                         </div>
                                                         <div class="form-group">

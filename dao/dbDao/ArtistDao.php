@@ -18,7 +18,7 @@ class ArtistDao extends Singleton implements iDao{
 
 		try {
 
-			$sql = "INSERT INTO artists (id,name,img,description) VALUES (null,:name,:description,:img)";
+			$sql = "INSERT INTO artists (id,name,img,description) VALUES (null,:name,:img,:description)";
 
 			$obj_pdo = new Connection();
 
@@ -120,7 +120,7 @@ class ArtistDao extends Singleton implements iDao{
 
 		try {
 
-			$sql = "UPDATE artists SET name=:name, description=:description WHERE id=:id";
+			$sql = "UPDATE artists SET name=:name, description=:description,img=:img WHERE id=:id ";
 
 			$obj_pdo = new Connection();
 
@@ -130,12 +130,14 @@ class ArtistDao extends Singleton implements iDao{
 			$query = $connection->prepare($sql);
 			$id=$object->getId();
 			$name=$object->getName();
+			$img=$object->getImg();
 			$description=$object->getDescription();
 
 		
 
 			$query->bindParam(":id", $id);
 			$query->bindParam(":name", $name);
+			$query->bindParam(":img", $img);
 			$query->bindParam(":description", $description);
 
 			$query->execute();
@@ -152,7 +154,7 @@ class ArtistDao extends Singleton implements iDao{
 
 		$artists = is_array($objects) ? $objects : [];
 		return array_map(function($p){
-			return new Artist($p['id'],$p['name'],$p['description'],$p['img']);
+			return new Artist($p['id'],$p['name'],$p['img'],$p['description']);
 		}, $artists);
 	}
 
@@ -160,7 +162,7 @@ class ArtistDao extends Singleton implements iDao{
 
 		if(isset($array)){
 			$a = $array[0];
-			return new Artist($a['id'],$a['name'],$a['description'],$a['img']);
+			return new Artist($a['id'],$a['name'],$a['img'],$a['description']);
 		}
 
 	}
