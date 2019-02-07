@@ -19,8 +19,8 @@
 		private $artistDao;
 
 		function __construct(){
-			/*$middleware = Middleware::getInstance();
-			$middleware->checkAdmin();*/
+		$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();
 
 			$this->artistDao=ArtistDao::getInstance();
 			/*$this->artistDao = new ArtistDao(); LISTA*/ 

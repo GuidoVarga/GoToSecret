@@ -1,6 +1,7 @@
 <body class="order_confirmed">
 	
 <section>
+	<input id="qr-value" value="<?php echo $orderId?>" hidden/>
 	<div class="container order_confirmed-container">
 			<div align="center">
 				<h2>Tu compra ha sido confirmada!</h2>
@@ -17,5 +18,7 @@
 <script src="resources/js/qr/qrcode.js"></script>
 </body>
 <script>
-	//new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
+
+	new QRCode(document.getElementById("qrcode"), document.getElementById("qr-value").value);
+	
 </script>

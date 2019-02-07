@@ -250,9 +250,8 @@
                       url: 'Cart/confirmOrder',
                       type: 'POST',
                       success : function (response){
-
-                            //const obj = JSON.parse(response);
-                              console.log(response);
+                        console.log(response);
+                            const obj = JSON.parse(response);
                             redirect('/GoToSecret/Order?id='+obj.id+'&order='+obj.token);
                       }
                     });

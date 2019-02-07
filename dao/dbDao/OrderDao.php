@@ -28,8 +28,8 @@ class OrderDao extends Singleton implements iDao{
 			$query = $connection->prepare($sql);
 
 
-			$name=$object->getName();
-			$description=$object->getDescription();
+			$date=$object->getName();
+			$account_id=$object->getDescription();
 
 
 			$query->bindParam(":fecha", $date);

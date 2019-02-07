@@ -118,68 +118,89 @@
                         <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user.
                     </div-->
                     <div class="table d-table">
+                      
                       <table class="table table-hover table-striped">
                           <tbody>   
-                                                              
-                              <tr data-toggle="collapse" data-target="#accordion1" class="clickable collapse-row collapsed">
+                              <?php foreach ($orders as $order) {?>                                
+                              <tr data-toggle="collapse" data-target="<?php echo '#accordion'. $order->getId()?>" class="clickable collapse-row collapsed">
                                 <td>
-                                    <span class="float-right font-weight-bold">19/08/2019</span> 1000
+                                    <span class="float-right font-weight-bold"><?php echo $order->getDate()?></span> <?php echo $order->getId()?>
                                 </td> 
                               </tr>
                               <tr>
                                 <td colspan="3">
-                                  <table class="table" id="accordion1" class="collapse">
+                                  
+                                 
+                                  <table class="table" id="<?php echo 'accordion'. $order->getId()?>" class="collapse">
                                     <thead>
                                       <th>
                                         Evento
                                       </th>
                                       <th>
+                                        Fecha
+                                      </th>
+                                       <th>
+                                       Plaza
+                                      </th>
+                                       <th>
+                                        Cantidad
+                                      </th>
+                                       <th>
                                         Precio 
                                       </th>
+                                       <th>
+                                        Subtotal
+                                      </th>
+
                                     </thead>
                                     <tbody>
-                                    <td>
-                                      Los Guaranies
-                                    </td>
-                                    <td>
-                                      $1000
-                                    </td>
+                                      
+                                     <?php 
+                                        $orderLines = $order->getOrderLines();
+                                        var_dump($order);
+                                        foreach ($orderLines as $orderLine) {
+
+                                            ?>
+                                        <tr>
+                                            <td>
+                                                <input value="<?php echo $orderLine->getEvent()->getName()?>" hidden/>
+                                                <label for=""><?php echo $orderLine->getEvent()->getName()?></label>
+                                            </td>  
+                                            <td>
+                                                <label for=""><?php echo $orderLine->getSchedule()->getDay()?></label>
+                                            </td>
+                                            <td>
+                                                <label for=""><?php echo $orderLine->getLocation()->getName()?></label>
+                                            </td>
+                                            <td>
+                                                <label for=""><?php echo $orderLine->getQuantity()?></label>
+                                            </td>
+                                                <td>
+                                                <label for=""><?php echo $orderLine->getLocation()->getPrice()?></label>
+                                            </td>
+                                            <td>
+                                                <label for=""><?php echo $orderLine->getPrice()?></label>
+                                            </td>
+                                            <td class="text-center" style="border:0;">
+                                            <button class="btn btn-all btn-sm fas fa-times" onclick="deleteCartLine(event)" value="" ></button>     
+                                            </td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    
+                                        ?>
+
                                     </tbody>
                                   </table>
+                                   
                                 </td>
                               </tr>
-                              <tr data-toggle="collapse" data-target="#accordion2" class="clickable collapse-row collapsed">
-                                <td>
-                                    <span class="float-right font-weight-bold">20/08/2019</span> 1100
-                                </td>
-                              </tr>
-                              <tr>
-                                <td colspan="3">
-                                  <table class="table" id="accordion2" class="collapse">
-                                    <thead>
-                                      <th>
-                                        Evento
-                                      </th>
-                                      <th>
-                                        Precio 
-                                      </th>
-                                    </thead>
-                                    <tbody>
-                                    <td>
-                                      Ettap Kyle
-                                    </td>
-                                    <td>
-                                      $1000
-                                    </td>
-                                    </tbody>
-                                  </table>
-                                </td>
-                              </tr>
+                            <?php } ?>
                           </tbody> 
                       </table>
                       
                     
-                         
+                    
                     </div> 
                 </div> 
             </div>

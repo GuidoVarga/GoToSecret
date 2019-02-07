@@ -76,7 +76,7 @@
 			return $total;
 		}
 
-		public function empty(){
+		public function emptyy(){
 			unset($_SESSION['cart']);
 		}
 
@@ -89,8 +89,8 @@
 			isset($_SESSION['user']) ? $user = $_SESSION['user']: null;
 
 			$order = new Order(null,date('d-m-Y'));
-			$orderId = $this->orderDao->addOrder($order, $user->getAccount()->getId());
 
+			$orderId = $this->orderDao->addOrder($order, $user->getAccount()->getId());
 			foreach ($cart as $orderLine) {
 				
 				$locationId = $orderLine->getLocation()->getId();
@@ -105,8 +105,7 @@
 				}
 				
 		}
-		$this->empty();
-
+		$this->emptyy();
 		$key = SECRECT_KEY.$orderId;
 
 		$hash = password_hash($key,PASSWORD_DEFAULT);

@@ -30,13 +30,18 @@
 			if(isset($_SESSION['user'])){
 				$user=$_SESSION['user'];
 			}
-
-			$orders = $this->orderDao->getAll();
+			
+			$orders = $this->orderDao->getByAccountId($user->getAccount()->getId());
 			
 			foreach ($orders as $order) {
 				$id = $order->getId();
+				var_dump($id);
 				$order->setOrderLines($this->orderLineDao->getByOrderId($id));
+				
 			}
+
+
+
 
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\user\header.php');

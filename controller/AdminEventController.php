@@ -20,8 +20,8 @@ class AdminEventController{
 	private $eventCategoryDao;
 
 	function __construct(){
-		/*$middleware = Middleware::getInstance();
-			$middleware->checkAdmin();*/
+		$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();
 		$this->dao=EventDao::getInstance();
 		$this->eventCategoryDao=eventCategoryDao::getInstance();
 	}

@@ -19,8 +19,8 @@ use controller\Middleware as Middleware;
 		private $cityDao;
 
 		function __construct(){
-			/*$middleware = Middleware::getInstance();
-			$middleware->checkAdmin();*/
+			$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();
 			$this->cityDao=CityDao::getInstance();
 		}
 

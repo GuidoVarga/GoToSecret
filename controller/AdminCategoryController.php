@@ -19,8 +19,8 @@
 		private $categories;
 
 		function __construct(){
-			/*$middleware = Middleware::getInstance();
-			$middleware->checkAdmin();*/
+			$middleware = Middleware::getInstance();
+			$middleware->checkAdmin();
 			$this->dao=EventCategoryDao::getInstance();
 			$this->categories = $this->getCategories();
 		}
