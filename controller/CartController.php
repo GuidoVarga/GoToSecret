@@ -43,10 +43,21 @@
 
 		}
 
-		public function deleteItem($id){
-			var_dump($_SESSION['cart']);
-			
-			
+		public function deleteItem($eventName){
+
+			$cart = $_SESSION['cart'];
+			$i=0;
+			foreach ($cart as $orderLine) {
+				
+				if($orderLine->getEvent()->getName()==$eventName){
+					$index=$i;
+				}
+				$i++;
+			}
+			$nuevo = array_slice($cart, 0, $index);
+			$nuevo2= array_slice($cart, $index+1);
+			$cart=array_merge($nuevo, $nuevo2);
+			$_SESSION['cart']=$cart;
 		}
 
 		public function updateItem($item){

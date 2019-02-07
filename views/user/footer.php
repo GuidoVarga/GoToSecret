@@ -218,25 +218,42 @@
              }
              function deleteCartLine(event){
                 event.preventDefault();
-                const orderLineId = event.target.value;
+                const tr = event.target.parentElement.parentElement;
+                const eventName = tr.childNodes[1].childNodes[1].value;
+
+                const tbody = document.getElementById('cart-tbody');
 
                 let parametros = {
-                        "order_line_id": orderLineId,
+                        "eventName": eventName,
                     };
-
+                    
                   $.ajax({
 
                       //Json
-                      url: 'Cart/delete',
+                      url: 'Cart/deleteItem',
                       type: 'POST',
                       data: parametros,
                       success : function (response){
-                        console.log(response);
-                        redirect('');		
-                        
+                          tr.parentElement.removeChild(tr);        
+                          checkButtonConfirm();
                       }
                     });
+        
               }
+
+              window.onload = function(){
+
+                checkButtonConfirm();
+              }
+
+              function checkButtonConfirm() {
+
+                  const tbody = document.getElementById('cart-tbody');
+                  if(!tbody.getElementsByTagName('tr')[0]){
+                      document.getElementById('button-order-confirm').disabled=true;
+                  }
+              }
+
 
               </script>   
 
