@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="modal-body row">
                                     <div class="col-6">
-                                        <button type="button" class="btn btn-block btn-all"> SI </button>
+                                        <button onclick="confirmOrder(event)" type="button" class="btn btn-block btn-all"> SI </button>
                                     </div>
                                     <div class="col-6">
                                     <button type="button" class="btn btn-block btn-default"> NO </button>

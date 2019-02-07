@@ -5,7 +5,7 @@ class OrderLine
     private $id;
     private $quantity;
     private $price;
-    private $tickets;
+    private $ticket;
     private $schedule;
     private $location;
     private $event;
@@ -17,7 +17,7 @@ class OrderLine
         $this->schedule=$schedule;
         $this->location=$location;
         $this->event=$event;
-        $this->tickets = array();
+        $this->ticket = null;
        
         if($price){
              $this->price=$price;
@@ -50,16 +50,13 @@ class OrderLine
         return $this->quantity;
     }
   
-    function addTickets($ticket){
-        array_push($this->tickets, $ticket);
+
+    function setTicket($ticket){
+        $this->ticket = $ticket;
     }
 
-    function setTickets($tickets){
-        $this->tickets = $tickets;
-    }
-
-    function getTickets(){
-        return $this->tickets;
+    function getTicket(){
+        return $this->ticket;
     }
 
     function setEvent($event){

@@ -11,18 +11,35 @@
 		private $orderDao;
 
 		function __construct(){
-			$middleware = Middleware::getInstance();
-			$middleware->checkUser();
+			//$middleware = Middleware::getInstance();
+			//$middleware->checkUser();
 			//$this->orderDao=OrderDao::getInstance();
 		}
 
 
 
 		public function index(){
-			include(ROOT . 'views\head.php');
-			include(ROOT . 'views\user\header.php');
-			include(ROOT . 'views\user\order_confirmed.php');
-			include(ROOT . 'views\user\footer.php');
+			session_start();
+			isset($_SESSION['user']) ? $user = $_SESSION['user']: null;
+
+			if(isset($_GET['order'])&&isset($_GET['id'])){
+
+				$token = $_GET['order'];
+				$orderId = $_GET['id'];
+
+				if(isset($token)){
+					$key = SECRECT_KEY.$orderId;
+
+					if(password_verify($key,$token)){
+						include(ROOT . 'views\head.php');
+						include(ROOT . 'views\user\header.php');
+						include(ROOT . 'views\user\order_confirmed.php');
+						include(ROOT . 'views\user\footer.php');
+					}
+
+				}
+			}
+			
 		}
 
 		public function confirmOrder(){
@@ -37,7 +54,7 @@
 			
 		}
 
-		public function sendTicketToEmail(){
+		private function sendTicketToEmail(){
 
 		}
 

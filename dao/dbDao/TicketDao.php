@@ -3,7 +3,7 @@
 require_once(ROOT.'config\Autoload.php');
 
 use config\Autoload as Autoload;
-use models\Artist as Artist;
+use models\Ticket as Ticket;
 use dao\dbDao\Connection as Connection;
 use \PDOException as PDOException;
 use dao\iDao as iDao;
@@ -18,7 +18,7 @@ class TicketDao extends Singleton implements iDao{
 
 		try {
 
-			$sql = "INSERT INTO artists (id,name,description) VALUES (null,:name,:description)";
+			$sql = "INSERT INTO tickets (id) VALUES (null)";
 
 			$obj_pdo = new Connection();
 
@@ -26,13 +26,33 @@ class TicketDao extends Singleton implements iDao{
 
 			$query = $connection->prepare($sql);
 
+			$query->execute();
+			return $connection->lastInsertId();
+			
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+		}
 
-			$name=$object->getName();
-			$description=$object->getDescription();
+	}
 
+	public function save($object, $orderLineId){
 
-			$query->bindParam(":name", $name);
-			$query->bindParam(":description", $description);
+		try {
+
+			$sql = "INSERT INTO tickets (id,qr,order_line_id) VALUES (null,:qr,:order_line_id)";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+
+			$query = $connection->prepare($sql);
+
+			$qr=$object->getQr();
+
+			$query->bindParam(":qr", $qr);
+			$query->bindParam(":order_line_id", $orderLineId);
 			
 
 			$query->execute();
@@ -49,7 +69,7 @@ class TicketDao extends Singleton implements iDao{
 	public function get($id){
 
 		try {
-			$sql = "SELECT * FROM artists WHERE id = :id";
+			$sql = "SELECT * FROM tickets WHERE id = :id";
 
 			$obj_pdo = new Connection();
 
@@ -74,7 +94,7 @@ class TicketDao extends Singleton implements iDao{
 	public function getByOrderLineId($id){
 
 		try {
-			$sql = "SELECT * FROM artists WHERE id = :id";
+			$sql = "SELECT * FROM tickets WHERE id = :id";
 
 			$obj_pdo = new Connection();
 
@@ -99,7 +119,7 @@ class TicketDao extends Singleton implements iDao{
 	public function getByTicketDate($date){
 
 		try {
-			$sql = "SELECT * FROM artists WHERE id = :id";
+			$sql = "SELECT * FROM tickets WHERE id = :id";
 
 			$obj_pdo = new Connection();
 
@@ -124,7 +144,7 @@ class TicketDao extends Singleton implements iDao{
 	public function getAll(){
 
 		try {
-			$sql = "SELECT * FROM artists";
+			$sql = "SELECT * FROM tickets";
 
 			$obj_pdo = new Connection();
 
@@ -157,10 +177,20 @@ class TicketDao extends Singleton implements iDao{
 	public function map($objects)
 	{
 
-		$artists = is_array($objects) ? $objects : [];
+		$tickets = is_array($objects) ? $objects : [];
 		return array_map(function($p){
-			return new Artist($p['id'],$p['name'],$p['description']);
-		}, $artists);
+			return new Ticket($p['id']);
+		}, $tickets);
+	}
+
+	public function mapOnlyOne($array){
+
+		if(isset($array)){
+			$p = $array[0];
+			$ticket = new Ticket($p['id']);
+			return $ticket;
+		}
+
 	}
 
 }

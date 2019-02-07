@@ -241,6 +241,22 @@
         
               }
 
+              function confirmOrder(event){
+                event.preventDefault();
+                
+                  $.ajax({
+
+                      //Json
+                      url: 'Cart/confirmOrder',
+                      type: 'POST',
+                      success : function (response){
+                            const obj = JSON.parse(response);
+                            redirect('/GoToSecret/Order?id='+obj.id+'&order='+obj.token);
+                      }
+                    });
+                
+              }
+
               window.onload = function(){
 
                 checkButtonConfirm();
@@ -337,10 +353,24 @@
                   request.send("email="+body.email+ "&password="+body.password);
                 }
 
-                function redirect(){
-                  window.location.replace("Home");
+                function redirect(url){
+                  window.location.replace(url);
                 }
 
+              function doHashCode(string) {
+                    String.prototype.hashCode = function () {
+                        var text = "";
+                        var possible = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+                        for (var i = 0; i < 255; i++)
+                            text += possible.charAt(Math.floor(Math.random() * possible.length));
+                        return text;
+                    }
+
+                  const hash = new String().hashCode(string);
+                   return hash;
+
+            }
 
               </script>
 
