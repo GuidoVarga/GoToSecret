@@ -120,7 +120,7 @@ class ArtistDao extends Singleton implements iDao{
 
 		try {
 
-			$sql = "UPDATE artists SET name=:name, description=:description WHERE id=:id";
+			$sql = "UPDATE artists SET name=:name, description=:description,img=:img WHERE id=:id ";
 
 			$obj_pdo = new Connection();
 
@@ -130,12 +130,14 @@ class ArtistDao extends Singleton implements iDao{
 			$query = $connection->prepare($sql);
 			$id=$object->getId();
 			$name=$object->getName();
+			$img=$object->getImg();
 			$description=$object->getDescription();
 
 		
 
 			$query->bindParam(":id", $id);
 			$query->bindParam(":name", $name);
+			$query->bindParam(":img", $img);
 			$query->bindParam(":description", $description);
 
 			$query->execute();

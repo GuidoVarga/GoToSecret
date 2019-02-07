@@ -87,8 +87,8 @@
 				$image=$this->loadImage();
 				if(isset($image)){
 					$imgName=$_FILES['img']['name'];
-					$event = new Event($id,$name,$imgName,$description);
-					$this->dao->update($event);
+					$artist = new Artist($id,$name,$imgName,$description);
+					$this->artistDao->update($artist);
 					echo 'ok';
 				}
 	
