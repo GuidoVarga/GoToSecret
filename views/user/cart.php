@@ -43,7 +43,7 @@
                                     
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="cart-tbody">
 
                                     <?php if(isset($cart)){
 
@@ -52,6 +52,7 @@
                                             ?>
                                         <tr>
                                             <td>
+                                                <input value="<?php echo $orderLine->getEvent()->getName()?>" hidden/>
                                                 <label for=""><?php echo $orderLine->getEvent()->getName()?></label>
                                             </td>  
                                             <td>
@@ -77,9 +78,10 @@
                                         }
                                     }
                                         ?>
-                                    
-                                <tr style="background-color: #9c9494; color: white; font-size:20px;font-weight: 400;text-transform: uppercase;">
-                                    <td colspan="5"></td>
+                                </tbody>
+                                <tfooter>
+                                     <tr style="background-color: #9c9494; color: white; font-size:20px;font-weight: 400;text-transform: uppercase;">
+                                    <td colspan="4"></td>
                                     <td align="left">TOTAL</td>
                                     <td align="left">
                                         $<?php if(isset($total)){
@@ -87,7 +89,7 @@
                                         }?>
                                     </td>
                                 </tr>
-                                </tbody>
+                                </tfooter>
                             </table>
                            
                         </form>
@@ -95,7 +97,7 @@
                 </div>
                 <div class="col-12">
                     <div class="form-button-cart col-12 col-sm-4 col-md-4 col-xl-2 position-absolute">
-                        <button type="button" data-toggle="modal" data-target="#modalcart"class="btn btn-block btn-all"> CONFIRMAR </button>
+                        <button type="button" id="button-order-confirm" data-toggle="modal" data-target="#modalcart"class="btn btn-block btn-all"> CONFIRMAR </button>
                     </div>
                     <div id="modalcart" class="modal fade" role="dialog">
                         <div class="modal-dialog">
