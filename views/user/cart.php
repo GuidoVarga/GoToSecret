@@ -130,7 +130,7 @@
                                 <div class="modal-body">
                                     <h6>No se pudo realizar la compra</h6>
                                 </div>
-                            </div>}
+                            </div>
                         </div>
                     </div>
                     
