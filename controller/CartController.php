@@ -43,8 +43,9 @@
 
 		}
 
-		public function deleteItem($item){
+		public function deleteItem($id){
 			var_dump($_SESSION['cart']);
+			
 			
 		}
 

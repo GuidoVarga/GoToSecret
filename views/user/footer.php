@@ -216,6 +216,27 @@
                               }
                             });
              }
+             function deleteCartLine(event){
+                event.preventDefault();
+                const orderLineId = event.target.value;
+
+                let parametros = {
+                        "order_line_id": orderLineId,
+                    };
+
+                  $.ajax({
+
+                      //Json
+                      url: 'Cart/delete',
+                      type: 'POST',
+                      data: parametros,
+                      success : function (response){
+                        console.log(response);
+                        redirect('');		
+                        
+                      }
+                    });
+              }
 
               </script>   
 
@@ -243,6 +264,9 @@
                     getRequest(parametros,'Register/validateEmail',redirect())
                   }
                 };
+
+
+                
               </script>
               
               <script>
