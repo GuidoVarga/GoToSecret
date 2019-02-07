@@ -209,7 +209,7 @@
                                     redirect('/GoToSecret/Cart');
                                 else{
                                   console.log('error');
-                                  //modal error
+                                  alert('Cantidad no disponible');
                                 }
 
                                 
@@ -250,7 +250,9 @@
                       url: 'Cart/confirmOrder',
                       type: 'POST',
                       success : function (response){
-                            const obj = JSON.parse(response);
+
+                            //const obj = JSON.parse(response);
+                              console.log(response);
                             redirect('/GoToSecret/Order?id='+obj.id+'&order='+obj.token);
                       }
                     });
@@ -355,10 +357,24 @@
                     email=email.toLowerCase();
 
                     var parametros = {
-                      email : email,
-                      password : password
+                      "email" : email,
+                      "password" : password
                     }
-                    getRequest(parametros,'Login/validateLogin',redirect('home'));
+
+
+
+                     $.ajax({
+
+                      //Json
+                      url: 'Login/validateLogin',
+                      type: 'POST',
+                      data: parametros,
+                      success : function (response){
+                            redirect('/GoToSecret/Home');
+                      }
+                    });
+
+                    //getRequest(parametros,'Login/validateLogin',console.log('hola'));
                   }
 
                 };

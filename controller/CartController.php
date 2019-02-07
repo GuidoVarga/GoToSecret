@@ -89,7 +89,7 @@
 			isset($_SESSION['user']) ? $user = $_SESSION['user']: null;
 
 			$order = new Order(null,date('d-m-Y'));
-			$orderId=$this->orderDao->addOrder($order,$user->getAccount()->getId());
+			$orderId = $this->orderDao->addOrder($order, $user->getAccount()->getId());
 
 			foreach ($cart as $orderLine) {
 				
@@ -111,12 +111,13 @@
 
 		$hash = password_hash($key,PASSWORD_DEFAULT);
 
-	
+		
 		$object = new \stdClass();
 		$object->id= $orderId;
 		$object->token= $hash;
 		$json=json_encode($object);
 		echo $json;
+		
 		
 }
 

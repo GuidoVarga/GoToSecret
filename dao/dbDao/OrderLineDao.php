@@ -14,6 +14,19 @@ Autoload::start();
 class OrderLineDao extends Singleton implements iDao{
 
 	private $ticketDao;
+	private $subEventDao;
+	private $placeDao;
+	private $locationDao;
+	private $scheduleDao;
+	private $eventDao;
+
+	public function __construct(){
+		$this->subEventDao = SubEventDao::getInstance();
+		$this->placeDao = PlaceDao::getInstance();
+		$this->locationDao = LocationDao::getInstance();
+		$this->scheduleDao = ScheduleDao::getInstance();
+		$this->eventDao = EventDao::getInstance();
+	}
 
 	public function add($object){
 
@@ -173,8 +186,29 @@ class OrderLineDao extends Singleton implements iDao{
 
 		$order_lines = is_array($objects) ? $objects : [];
 		return array_map(function($p){
-			return new ($p['id'],$p['quantity'],$p['price'],'schedule','location','event');
+			$orderLine = new OrderLine ($p['id'],$p['quantity'],$p['price'],'schedule','location','event');
+			$orderLine->setLocation($this->locationDao->getByScheduleLocationId($p['schedule_x_location_id']));
+			$eventId = $this->locationDao->getEventIdByScheduleLocationId($p['schedule_x_location_id']);
+			$scheduleId = $this->locationDao->getScheduleIdByScheduleLocationId($p['schedule_x_location_id']);
+			$orderLine->setEvent($this->eventDao->get($eventId[0][0]));
+			$orderLine->setSchedule($this->scheduleDao->get($scheduleId[0][0]));
+			return $orderLine;
 		}, $order_lines);
+	}
+
+
+	public function mapOnlyOneForEdit($array){
+
+		if(isset($array)){
+			$p = $array[0];
+			$schedule = new Schedule($p['id'],$p['day'],$this->placeDao->get($p['place_id']));
+
+			$schedule->setSubEvents($this->subEventDao->getByScheduleId($schedule->getId()));
+
+			$schedule->setLocations($this->locationDao->getByScheduleIdEdit($schedule->getId()));
+			return $schedule;
+		}
+
 	}
 
 }

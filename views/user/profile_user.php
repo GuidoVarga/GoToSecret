@@ -77,22 +77,22 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Nombre</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" name="name" type="text" value="<?php echo $user->getName(); ?>">
+                                    <input class="form-control" name="name" disabled="true" type="text" value="<?php echo $user->getName(); ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Apellido</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" name="last-name" type="text" value="<?php echo $user->getLastName();?>">
+                                    <input class="form-control" name="last-name" disabled="true" type="text" value="<?php echo $user->getLastName();?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Email</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" name="email" type="email" value="<?php echo $user->getAccount()->getEmail();?>">
+                                    <input class="form-control" name="email" type="email" disabled="true" value="<?php echo $user->getAccount()->getEmail();?>">
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <!--div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Password</label>
                                 <div class="col-lg-8">
                                     <input class="form-control" name="password" type="password" value="<?php echo $user->getAccount()->getPassword(); ?>">
@@ -110,7 +110,7 @@
                                     <input type="button" class="btn btn-all" value="Guardar Cambios">
                                     <input type="reset" class="btn btn-default" value="Cancelar">
                                 </div>
-                            </div>
+                            </div-->
                         </form>
                 </div>
                 <div class="tab-pane" id="orders">

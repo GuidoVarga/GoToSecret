@@ -112,7 +112,7 @@ class UserDao extends Singleton implements iDao{
 	public function getByEmail($email){
 
 		try {
-			$sql = "SELECT * FROM accounts INNER JOIN users ON accounts.id = users.account_id INNER JOIN roles ON accounts.role_id=roles.id WHERE email = :email";
+			$sql = "SELECT * FROM accounts INNER JOIN users ON accounts.id = users.account_id INNER JOIN roles ON accounts.role_id=roles.id WHERE accounts.email = :email";
 
 			$obj_pdo = new Connection();
 
@@ -123,7 +123,7 @@ class UserDao extends Singleton implements iDao{
 			$query->execute();
 
 			$result=$query->fetchAll();
-
+			var_dump($result);
 			return $this->mapOnlyOne($result);
 
 		} catch(PDOException $Exception) {

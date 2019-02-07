@@ -35,12 +35,8 @@
 			
 			foreach ($orders as $order) {
 				$id = $order->getId();
-				echo '<pre>';
-				var_dump($this->orderLineDao->getByOrderId($id));
-				echo '</pre>';
-				//$order->setOrderLines();
+				$order->setOrderLines($this->orderLineDao->getByOrderId($id));
 			}
-	;
 
 			include(ROOT . 'views\head.php');
 			include(ROOT . 'views\user\header.php');

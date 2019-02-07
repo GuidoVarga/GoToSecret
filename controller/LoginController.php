@@ -56,11 +56,12 @@ class LoginController{
 		$user=$this->userDao->getByEmail($email);
 
 		$_SESSION['user']=$user;
-
-		if($user->getRole()=='user')
+		
+		if($user->getAccount()->getRole()->getDescription()=='user')
 			header('Location: http://'.HOST.'/'.DIRECTORY.'/Home');
 		else
 			header('Location: http://'.HOST.'/'.DIRECTORY.'/Admin');
+	
 	}
 
 	public function logOut(){

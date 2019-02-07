@@ -127,6 +127,60 @@ class LocationDao extends Singleton implements iDao{
 
 	}
 
+	
+
+	public function getEventIdByScheduleLocationId($id){
+
+		try {
+
+			$sql = "SELECT events.id FROM schedules_x_locations INNER JOIN schedules ON schedules.id = schedules_x_locations.schedule_id INNER JOIN events ON events.id = schedules.event_id  WHERE schedules_x_locations.id = :id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+			$connection->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES,true);
+			$query = $connection->prepare($sql);
+			$query->bindParam(":id", $id);
+			$query->execute();
+
+			$result=$query->fetchAll();
+
+			return $result;
+
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+		}
+
+	}
+
+	public function getScheduleIdByScheduleLocationId($id){
+
+		try {
+
+			$sql = "SELECT schedules.id FROM schedules_x_locations INNER JOIN schedules ON schedules.id = schedules_x_locations.schedule_id WHERE schedules_x_locations.id = :id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+			$connection->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES,true);
+			$query = $connection->prepare($sql);
+			$query->bindParam(":id", $id);
+			$query->execute();
+
+			$result=$query->fetchAll();
+
+			return $result;
+
+		} catch(PDOException $Exception) {
+			
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+			
+		}
+
+	}
+
 	public function getByScheduleAndLocation($scheduleId, $locationId){
 
 		try {
