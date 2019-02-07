@@ -63,14 +63,11 @@
 			
 			if(isset($image)){
 				$imgName=basename($_FILES['img']['name']);
-				echo $imgName;
 				$artist = new Artist(0,$name,$imgName,$description);
 				$this->artistDao->add($artist);
+				echo 'ok';
 			}
-			
-			
-		
-			
+						
 		}
 
 		public function update(){
@@ -78,10 +75,25 @@
 			$id=$_POST['id'];
 			$name=$_POST['name'];
 			$description=$_POST['description'];
+			$checkbox= $_POST['checkbox'];
+			$oldImg=$_POST['oldImg'];
 
-			$artist = new Artist($id,$name,$description);
-			$this->artistDao->update($artist);
-			echo 'ok';
+			if($checkbox==='true'){
+				$artist = new Artist($id,$name,$oldImg,$description);
+				$this->artistDao->update($artist);
+				echo 'ok';
+			}else{
+			
+				$image=$this->loadImage();
+				if(isset($image)){
+					$imgName=$_FILES['img']['name'];
+					$event = new Event($id,$name,$imgName,$description);
+					$this->dao->update($event);
+					echo 'ok';
+				}
+	
+			}
+		
 		}
 
 		public function delete(){

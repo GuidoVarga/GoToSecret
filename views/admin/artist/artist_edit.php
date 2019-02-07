@@ -29,7 +29,9 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label">Imagen</label>
-                                                            <input class="form-control " name="img" id="img" type="file" required="">
+                                                            <input class="form-control" id="img" name="img" type="file">
+                                                            <input type="checkbox" id="oldImg-check" name="oldImg-check" value=""><label>Mantener imagen anterior</label>
+                                                            <input value="<?php echo $artist->getImg()?>" name="oldImg" id="oldImg" hidden>
                                                         </div>
                                                         <div class="form-group">
                                                         <label class="control-label">Descripción</label>
