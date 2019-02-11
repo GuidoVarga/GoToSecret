@@ -119,26 +119,27 @@
                     </div-->
                     <div class="table d-table">
                       
-                      <table class="table table-hover table-striped">
+                      <table class="table table-hover table">
                           <tbody>   
                               <?php foreach ($orders as $order) {?>                                
                               <tr data-toggle="collapse" data-target="<?php echo '#accordion'. $order->getId()?>" class="clickable collapse-row collapsed">
                                 <td>
-                                    <span class="float-right font-weight-bold"><?php echo $order->getDate()?></span> <?php echo $order->getId()?>
+                                    <span class="float-right font-weight-bold"><?php echo 'Fecha: '.$order->getDate()?></span><span class="font-weight-bold"> <?php echo 'Orden: #'. $order->getId()?></span>
                                 </td> 
                               </tr>
                               <tr>
                                 <td colspan="3">
-                                  
-                                 
                                   <table class="table" id="<?php echo 'accordion'. $order->getId()?>" class="collapse">
-                                    <thead>
+                                    <thead class="thead-order">
                                       <th>
                                         Evento
                                       </th>
                                       <th>
                                         Fecha
                                       </th>
+                                      <th>
+                                      Lugar
+                                        </th>
                                        <th>
                                        Plaza
                                       </th>
@@ -153,11 +154,9 @@
                                       </th>
 
                                     </thead>
-                                    <tbody>
-                                      
+                                    <tbody>                        
                                      <?php 
                                         $orderLines = $order->getOrderLines();
-                                        var_dump($order);
                                         foreach ($orderLines as $orderLine) {
 
                                             ?>
@@ -168,6 +167,9 @@
                                             </td>  
                                             <td>
                                                 <label for=""><?php echo $orderLine->getSchedule()->getDay()?></label>
+                                            </td>
+                                            <td>
+                                                <label for=""><?php echo $orderLine->getSchedule()->getPlace()->getName().' - ' .$orderLine->getSchedule()->getPlace()->getCity()->getName();?></label>
                                             </td>
                                             <td>
                                                 <label for=""><?php echo $orderLine->getLocation()->getName()?></label>
@@ -181,8 +183,7 @@
                                             <td>
                                                 <label for=""><?php echo $orderLine->getPrice()?></label>
                                             </td>
-                                            <td class="text-center" style="border:0;">
-                                            <button class="btn btn-all btn-sm fas fa-times" onclick="deleteCartLine(event)" value="" ></button>     
+                                            <td class="text-center" style="border:0;">   
                                             </td>
                                         </tr>
                                     <?php

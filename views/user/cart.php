@@ -25,6 +25,10 @@
                                         <span class="d-md-none">Fech.</span>
                                     </th>
                                     <th>
+                                        <span class="d-none d-md-block">Lugar</span>
+                                        <span class="d-md-none">Lug.</span>
+                                    </th>
+                                    <th>
                                         <span class="d-none d-md-block">Plaza</span>
                                         <span class="d-md-none">Pla.</span>
                                     </th>
@@ -59,6 +63,9 @@
                                                 <label for=""><?php echo $orderLine->getSchedule()->getDay()?></label>
                                             </td>
                                             <td>
+                                                <label for=""><?php echo $orderLine->getSchedule()->getPlace()->getName().' - ' .$orderLine->getSchedule()->getPlace()->getCity()->getName();?></label>
+                                            </td>
+                                            <td>
                                                 <label for=""><?php echo $orderLine->getLocation()->getName()?></label>
                                             </td>
                                             <td>
@@ -81,7 +88,7 @@
                                 </tbody>
                                 <tfooter>
                                      <tr style="background-color: #9c9494; color: white; font-size:20px;font-weight: 400;text-transform: uppercase;">
-                                    <td colspan="4"></td>
+                                    <td colspan="5"></td>
                                     <td align="left">TOTAL</td>
                                     <td align="left">
                                         $<?php if(isset($total)){

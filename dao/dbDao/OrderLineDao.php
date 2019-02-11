@@ -191,7 +191,7 @@ class OrderLineDao extends Singleton implements iDao{
 			$eventId = $this->locationDao->getEventIdByScheduleLocationId($p['schedule_x_location_id']);
 			$scheduleId = $this->locationDao->getScheduleIdByScheduleLocationId($p['schedule_x_location_id']);
 			$orderLine->setEvent($this->eventDao->get($eventId[0][0]));
-			$orderLine->setSchedule($this->scheduleDao->get($scheduleId[0][0]));
+			$orderLine->setSchedule($this->scheduleDao->getById($scheduleId[0][0]));
 			return $orderLine;
 		}, $order_lines);
 	}

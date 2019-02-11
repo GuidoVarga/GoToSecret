@@ -39,8 +39,8 @@
 			$account= new Account(0,$email,$hash,NULL,1);
 			$idAccount=$this->accountDao->add($account);;
 			$user= new User(0,$name,$lastname,$idAccount);
-			echo $this->userDao->add($user);
-			
+			$this->userDao->add($user);
+			echo 'ok';
 
 			//header('Location: http://'.HOST_INTERNET.'/'.DIRECTORIO.'/Login');
 		}
@@ -50,7 +50,7 @@
 			/*if(isset($_POST['email'])){
 				$email=$_POST['email'];
 			}*/
-			echo 'r';
+
 			$validEmail = $this->userDao->getAccountByEmail($email);
 			if(!$validEmail){
 				
@@ -58,7 +58,7 @@
 				
 			}
 			else{
-				echo 'error' ;
+				echo 'email' ;
 			}
 			//echo $this->userDao->validarEmail($email);
 

@@ -53,31 +53,31 @@
                             <div class="form-row">
                                 <div class="col-12 col-md col-lg form-group group-modal">
                                     <span class="fas fa-user form-control-modal"></span>
-                                    <input class="form-control" name="name" id="name-register" placeholder="Nombre" value="" type="text" required="" autofocus="">
+                                    <input class="form-control" name="name" id="name-register" placeholder="Nombre" value="" type="text" required="" autofocus="" onblur="buttonRegisterValidation()">
                                 </div>
                                 <div class="col-12 col-md col-lg form-group group-modal">
                                     <span class="fas fa-user form-control-modal"></span>
-                                    <input class="form-control" name="lastname" id="lastname-register"placeholder="Apellido" value="" type="text" required="">
+                                    <input class="form-control" name="lastname" id="lastname-register"placeholder="Apellido" value="" type="text" required="" onblur="buttonRegisterValidation()">
                                 </div> <!-- form-group end.// -->
                             </div>
                             <div class="form-group group-modal">
                                 <span class="fas fa-envelope form-control-modal"></span>
-                                <input class="form-control" name="email" value=""  id="email-register" placeholder="Inserta tu Email" type="email">
-                                <small class="form-text text-muted">No compartimos tu email con nadie.</small>
+                                <input class="form-control" name="email" value=""  id="email-register" placeholder="Inserta tu Email" type="email" onblur="buttonRegisterValidation()">
+                                <small class="form-text text-muted" align="left" id="email-error" style="display: none;"><p style="color:red;">Email ya en uso</p></small>
                             </div>
                             <div class="form-row">
                                 <div class="col-12 col-md col-lg form-group group-modal">
                                     <span class="fas fa-unlock-alt form-control-modal"></span>
-                                    <input type="password" name="password" class="form-control" id="password-register" placeholder="Contraseña" required>
+                                    <input type="password" name="password" class="form-control" id="password-register" placeholder="Contraseña" required="" onblur="buttonRegisterValidation()">
                                 </div>
                                 <div class="col-12 col-md col-lg form-group group-modal">
                                     <span class="fas fa-unlock-alt form-control-modal"></span>
-                                    <input type="password" name="password-repeat" class="form-control" id="password-repeat" placeholder="Repetir Contraseña" required>       
+                                    <input type="password" name="password-repeat" class="form-control" id="password-repeat" placeholder="Repetir Contraseña" required="" onchange="buttonRegisterValidation()" onblur=""> <small class="form-text text-muted" align="left" id="password-error" style="display: none;"><p style="color:red;">La contraseña no coincide</p></small>      
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <button type="submit" id="btn_register" onclick="registerAjax(event)" class="btn btn-all btn-block"> Registrarse </button>
+                                <button type="submit" id="btn_register" onclick="registerAjax(event)" class="btn btn-all btn-block" disabled="true"> Registrarse </button>
                                 <small class="text-muted">Al clickear el boton 'Registrarse' confirmas que aceptas nuestros <br> Términos y Condiciones</small>
                             </div> 
                         </form>

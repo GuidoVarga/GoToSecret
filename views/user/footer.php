@@ -271,18 +271,33 @@
                   }
               }
 
+
+              function buttonRegisterValidation(){
+                  console.log('validation');
+                  const name = document.getElementById('name-register').value;
+                  const lastName = document.getElementById('lastname-register').value;
+                  const password = document.getElementById('password-register').value;
+                  const passwordRepeat = document.getElementById('password-repeat').value;
+
+                  if(name!='' && lastName != '' && password != '' && passwordRepeat !=''){
+                      document.getElementById('btn_register').disabled=false;
+                  }
+
+
+              }
+
               function registerAjax(event){
 
 
 
                   event.preventDefault();
-                  console.log('hola');
                   var name = $('#name-register').val();
                   var lastname = $('#lastname-register').val();
                   var email = $('#email-register').val();
                   var password = $('#password-register').val();
+                  var passwordRepeat = $('#password-repeat').val();
 
-                  if(email!=null){
+                  if(password===passwordRepeat){
                     email=email.toLowerCase();
 
                     var parametros = {
@@ -299,10 +314,22 @@
                       type: 'POST',
                       data: parametros,
                       success : function (response){
-                            console.log(response);
-                            //redirect('/GoToSecret/Order?id='+obj.id+'&order='+obj.token);
+                              if(response==='ok'){
+                                  alert('Registrado con exito');
+                                  redirect('');
+                              }
+                              else if(response==='email'){
+                                document.getElementById('email-error').style.display="block";
+                                console.log(response);
+                              } 
+                              else{
+                                console.log(response);
+                              }                     
                       }
                     });
+                  }
+                  else{
+                    document.getElementById('password-error').style.display="block";
                   }
                 
 
@@ -406,7 +433,10 @@
                 }
 
                 function redirect(url){
-                  window.location.replace(url);
+                  if(url)
+                    window.location.replace(url);
+                  else
+                    window.location.replace('/GoToSecret');
                 }
 
               function doHashCode(string) {
