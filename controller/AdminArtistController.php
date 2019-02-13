@@ -145,6 +145,7 @@
 	
 							}
 							else
+								
 								echo'No se pudo subir el archivo ';
 						}
 						else

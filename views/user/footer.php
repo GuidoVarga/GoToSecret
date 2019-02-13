@@ -91,9 +91,13 @@
               <!-- Links -->
               <h6 class="text-uppercase font-weight-bold">Menu</h6>
               <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-              <p>
+              <?php if(isset($uer)){
+                ?>
+                <p>
                 <a class="dark-grey-text" href="#!">Mi Cuenta</a>
-              </p>
+              </p> <?php
+              }?>
+              
               <p>
                 <a class="dark-grey-text" href="#!">Help</a>
               </p>
@@ -132,6 +136,7 @@
               <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
               <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
               <script src="https://maxcdn.bootstrapcdn.com/bootlint/latest/bootlint.min.js"></script>
+              <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
                <script js>
                 function searchArtist() {
@@ -209,7 +214,11 @@
                                     redirect('/GoToSecret/Cart');
                                 else{
                                   console.log('error');
-                                  alert('Cantidad no disponible');
+                                  swal({
+                                  title: "Hubo un error!",
+                                  text: "Cantidad no disponible",
+                                  icon: "error",
+                                });
                                 }
 
                                 
@@ -315,8 +324,15 @@
                       data: parametros,
                       success : function (response){
                               if(response==='ok'){
-                                  alert('Registrado con exito');
-                                  redirect('');
+                                swal({
+                                title: "Registro",
+                                text: "Registro Exitoso!",
+                                icon: "success",
+                              });
+                              .then(value) => {
+                                redirect('');
+                              }
+                                  
                               }
                               else if(response==='email'){
                                 document.getElementById('email-error').style.display="block";
@@ -329,6 +345,7 @@
                     });
                   }
                   else{
+                    swal("Error", "Error al Registrarse!", "error");
                     document.getElementById('password-error').style.display="block";
                   }
                 
