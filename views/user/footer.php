@@ -329,28 +329,23 @@
                       data: parametros,
                       success : function (response){
                               if(response==='ok'){
-                                swal({
-                                title: "Registro",
-                                text: "Registro Exitoso!",
-                                icon: "success",
-                              });
-                              .then(value) => {
-                                redirect('');
-                              }
-                                  
+                                swal("Registro","Registro Exitoso!","success")
+                                .then(value => redirect(''));
                               }
                               else if(response==='email'){
+                                document.getElementById('email-register').style.border="solid 1px red";
                                 document.getElementById('email-error').style.display="block";
                                 console.log(response);
                               } 
                               else{
                                 console.log(response);
+                                swal("Error", response, "error");
                               }                     
                       }
                     });
                   }
                   else{
-                    swal("Error", "Error al Registrarse!", "error");
+                     document.getElementById('password-repeat').style.border="solid 1px red";
                     document.getElementById('password-error').style.display="block";
                   }
                 
