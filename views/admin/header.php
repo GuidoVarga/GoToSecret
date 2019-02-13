@@ -22,7 +22,7 @@
                         <i class="fa fa-user fa-fw"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-user">
-                        <a class="dropdown-item" href=""><i class="fas fa-sign-out-alt  fa-fw"></i>Cerrar Sesión</a>
+                        <a class="dropdown-item" href="/GoToSecret/Admin/logout"><i class="fas fa-sign-out-alt  fa-fw"></i>Cerrar Sesión</a>
                     </div>
                 </li>
             </ul>

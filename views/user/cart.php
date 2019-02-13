@@ -56,7 +56,7 @@
                                             ?>
                                         <tr>
                                             <td>
-                                                <input value="<?php echo $orderLine->getEvent()->getName()?>" hidden/>
+                                                <input value="<?php echo $orderLine->getId()?>" hidden/>
                                                 <label for=""><?php echo $orderLine->getEvent()->getName()?></label>
                                             </td>  
                                             <td>
@@ -91,9 +91,11 @@
                                     <td colspan="5"></td>
                                     <td align="left">TOTAL</td>
                                     <td align="left">
-                                        $<?php if(isset($total)){
-                                            echo $total;
-                                        }?>
+                                        <span id="total">
+                                            <?php if(isset($total)){
+                                                echo $total;
+                                            }?>
+                                        </span>
                                     </td>
                                 </tr>
                                 </tfooter>

@@ -1,7 +1,7 @@
 <body class="order_confirmed">
 	
 <section>
-	<input id="qr-value" value="<?php echo $orderId?>" hidden/>
+	<input id="qr-value" value="<?php echo $orderJson?>" hidden/>
 	<div class="container order_confirmed-container">
 			<div align="center">
 				<h2>Tu compra ha sido confirmada!</h2>
@@ -19,6 +19,13 @@
 </body>
 <script>
 
-	new QRCode(document.getElementById("qrcode"), document.getElementById("qr-value").value);
+	String.prototype.replaceAll = function(search, replacement) {
+ 		let target = this;
+  		return target.split(search).join(replacement);
+	};
 	
+	let json = document.getElementById("qr-value").value;
+	json=json.replaceAll("'", '"')
+	new QRCode(document.getElementById("qrcode"), json);
+
 </script>

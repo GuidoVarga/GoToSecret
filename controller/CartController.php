@@ -46,13 +46,13 @@
 
 		}
 
-		public function deleteItem($eventName){
+		public function deleteItem($orderLineId){
 
 			$cart = $_SESSION['cart'];
 			$i=0;
 			foreach ($cart as $orderLine) {
 				
-				if($orderLine->getEvent()->getName()==$eventName){
+				if($orderLine->getId()==$orderLineId){
 					$index=$i;
 				}
 				$i++;
@@ -60,7 +60,9 @@
 			$nuevo = array_slice($cart, 0, $index);
 			$nuevo2= array_slice($cart, $index+1);
 			$cart=array_merge($nuevo, $nuevo2);
+			$total = $this->getTotal($cart);
 			$_SESSION['cart']=$cart;
+			echo $total;
 		}
 
 		public function updateItem($item){

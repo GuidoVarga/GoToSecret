@@ -45,6 +45,11 @@ use controller\Middleware as Middleware;
 			
 		}
 
+		public function logout(){
+			session_destroy();
+			header('location: http://'.HOST.'/'.DIRECTORY.'/home');
+		}
+
 
 
 

@@ -72,7 +72,7 @@
                                 <dl class="param param-inline">
                                     <dt>Cantidad: </dt>
                                     <dd>
-                                        <input type="number" value="1" id="quantity" name="quantity" class="form-control form-control-sm" style="width:70px;" min="1" max="10" required>
+                                        <input type="number" value="1" id="quantity" name="quantity" class="form-control form-control-sm" style="width:70px;" min="1" max="5" required>
                                     </dd>
                                 </dl>  <!-- item-property .// -->
                             </div> <!-- col.// -->

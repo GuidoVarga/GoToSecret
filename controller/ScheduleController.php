@@ -51,38 +51,76 @@ use controller\Middleware as Middleware;
 
 		public function addToCart(){
 
+			if(!isset($_SESSION['index-cart'])){
+				$_SESSION['index-cart']=0;
+			}
+			$index = $_SESSION['index-cart'];
+
 
 			$scheduleId=$_POST['schedule_id'];
 			$eventId=$_POST['event_id'];
 			$quantity=$_POST['quantity'];
 			$locationId=$_POST['location_id'];
 
+			$response=$this->validateItem($scheduleId,$locationId,$quantity);
+
+			if($response=="ok"){
 
 			$location = $this->locationDao->getByScheduleLocationId($locationId);
 
-			if($this->locationDao->validateSubtract($locationId,$quantity)){
-		
-				$schedule = $this->scheduleDao->getOnlySchedule($scheduleId);
-				$event = $this->getEvent($eventId);
-
-				if(isset($_SESSION['cart'])){
-					$cart = $_SESSION['cart'];
-				}else{
-					$_SESSION['cart']=array();
-					$cart=array();
-				}
-
-				$orderLine = new OrderLine(0,$quantity,0,$schedule,$location,$event);
+				if($this->locationDao->validateSubtract($locationId,$quantity)){
 			
-				array_push($cart, $orderLine);
+					$schedule = $this->scheduleDao->getOnlySchedule($scheduleId);
+					$event = $this->getEvent($eventId);
 
-				$_SESSION['cart']=$cart;
+					if(isset($_SESSION['cart'])){
+						$cart = $_SESSION['cart'];
+					}else{
+						$_SESSION['cart']=array();
+						$cart=array();
+					}
 
-				echo 'true';
+					$orderLine = new OrderLine($index+1,$quantity,0,$schedule,$location,$event);
+				
+					array_push($cart, $orderLine);
+
+					$_SESSION['cart']=$cart;
+
+					echo 'true';
+				}
+				else{
+					echo 'No quedan suficientes entradas';
+				}
+			}else{
+					echo $response;
 			}
-			else{
-				echo 'false';
+		}
+
+		private function validateItem($scheduleId,$locationId,$quantity) {
+
+			if($quantity>5){
+				return "El maximo de entradas por fecha es 5";
 			}
+
+			if(isset($_SESSION['cart'])){
+					$cart = $_SESSION['cart'];
+
+					foreach ($cart as $orderLine) {
+				
+							if($orderLine->getSchedule()->getId()==$scheduleId) {
+								$q=$orderLine->getQuantity();
+								if($q+$quantity>5){
+									return "El maximo de entradas por fecha es 5";
+								}else if($orderLine->getLocation()->getId() == $locationId){
+									$orderLine->setQuantity($q+$quantity);
+									return "Sumado al carrito";
+								}
+								
+							}
+					}
+			}
+			return "ok";
+
 
 		}
 
