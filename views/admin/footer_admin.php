@@ -297,22 +297,27 @@
         	   	"subEvents" :subEvents,
         	   	"locations" :locations
     			};
+    		if(subEvents.length>0 && locations.length>0 && date && place){
 
-    		$.ajax({
+	    		$.ajax({
 
-						//Json
-						url: 'save',
-						type: 'POST',
-						data: parametros,
-						success : function (rta){
-							if(rta==='true'){
-								//redirect(´/GoToSecret/AdminSchedule?id=$eventId´);		
-							}else{
-								swal("Error!", "", "error");
-								//modal
+							//Json
+							url: 'save',
+							type: 'POST',
+							data: parametros,
+							success : function (rta){
+								if(rta==='true'){
+									redirect('/GoToSecret/AdminSchedule?id='+eventId);		
+								}else{
+									swal("Error!", "", "error");
+									//modal
+								}
 							}
-						}
-					});
+						});
+    		}else{
+    			console.log('Debe completar todos los campos y cargar al menos una plaza y un subevento');
+    			alert('Debe completar todos los campos y cargar al menos una plaza y un subevento');
+    		}
 		}
 
 
@@ -342,6 +347,7 @@
         	   	"locations" :locations
     			};
 
+    		if(subEvents.length>0 && locations.length>0 && date && place){
     		
     		$.ajax({
 
@@ -354,6 +360,10 @@
 						}
 					});
     		
+    		}else{
+    			console.log('Debe completar todos los campos y cargar al menos una plaza y un subevento');
+    			alert('Debe completar todos los campos y cargar al menos una plaza y un subevento');
+    		}
 		}
 
 

@@ -113,7 +113,7 @@ class OrderLineDao extends Singleton implements iDao{
 
 			$result=$query->fetchAll();
 
-			return $this->map($result);
+			return $this->mapOnlyOne($result);
 
 		} catch(PDOException $Exception) {
 			
@@ -209,6 +209,22 @@ class OrderLineDao extends Singleton implements iDao{
 			return $schedule;
 		}
 
+	}
+
+	public function mapOnlyOne($array)
+	{
+
+		if(isset($array)){
+
+			$p = $array[0];
+			$orderLine = new OrderLine ($p['id'],$p['quantity'],$p['price'],'schedule','location','event');
+			$orderLine->setLocation($this->locationDao->getByScheduleLocationId($p['schedule_x_location_id']));
+			$eventId = $this->locationDao->getEventIdByScheduleLocationId($p['schedule_x_location_id']);
+			$scheduleId = $this->locationDao->getScheduleIdByScheduleLocationId($p['schedule_x_location_id']);
+			$orderLine->setEvent($this->eventDao->get($eventId[0][0]));
+			$orderLine->setSchedule($this->scheduleDao->getById($scheduleId[0][0]));
+			return $orderLine;
+		}
 	}
 
 }

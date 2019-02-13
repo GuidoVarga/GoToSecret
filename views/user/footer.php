@@ -213,7 +213,7 @@
                                 if(response=='true')
                                     redirect('/GoToSecret/Cart');
                                 else{
-                                  console.log('error');
+                                  console.log(response);
                                   swal({
                                   title: "Hubo un error!",
                                   text: "Cantidad no disponible",
@@ -228,12 +228,12 @@
              function deleteCartLine(event){
                 event.preventDefault();
                 const tr = event.target.parentElement.parentElement;
-                const eventName = tr.childNodes[1].childNodes[1].value;
+                const orderLineId = tr.childNodes[1].childNodes[1].value;
 
                 const tbody = document.getElementById('cart-tbody');
-
+                console.log(orderLineId);
                 let parametros = {
-                        "eventName": eventName,
+                        "orderLineId": orderLineId,
                     };
                     
                   $.ajax({
@@ -243,6 +243,11 @@
                       type: 'POST',
                       data: parametros,
                       success : function (response){
+                          console.log(response);
+                          const total=document.getElementById('total');
+                          total.innerHTML="";
+                          total.innerText=response;
+                          console.log(total);
                           tr.parentElement.removeChild(tr);        
                           checkButtonConfirm();
                       }

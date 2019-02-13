@@ -103,7 +103,7 @@ class OrderDao extends Singleton implements iDao{
 	public function getByAccountId($id){
 
 		try {
-			$sql = "SELECT * FROM orders WHERE account_id = :id";
+			$sql = "SELECT * FROM orders WHERE account_id = :id ORDER BY id DESC";
 
 			$obj_pdo = new Connection();
 
