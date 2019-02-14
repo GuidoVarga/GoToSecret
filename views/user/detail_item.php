@@ -53,6 +53,17 @@
                                                                 <p><?php echo $schedule->getDay()?></p>
                                                                 </dd>
                                                                 </dl>
+                                                                <dl>
+                                                                    <dt> Artistas</dt>
+                                                                    <dd>
+                                                                        <?php foreach($schedule->getSubEvents() as $subevent){?>
+                                                                            <p><?php echo $subevent->getArtist()->getName()?></p>
+
+                                                                        <?php
+                                                                            }
+                                                                        ?>
+                                                                    </dd>
+                                                                </dl>
                                                         </div>
         
                                                     <form action="<?php echo 'Schedule?id='.$schedule->getId()?>" method="POST">

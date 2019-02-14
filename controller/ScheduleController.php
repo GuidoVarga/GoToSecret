@@ -37,6 +37,7 @@ use controller\Middleware as Middleware;
 
 			$schedule = $this->getSchedule($scheduleId);
 			$event = $this->getEvent($eventId);
+
 			isset($_SESSION['user']) ? $user = $_SESSION['user']: null;
 
 
