@@ -116,19 +116,19 @@
                             <article class="card-body">
                                 <div class="form-group group-modal">
                                                 <span class="fas fa-envelope form-control-modal"></span>
-                                                <input class="form-control" name="" value=""  id="" placeholder="Numero de Tarjeta">
+                                                <input type="number" onblur="checkButtonConfirm()" class="form-control" name="" value=""  id="number-card" placeholder="Numero de Tarjeta">
                                 </div>
                                 <div class="form-group group-modal">
                                             <span class="fas fa-envelope form-control-modal"></span>
-                                            <input class="form-control" name="" value=""  id="" placeholder="Codigo de Seguridad" >
+                                            <input   type="number" onblur="checkButtonConfirm()" class="form-control" name="" value=""  id="code" placeholder="Codigo de Seguridad" >
                                 </div>
                                 <div class="form-group group-modal">
                                             <span class="fas fa-envelope form-control-modal"></span>
-                                            <input class="form-control" name="" value=""  id="" placeholder="Nombre de Titular" >
+                                            <input onblur="checkButtonConfirm()" class="form-control" name="" value=""  id="name-card" placeholder="Nombre de Titular" >
                                 </div>
                                 <div class="form-group group-modal">
                                             <span class="fas fa-envelope form-control-modal"></span>
-                                            <select class="form-control" id="" name="">
+                                            <select  onblur="checkButtonConfirm()"class="form-control" id="pay-method" name="">
                                                 <option value="">Seleccione un metodo de Pago</option>
                                                 <option value="MercadoPago">MercadoPago</option>
                                             </select>

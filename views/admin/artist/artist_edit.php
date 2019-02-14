@@ -12,7 +12,7 @@
                             <div class="col-lg-12">
                                 <div class="wrapper">
                                         <div class="col-lg-12">
-                                            <form action="edit" method="POST">
+                                            <form action="" method="POST">
                                                 <div class="border border-grey p-4">
                                                     <div class="text-right">
                                                         <button type="submit" onclick="updateArtist(event)" class="btn btn-primary"><i class="fas fa-hdd"></i> Guardar</button>

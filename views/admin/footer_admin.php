@@ -137,30 +137,6 @@
 			}
 		}
 
-		
-
-		/*
-		var btn_submit=document.getElementById('btn_login');
-		var input_email=document.getElementById('email');
-		btn_submit.onclick = function(event){
-
-
-			event.preventDefault();
-			var email = $('#email-login').val();
-			var password = $('#password-login').val();
-
-			if(email!=null){
-				email=email.toLowerCase();
-
-				var parametros = {
-					email : email,
-					password : password
-				}
-				getRequest(parametros,'Login/validateLogin',redirect())
-			}
-		};
-		*/
-    
 		function editCategory(event){
 			
 			const id = event.target.value;
@@ -232,7 +208,7 @@
 			if(price && quantity)
 				addRow([location,quantity,price],tBody);
 			else{
-				alert('completar campos');
+				swal("Error!", "Complete los campos", "error");
 				//modal
 			}
 			
@@ -364,7 +340,8 @@
 						});
     		}else{
     			console.log('Debe completar todos los campos y cargar al menos una plaza y un subevento');
-    			alert('Debe completar todos los campos y cargar al menos una plaza y un subevento');
+				swal("Error!", "Complete los campos y agregue al menos una plaza y un subevento", "error");
+				
     		}
 		}
 
@@ -410,7 +387,7 @@
     		
     		}else{
     			console.log('Debe completar todos los campos y cargar al menos una plaza y un subevento');
-    			alert('Debe completar todos los campos y cargar al menos una plaza y un subevento');
+				swal("Error!", "Complete los campos y cargue al menos una plaza y un subevento", "error");
     		}
 		}
 
@@ -595,7 +572,7 @@
 					});
     	}
     	else{
-    		alert('Complete campos');
+    		swal("Error!", "Complete los campos", "error");
     		//modal
     	}
 
@@ -702,7 +679,7 @@
 			$.ajax({
 
 				//Json
-				url: 'update',
+				url: '/GoToSecret/AdminArtist/update',
 				type: 'POST',
 				data: formData,
 				contentType: false,
@@ -800,14 +777,6 @@
 						}
 					});
 		}
-
-	/*
-	 $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-      });  /*
-
 		</script>
 
 	</footer>

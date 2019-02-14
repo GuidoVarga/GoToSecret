@@ -1,7 +1,7 @@
 <?php namespace views\admin; ?>
 <header class="align-items-start app-header flex-column flex-md-row navbar navbar-expand-md bg-dark">
             <div class="align-items-baseline d-flex flex-row navbar-brand p-lg-3 pl-3 pr-3 pt-3">
-                 <a class="navbar-left" href=""><img class="img-responsive logo" src="<?php echo "/".DIRECTORY."/"."resources/images/logo-white.png"?>" id="logo-nav" alt="GoToEvent"></a>
+                 <a class="navbar-left" href="<?php echo "/".DIRECTORY."/"."Admin"?>"><img class="img-responsive logo" src="<?php echo "/".DIRECTORY."/"."resources/images/logo-white.png"?>" id="logo-nav" alt="GoToEvent"></a>
                 <button class="collapsed ml-auto navbar-toggler navbar-dark" type="button" data-toggle="collapse"
                         data-target="#side-menu-wrapper" aria-controls="side-menu" aria-expanded="false"
                         aria-label="Toggle navigation">

@@ -272,18 +272,28 @@
                 
               }
 
-             /* window.onload = function(){
+              window.onload = function(){
 
                 checkButtonConfirm();
               }
 
               function checkButtonConfirm() {
-
+                  console.log('dd');
                   const tbody = document.getElementById('cart-tbody');
-                  if(!tbody.getElementsByTagName('tr')[0]){
+                  const payMethod = document.getElementById('pay-method').value;
+                  const nameCard = document.getElementById('name-card').value;
+                  const numberCard = document.getElementById('number-card').value;
+                  const code = document.getElementById('code').value;
+                  console.log(payMethod);
+                  console.log(nameCard);
+                  console.log(payMethod);
+
+                  if(!tbody.getElementsByTagName('tr')[0] || payMethod=='' || nameCard=='' || numberCard=='' || code==''){
                       document.getElementById('button-order-confirm').disabled=true;
+                  }else if(tbody.getElementsByTagName('tr')[0] && payMethod!='' && nameCard!='' && numberCard!='' && code!=''){
+                    document.getElementById('button-order-confirm').disabled=false;
                   }
-              }*/
+              }
 
 
               function buttonRegisterValidation(){
