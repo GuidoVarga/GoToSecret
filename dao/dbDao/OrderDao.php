@@ -8,12 +8,17 @@ use dao\dbDao\Connection as Connection;
 use \PDOException as PDOException;
 use dao\iDao as iDao;
 use dao\Singleton as Singleton;
+use dao\dbDao\OrderLineDao as OrderLineDao;
 
 Autoload::start();
 
 class OrderDao extends Singleton implements iDao{
 
 	private $orderLineDao;
+
+	public function __construct(){
+		$this->orderLineDao = OrderLineDao::getInstance();
+	}
 
 	public function add($object){
 
@@ -90,7 +95,7 @@ class OrderDao extends Singleton implements iDao{
 
 			$result=$query->fetchAll();
 
-			return $this->map($result);
+			return $this->mapOnlyOne($result);
 
 		} catch(PDOException $Exception) {
 			
@@ -165,6 +170,17 @@ class OrderDao extends Singleton implements iDao{
 		return array_map(function($p){
 			return new Order($p['id'],$p['date']);
 		}, $orders);
+	}
+
+	public function mapOnlyOne($array){
+
+		if($array){
+			$p=$array[0];
+
+			$order = new Order($p['id'],$p['date']);
+			$order->setOrderLines($this->orderLineDao->getByOrderId($p['id']));
+			return $order;
+		}
 	}
 
 }
