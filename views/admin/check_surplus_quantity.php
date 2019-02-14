@@ -37,12 +37,12 @@
                                                         <td><?php echo $event->getEventCategory()->getName()?></td>
                                                         <td>
                                                             <div class="btn-group">
-                                                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa fa-search"></i></button>
+                                                                <button onclick="getSurplusAndSoldQuantity(<?php echo $event->getId()?>)" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa fa-search"></i></button>
                                                                 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                                         <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <h5 class="modal-title" id="modal">Nombre de Evento</h5>
+                                                                            <h5 class="modal-title" id="modal-title"></h5>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
                                                                             </button>
@@ -51,11 +51,11 @@
                                                                         <dl class="detail">
                                                                             <dt>Cantidad Vendida</dt>
                                                                             <dd>
-                                                                            <p>150</p>
+                                                                            <span id="sold-quantity">150</span>
                                                                             </dd>
                                                                             <dt>Remanente</dt>
                                                                             <dd>
-                                                                            <p>150</p>
+                                                                            <span id="surplus">150</span>
                                                                             </dd>
                                                                         </div>
                                                                         <div class="modal-footer">

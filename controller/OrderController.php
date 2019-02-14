@@ -6,7 +6,6 @@
 	use controller\Middleware as Middleware;
 	use dao\dbDao\OrderLineDao as OrderLineDao;
 	use dao\dbDao\OrderDao as OrderDao;
-
 	Autoload::start();
 
 	class OrderController{

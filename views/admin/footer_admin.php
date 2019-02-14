@@ -61,6 +61,54 @@
 	</script>
 
 	<script>
+
+		function getSurplusAndSoldQuantity(id,eventName){
+			     
+				 let parametros = {
+                        "id": id
+                  };
+                    
+                  $.ajax({
+
+                      //Json
+                      url: '/GoToSecret/AdminQuery/getSurplusAndSoldQuantity',
+                      type: 'POST',
+                      data: parametros,
+                      success : function (response){
+                          const obj = JSON.parse(response);
+                          let surplus=document.getElementById("surplus");
+                          let sold=document.getElementById("sold-quantity");
+                          let title=document.getElementById("modal-title");
+                 		  title.innerHTML=obj.name;
+                          surplus.innerHTML=obj.surplus;
+                          sold.innerHTML=obj.sold;
+                      }
+                    });
+		}
+
+		function getSurplusAndSoldQuantityByCategory(id){
+			     
+				 let parametros = {
+                        "id": id
+                  };
+                    
+                  $.ajax({
+
+                      //Json
+                      url: '/GoToSecret/AdminQuery/getSurplusAndSoldQuantityByCategory',
+                      type: 'POST',
+                      data: parametros,
+                      success : function (response){
+                          console.log(response);
+                          const obj = JSON.parse(response);
+
+                          let money=document.getElementById("money");
+                          let title=document.getElementById("modal-title");
+                 		  title.innerHTML=obj.name;
+                          money.innerHTML="$ "+obj.sold;
+                      }
+                    });
+		}
 		
 		function onChangeLocationSelect(event){
 			const button=document.getElementById('add-location');
@@ -753,7 +801,12 @@
 					});
 		}
 
-		
+	/*
+	 $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+      });  /*
 
 		</script>
 

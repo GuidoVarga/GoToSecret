@@ -5,6 +5,7 @@ class EventCategory
 
 	private $id;
 	private $name;
+    private $soldQuantity;
 
 
 	 function __construct($id,$name)
@@ -25,6 +26,13 @@ class EventCategory
     }
     function getName(){
         return $this->name;
+    }
+    function setSoldQuantity($soldQuantity){
+        $this->soldQuantity=$soldQuantity;
+    }
+
+    function getSoldQuantity(){
+        return $this->soldQuantity;
     }
 }
 

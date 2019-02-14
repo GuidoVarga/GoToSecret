@@ -125,7 +125,7 @@ use controller\Middleware as Middleware;
 			$locationsArray = $_POST['locations'];
 			$locations=array();
 			foreach ($locationsArray as $l) {
-				$location = new Location($l['id'],null,$l['quantity'],$l['price'],$l['quantity']);
+				$location = new Location($l['id'],null,$l['quantity'],$l['quantity'],$l['price']);
 				array_push($locations, $location);
 			}
 
@@ -163,7 +163,7 @@ use controller\Middleware as Middleware;
 			$locationsArray = $_POST['locations'];
 			$locations=array();
 			foreach ($locationsArray as $l) {
-				$location = new Location($l['id'],null,$l['quantity'],$l['price'],$l['quantity']);
+				$location = new Location($l['id'],null,$l['quantity'],$l['quantity'],$l['price']);
 				array_push($locations, $location);
 			}
 

@@ -68,6 +68,31 @@ class EventCategoryDao extends Singleton implements iDao{
 
 	}
 
+	public function getName($id){
+
+		try {
+			$sql = "SELECT name FROM event_categories WHERE id=:id";
+
+			$obj_pdo = new Connection();
+
+			$connection = $obj_pdo->connect();
+		
+			$query = $connection->prepare($sql);
+			$query->bindParam(":id", $id);
+
+			$query->execute();
+
+			$result=$query->fetchAll();
+			return $result[0][0];
+
+		} 
+		catch(PDOException $Exception) {
+			throw new MyDatabaseException( $Exception->getMessage( ) , $Exception->getCode( ) );
+		}
+
+	}
+
+
 	public function getAll(){
 
 		try {

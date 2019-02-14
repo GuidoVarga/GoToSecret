@@ -30,7 +30,7 @@
                                                     <thead>
                                                         <tr>
                                                         <th scope="col">Categoría</th>
-                                                        <th scope="col">Cantidad Vendida en pesos</th>
+                                                        <th scope="col">Cantidad de entradas vendidas</th>
                                                         <th scope="col"></th>
                                                         </tr>
                                                     </thead>
@@ -39,24 +39,24 @@
                                                         foreach ($categories as $category) {?>  
                                                         <tr>
                                                         <td><?php echo $category->getName()?></td>
-                                                        <td> $</td>
+                                                        <td><?php echo $category->getSoldQuantity()?></td>
                                                         <td>
                                                             <div class="btn-group">
-                                                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa fa-search"></i></button>
+                                                                <button onclick="getSurplusAndSoldQuantityByCategory(<?php echo $category->getId()?>)"class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa fa-search"></i></button>
                                                                 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                                         <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <h5 class="modal-title" id="modal">Nombre de Evento</h5>
+                                                                            <h5 class="modal-title" id="modal-title">Nombre de Evento</h5>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
                                                                             </button>
                                                                         </div>
                                                                         <div class="modal-body">
                                                                         <dl class="detail">
-                                                                            <dt>Dinero Vendido: </dt>
+                                                                            <dt>Dinero recaudado: </dt>
                                                                             <dd>
-                                                                            <p>$150</p>
+                                                                            <span id="money"></span>
                                                                             </dd>
                                                                             
                                                                         </div>
