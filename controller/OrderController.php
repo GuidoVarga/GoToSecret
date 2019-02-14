@@ -75,7 +75,7 @@
 			
 			$json=json_encode($object,JSON_PRETTY_PRINT);
 			$this->generateQr(300,'resources/qr/qr'.$orderLineId,$json);
-			$this->sendEmail($orderLineId);
+			$this->sendEmail($orderLineId,$object);
 			return $json;
 
 		}
@@ -126,7 +126,7 @@
 			    
 		}
 
-		private function sendEmail($id){
+		private function sendEmail($id,$object){
 
 				$user=$_SESSION['user'];
 				$to = $user->getAccount()->getEmail();
@@ -134,16 +134,39 @@
 				$headers = "MIME-Version: 1.0" . "\r\n";
 				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 				$qr = '<img src="http://localhost/GoToSecret/resources/qr/qr'.$id.'.png"/>';
+				$logo = '<img src="http://localhost/GoToSecret/resources/images/logo-black.png"/>';
+				$event = $object->event;
+				$date = $object->date;
+				$place = $object->place;
+				$address =$object->address;
+				$uses = $object->uses;
 				$message = '
 				<html>
-				<head>
-				<title>Gracias por tu compra</title>
-				</head>
-				<body>
-				<h1>Tu compra ha sido confirmada</h1>
-				<p>Con este qr puedes entrar al evento. Tiene un limite de uso (la cantidad de plazas que compraste)</p>
-				'.$qr.'
-				</body>
+					<head>
+					<title>Gracias por tu compra</title>
+					</head>
+					<body>
+					<p align="center" style="display:block; margin-left:auto; margin-right:auto; margin-top:30px;">'.$logo.'</p>
+					<h1 align="center">Tu compra ha sido confirmada</h1>
+					<p align="center">Con este qr puedes entrar al evento. Tiene un limite de uso (la cantidad de plazas que compraste)</p>
+					<p align="center">'.$qr.'</p>
+					<table align="center" style="width:75%">
+							<tr>
+							<th style="border: 1px solid #dddddd;text-align: left;padding: 8px; text-align:center;">Evento</th>
+							<th style="border: 1px solid #dddddd;text-align: left;padding: 8px; text-align:center;">Fecha</th>
+							<th style="border: 1px solid #dddddd;text-align: left;padding: 8px; text-align:center;">Lugar</th>
+							<th style="border: 1px solid #dddddd;text-align: left;padding: 8px; text-align:center;">Direccion</th>
+							<th style="border: 1px solid #dddddd;text-align: left;padding: 8px; text-align:center;">Usos</th>
+							</tr>
+							<tr>
+							<td style="border: 1px solid #dddddd;text-align: left;padding: 8px; text-align:center;">'.$event.'</td>
+							<td style="border: 1px solid #dddddd;text-align: left;padding: 8px; text-align:center;">'.$date.'</td>
+							<td style="border: 1px solid #dddddd;text-align: left;padding: 8px; text-align:center;">'.$place.'</td>
+							<td style="border: 1px solid #dddddd;text-align: left;padding: 8px; text-align:center;">'.$address.'</td>
+							<td style="border: 1px solid #dddddd;text-align: left;padding: 8px; text-align:center;">'.$uses.'</td>
+							</tr>
+						</table>          
+					</body>
 				</html>';
 				 
 				mail($to, $subject, $message, $headers);

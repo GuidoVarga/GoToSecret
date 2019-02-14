@@ -105,69 +105,81 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-12">
-                    <div class="form-group group-modal">
-                                <span class="fas fa-envelope form-control-modal"></span>
-                                <input class="form-control" name="" value=""  id="" placeholder="Numero de Tarjeta">
-                    </div>
-                     <div class="form-group group-modal">
-                                <span class="fas fa-envelope form-control-modal"></span>
-                                <input class="form-control" name="" value=""  id="" placeholder="Codigo de Seguridad" >
-                    </div>
-                    <div class="form-group group-modal">
-                                <span class="fas fa-envelope form-control-modal"></span>
-                                <input class="form-control" name="" value=""  id="" placeholder="Nombre de Titular" >
-                    </div>
-                     <div class="form-group group-modal">
-                                <span class="fas fa-envelope form-control-modal"></span>
-                                <select class="form-control" id="" name="">
-                                    <option value="">Seleccione un metodo de Pago</option>
-                                    <option value="MercadoPago">MercadoPago</option>
-                                </select>
-                    </div>
-                   
-                    <div class="form-button-cart col-12 col-sm-4 col-md-4 col-xl-2 position-absolute">
-                        <button type="button" id="button-order-confirm" data-toggle="modal" data-target="#modalcart"class="btn btn-block btn-all"> CONFIRMAR </button>
-                    </div>
-                    <div id="modalcart" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">¿Estás seguro?</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    
-                                </div>
-                                <div class="modal-body row">
-                                    <div class="col-6">
-                                        <button onclick="confirmOrder(event)" type="button" class="btn btn-block btn-all"> SI </button>
-                                    </div>
-                                    <div class="col-6">
-                                    <button type="button" class="btn btn-block btn-default"> NO </button>
-                                    </div> 
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div id="alertcart" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Error</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    
-                                </div>
-                                <div class="modal-body">
-                                    <h6>No se pudo realizar la compra</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
             </div>
+            <?php if(isset($cart)){?>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <header class="card-header">
+                                <h3 class="card-title mt-2 text-left">Completa Tus Datos</h3>
+                            </header>
+                            <article class="card-body">
+                                <div class="form-group group-modal">
+                                                <span class="fas fa-envelope form-control-modal"></span>
+                                                <input class="form-control" name="" value=""  id="" placeholder="Numero de Tarjeta">
+                                </div>
+                                <div class="form-group group-modal">
+                                            <span class="fas fa-envelope form-control-modal"></span>
+                                            <input class="form-control" name="" value=""  id="" placeholder="Codigo de Seguridad" >
+                                </div>
+                                <div class="form-group group-modal">
+                                            <span class="fas fa-envelope form-control-modal"></span>
+                                            <input class="form-control" name="" value=""  id="" placeholder="Nombre de Titular" >
+                                </div>
+                                <div class="form-group group-modal">
+                                            <span class="fas fa-envelope form-control-modal"></span>
+                                            <select class="form-control" id="" name="">
+                                                <option value="">Seleccione un metodo de Pago</option>
+                                                <option value="MercadoPago">MercadoPago</option>
+                                            </select>
+                                </div>
+                            </article> <!-- card-body end .// -->
+                            
+                        </div> <!-- card.// -->
+                        
+                        <div class="form-button-cart col-12 col-sm-4 col-md-4 col-xl-2 position-absolute">
+                            <button type="button" id="button-order-confirm" data-toggle="modal" data-target="#modalcart"class="btn btn-block btn-all"> CONFIRMAR </button>
+                        </div>
+                        <div id="modalcart" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">¿Estás seguro?</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        
+                                    </div>
+                                    <div class="modal-body row">
+                                        <div class="col-6">
+                                            <button onclick="confirmOrder(event)" type="button" class="btn btn-block btn-all"> SI </button>
+                                        </div>
+                                        <div class="col-6">
+                                        <button type="button" data-dismiss="modal" class="btn btn-block btn-default"> NO </button>
+                                        </div> 
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="alertcart" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Error</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        
+                                    </div>
+                                    <div class="modal-body">
+                                        <h6>No se pudo realizar la compra</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+            </div>
+            <?php } ?>
+           
         </div>
     </section>
 

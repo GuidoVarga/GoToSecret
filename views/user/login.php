@@ -17,7 +17,7 @@
                             <div class="form-group group-modal">
                                 <span class="fas fa-unlock-alt form-control-modal"></span>
                                 <input type="password" name="password" class="form-control" id="password-login-card" placeholder="Contraseña" required>
-                                     <small class="form-text text-muted" align="left" id="password-error-login" style="display: none;"><p style="color:red;">Contraseña Incorrecta</p></small>
+                                     <small class="form-text text-muted" align="left" id="password-error-login-card" style="display: none;"><p style="color:red;">Contraseña Incorrecta</p></small>
                             </div>
                              <div class="form-group">
                                 <button id="btn_login" type="submit" onclick="loginAjaxCard(event)" class="btn btn-all btn-block"> Iniciar Sesión </button>

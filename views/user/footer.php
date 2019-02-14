@@ -433,8 +433,8 @@
 
                 function loginAjaxCard (event){
                   event.preventDefault();
-                  var email = $('#email-login-card').val();
-                  var password = $('#password-login-card').val();
+                  let email = $('#email-login-card').val();
+                  let password = $('#password-login-card').val();
 
                   if(email!=null){
                     email=email.toLowerCase();
@@ -461,8 +461,8 @@
                            redirect('/GoToSecret/Admin');
                         }
                         else if(response==='error'){
-                          document.getElementById('password-login').style.border="solid 1px red";
-                          document.getElementById('password-error-login').style.display="block";
+                          document.getElementById('password-login-card').style.border="solid 1px red";
+                          document.getElementById('password-error-login-card').style.display="block";
                           console.log(response);
                         }
                             

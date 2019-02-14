@@ -11,7 +11,7 @@
 
             <ul class="nav navbar-nav ml-md-auto flex-row navbar-top-links">
                 <li class="nav-item">
-                    <a class="nav-link" href="Home"  aria-haspopup="true" aria-expanded="false"><i class="fas fa-eye"></i>
+                    <a class="nav-link" href="<?php echo "/".DIRECTORY."/"."Home"?>"  aria-haspopup="true" aria-expanded="false"><i class="fas fa-eye"></i>
                                 Previsualizar
                     </a>
                 </li>
