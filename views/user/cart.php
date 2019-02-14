@@ -100,11 +100,32 @@
                                 </tr>
                                 </tfooter>
                             </table>
+                        
                            
                         </form>
                     </div>
                 </div>
                 <div class="col-12">
+                    <div class="form-group group-modal">
+                                <span class="fas fa-envelope form-control-modal"></span>
+                                <input class="form-control" name="" value=""  id="" placeholder="Numero de Tarjeta">
+                    </div>
+                     <div class="form-group group-modal">
+                                <span class="fas fa-envelope form-control-modal"></span>
+                                <input class="form-control" name="" value=""  id="" placeholder="Codigo de Seguridad" >
+                    </div>
+                    <div class="form-group group-modal">
+                                <span class="fas fa-envelope form-control-modal"></span>
+                                <input class="form-control" name="" value=""  id="" placeholder="Nombre de Titular" >
+                    </div>
+                     <div class="form-group group-modal">
+                                <span class="fas fa-envelope form-control-modal"></span>
+                                <select class="form-control" id="" name="">
+                                    <option value="">Seleccione un metodo de Pago</option>
+                                    <option value="MercadoPago">MercadoPago</option>
+                                </select>
+                    </div>
+                   
                     <div class="form-button-cart col-12 col-sm-4 col-md-4 col-xl-2 position-absolute">
                         <button type="button" id="button-order-confirm" data-toggle="modal" data-target="#modalcart"class="btn btn-block btn-all"> CONFIRMAR </button>
                     </div>

@@ -272,7 +272,7 @@
                 
               }
 
-              window.onload = function(){
+             /* window.onload = function(){
 
                 checkButtonConfirm();
               }
@@ -283,7 +283,7 @@
                   if(!tbody.getElementsByTagName('tr')[0]){
                       document.getElementById('button-order-confirm').disabled=true;
                   }
-              }
+              }*/
 
 
               function buttonRegisterValidation(){
@@ -345,8 +345,8 @@
                     });
                   }
                   else{
-                     document.getElementById('password-repeat').style.border="solid 1px red";
-                    document.getElementById('password-error').style.display="block";
+                   document.getElementById('password-repeat').style.border="solid 1px red";
+                    document.getElementById('password-error-register').style.display="block";
                   }
                 
 
@@ -386,12 +386,9 @@
               
               <script>
 
-
-                var btn_submit=document.getElementById('btn_login');
-                var input_email=document.getElementById('email');
-                btn_submit.onclick = function(event){
-
-
+                
+               function loginAjaxModal (event){
+                 var input_email=document.getElementById('email');
                   event.preventDefault();
                   var email = $('#email-login').val();
                   var password = $('#password-login').val();
@@ -413,7 +410,62 @@
                       type: 'POST',
                       data: parametros,
                       success : function (response){
-                            redirect('/GoToSecret/Home');
+                       
+                        if(response==='user'){
+                          redirect('/GoToSecret/Home');
+                        }
+                        else if(response==='admin'){
+                           redirect('/GoToSecret/Admin');
+                        }
+                        else if(response==='error'){
+                          document.getElementById('password-login').style.border="solid 1px red";
+                          document.getElementById('password-error-login').style.display="block";
+                          console.log(response);
+                        }
+                            
+                      }
+                    });
+
+                    //getRequest(parametros,'Login/validateLogin',console.log('hola'));
+                  }
+
+                };
+
+                function loginAjaxCard (event){
+                  event.preventDefault();
+                  var email = $('#email-login-card').val();
+                  var password = $('#password-login-card').val();
+
+                  if(email!=null){
+                    email=email.toLowerCase();
+
+                    var parametros = {
+                      "email" : email,
+                      "password" : password
+                    }
+
+
+
+                     $.ajax({
+
+                      //Json
+                      url: 'Login/validateLogin',
+                      type: 'POST',
+                      data: parametros,
+                      success : function (response){
+                       
+                        if(response==='user'){
+                          redirect('/GoToSecret/Home');
+                        }
+                        else if(response==='admin'){
+                           redirect('/GoToSecret/Admin');
+                        }
+                        else if(response==='error'){
+                          document.getElementById('password-login').style.border="solid 1px red";
+                          document.getElementById('password-error-login').style.display="block";
+                          console.log(response);
+                        }
+                            
                       }
                     });
 

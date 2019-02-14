@@ -42,7 +42,6 @@ class LoginController{
 		if(password_verify($password,$hash)){
 
 			$this->login($email);
-			return true;
 		}
 		else{
 			echo 'error';
@@ -58,9 +57,9 @@ class LoginController{
 		$_SESSION['user']=$user;
 		
 		if($user->getAccount()->getRole()->getDescription()=='user')
-			header('Location: http://'.HOST.'/'.DIRECTORY.'/Home');
+			echo 'user';
 		else
-			header('Location: http://'.HOST.'/'.DIRECTORY.'/Admin');
+			echo 'admin';
 	
 	}
 

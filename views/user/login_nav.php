@@ -22,9 +22,10 @@
                             <div class="form-group group-modal">
                                 <span class="fas fa-unlock-alt form-control-modal"></span>
                                 <input type="password" name="password" class="form-control" id="password-login" placeholder="Contraseña" required>
+                                     <small class="form-text text-muted" align="left" id="password-error-login" style="display: none;"><p style="color:red;">Contraseña Incorrecta</p></small>
                             </div>
                             <div class="form-group">
-                                <button type="submit" id="btn_login" class="btn btn-all btn-block"> Iniciar Sesión </button>
+                                <button type="submit" id="btn_login" onclick="loginAjaxModal(event)"class="btn btn-all btn-block"> Iniciar Sesión </button>
                             </div> 
                         </form>
                         <div class="text-center"><button onclick="" class="btn btn-fb mb-3"><i class="fab fa-facebook"></i> Iniciar con Facebook</button></div>
@@ -72,7 +73,7 @@
                                 </div>
                                 <div class="col-12 col-md col-lg form-group group-modal">
                                     <span class="fas fa-unlock-alt form-control-modal"></span>
-                                    <input type="password" name="password-repeat" class="form-control" id="password-repeat" placeholder="Repetir Contraseña" required="" onchange="buttonRegisterValidation()" onblur=""> <small class="form-text text-muted" align="left" id="password-error" style="display: none;"><p style="color:red;">La contraseña no coincide</p></small>      
+                                    <input type="password" name="password-repeat" class="form-control" id="password-repeat" placeholder="Repetir Contraseña" required="" onchange="buttonRegisterValidation()" onblur=""> <small class="form-text text-muted" align="left" id="password-error-register" style="display: none;"><p style="color:red;">La contraseña no coincide</p></small>      
                                 </div>
                             </div>
                             
